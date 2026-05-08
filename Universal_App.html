@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Godhuli - Full Science Portal</title>
+  <style>
+:root {
+  --primary: #2563eb;
+  --success: #10b981;
+  --dark: #0f172a;
+  --light: #f8fafc;
+  --accent: #7c3aed;
+}
+body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--light); color: var(--dark); scroll-behavior: smooth; }
+
+/* Navbar */
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 6%; background: white; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+.logo { font-size: 1.6rem; font-weight: 800; color: var(--primary); cursor: pointer; }
+.nav-btns .btn { padding: 8px 20px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; margin-left: 10px; }
+.btn-login { background: var(--light); color: var(--primary); border: 1px solid var(--primary); }
+.btn-signup { background: var(--primary); color: white; }
+
+/* Hero */
+.hero { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; padding: 40px 6%; text-align: center; }
+
+/* Layout */
+.container { display: grid; grid-template-columns: 300px 1fr; max-width: 1440px; margin: 30px auto; gap: 25px; padding: 0 20px; }
+
+/* Sidebar */
+.sidebar { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); height: fit-content; position: sticky; top: 100px; max-height: 80vh; overflow-y: auto; }
+.side-title { font-size: 0.85rem; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; border-bottom: 2px solid #eff6ff; padding-bottom: 5px; margin-top: 20px; }
+.subject-btn { width: 100%; text-align: left; padding: 10px 12px; margin-bottom: 5px; border: none; background: none; border-radius: 8px; cursor: pointer; font-size: 0.95rem; transition: 0.2s; color: #334155; display: flex; align-items: center; }
+.subject-btn:hover { background: #f0f7ff; color: var(--primary); font-weight: 600; }
+
+/* Content Area */
+.video-player { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); overflow: hidden; }
+.card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+
+/* Chapters */
+.chapter-card { border: 1px solid #e2e8f0; padding: 15px; border-radius: 12px; margin-bottom: 15px; transition: 0.3s; }
+.chapter-card:hover { border-color: var(--primary); background: #fafafa; }
+.pill { padding: 6px 16px; margin: 8px 8px 0 0; background: #f1f5f9; border-radius: 20px; display: inline-block; cursor: pointer; font-size: 0.85rem; border: 1px solid transparent; color: #475569; transition: 0.2s; }
+.pill:hover { background: var(--primary); color: white; }
+
+/* Modal */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; backdrop-filter: blur(4px); align-items: center; justify-content: center; }
+.modal-content { background: white; padding: 40px; border-radius: 20px; width: 350px; text-align: center; position: relative; }
+.modal-content input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+
+/* 3-Dot Kebab Menu */
+.kebab-wrapper { position: relative; display: inline-block; margin-left: 12px; }
+.kebab-btn {
+  background: none; border: none; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; padding: 8px 10px; border-radius: 8px;
+  transition: background 0.2s;
+}
+.kebab-btn:hover { background: #f0f7ff; }
+.kebab-btn span {
+  display: block; width: 5px; height: 5px;
+  background: #475569; border-radius: 50%;
+  transition: background 0.2s;
+}
+.kebab-btn:hover span { background: var(--primary); }
+.kebab-dropdown {
+  display: none;
+  position: absolute; right: 0; top: calc(100% + 8px);
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  min-width: 200px;
+  overflow: hidden;
+  z-index: 3000;
+  animation: dropDown 0.2s ease;
+  border: 1px solid #e2e8f0;
+}
+.kebab-dropdown.open { display: block; }
+@keyframes dropDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.dropdown-header {
+  padding: 16px 20px 10px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.78rem; color: #94a3b8;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.dropdown-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 0.92rem; color: #334155;
+  transition: background 0.15s, color 0.15s;
+  text-decoration: none;
+}
+.dropdown-item:hover { background: #f0f7ff; color: var(--primary); }
+.dropdown-item .di-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; background: #f1f5f9;
+  transition: background 0.15s;
+}
+.dropdown-item:hover .di-icon { background: #dbeafe; }
+.dropdown-divider { height: 1px; background: #f1f5f9; margin: 4px 0; }
+.dropdown-item.logout { color: #ef4444; }
+.dropdown-item.logout:hover { background: #fff1f2; color: #dc2626; }
+.dropdown-item.logout .di-icon { background: #fee2e2; }
+.dropdown-item.logout:hover .di-icon { background: #fecaca; }
+
+
+@media (max-width: 1000px) { 
+  .container { grid-template-columns: 1fr; } 
+  .sidebar { position: relative; max-height: none; top: 0; padding: 10px; margin-bottom: 20px; }
+  #sscMenu, #hscMenu { display: flex; flex-direction: row; overflow-x: auto; gap: 10px; padding-bottom: 10px; }
+  .subject-btn { width: auto; white-space: nowrap; flex: 0 0 auto; margin-bottom: 0; }
+  .hero h1 { font-size: 2rem; }
+  .hero p { font-size: 1rem; }
+}
+
+
+/* Dark Theme Overrides */
+body.dark-theme {
+  --light: #0f172a;
+  --dark: #f8fafc;
+  background: var(--light);
+  color: var(--dark);
+}
+body.dark-theme .navbar,
+body.dark-theme .sidebar,
+body.dark-theme .card,
+body.dark-theme .modal-content,
+body.dark-theme .kebab-dropdown { background: #1e293b; color: #f1f5f9; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border-color: #334155; }
+body.dark-theme .subject-btn { color: #cbd5e1; }
+body.dark-theme .subject-btn:hover { background: #334155; color: var(--primary); }
+body.dark-theme .chapter-card { border-color: #334155; }
+body.dark-theme .chapter-card:hover { background: #0f172a; }
+body.dark-theme .pill { background: #334155; color: #cbd5e1; }
+body.dark-theme .pill:hover { background: var(--primary); color: white; }
+body.dark-theme .dropdown-item { color: #cbd5e1; }
+body.dark-theme .dropdown-item:hover { background: #334155; }
+body.dark-theme .dropdown-item .di-icon { background: #334155; }
+body.dark-theme .dropdown-item:hover .di-icon { background: #475569; }
+body.dark-theme .dropdown-header { border-bottom-color: #334155; }
+body.dark-theme .dropdown-divider { background: #334155; }
+body.dark-theme .side-title { border-bottom-color: #334155; }
+body.dark-theme .modal-content input { background: #0f172a; color: #f8fafc; border: 1px solid #475569; }
+body.dark-theme .kebab-btn:hover { background: #334155; }
+body.dark-theme .kebab-btn span { background: #cbd5e1; }
+body.dark-theme .kebab-dropdown { border-color: #334155; }
+
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo" onclick="location.reload()">
+    <span style="font-size:2.2rem">🌅</span> <span>Godhuli</span>
+  </div>
+  <div style="display:flex; align-items:center;">
+    <div class="nav-btns" id="authUI">
+      <button class="btn btn-login" onclick="openAuth(true)">Login</button>
+      <button class="btn btn-signup" onclick="openAuth(false)">Signup</button>
+    </div>
+
+    <!-- 3-Dot Kebab Menu -->
+    <div class="kebab-wrapper" id="kebabWrapper">
+      <button class="kebab-btn" id="kebabBtn" onclick="toggleKebab()" title="More options">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="kebab-dropdown" id="kebabDropdown">
+        <div class="dropdown-header">Menu</div>
+        <a class="dropdown-item" href="#" onclick="menuAction('profile')">
+          <div class="di-icon">👤</div> Profile
+        </a>
+        <a class="dropdown-item" href="#" onclick="menuAction('dashboard')">
+          <div class="di-icon">📊</div> Dashboard
+        </a>
+        <a class="dropdown-item" href="#" onclick="menuAction('shop')">
+          <div class="di-icon">🛒</div> Shop
+        </a>
+        <a class="dropdown-item" href="#" onclick="menuAction('settings')">
+          <div class="di-icon">⚙️</div> Settings
+        </a>
+        <a class="dropdown-item" href="#" onclick="menuAction('theme')">
+          <div class="di-icon" id="themeIconNav">🌙</div> Theme
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item logout" href="#" onclick="menuAction('logout')">
+          <div class="di-icon">🚪</div> Log Out
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>বিজ্ঞান বিভাগের এ টু জেড প্রস্তুতি</h1>
+  <p>SSC ও HSC এর সব বিষয়ের সব চ্যাপ্টার এখন এক জায়গায়</p>
+</header>
+
+<div class="container">
+  <aside class="sidebar">
+    <div class="side-title">SSC (Class 9-10)</div>
+    <div id="sscMenu"></div>
+    
+    <div class="side-title">HSC (Class 11-12)</div>
+    <div id="hscMenu"></div>
+  </aside>
+
+  <main class="main-content">
+    <div class="video-player" id="mainPlayer">
+      <div style="color:white; display:flex; align-items:center; justify-content:center; height:100%; background: #1e293b; text-align:center;">
+        <div>
+          <h3>স্টুডেন্ট ল্যাব</h3>
+          <p>ভিডিও শুরু করতে নিচের "📹 ভিডিও" বাটনে ক্লিক করো</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h2 id="contentTitle">ড্যাশবোর্ড</h2>
+      <p id="contentSubtitle">বামপাশ থেকে বিষয় নির্বাচন করে পড়াশোনা শুরু করো।</p>
+      <div id="chaptersList"></div>
+    </div>
+  </main>
+</div>
+
+<div id="authModal" class="modal">
+  <div class="modal-content">
+    <h2 id="modalHeader">লগইন</h2>
+    <input type="email" id="emailField" placeholder="Email Address">
+    <input type="password" id="passField" placeholder="Password">
+    <button class="btn btn-signup" style="width:100%; margin-top:10px; padding:12px;" onclick="handleAuth()">Submit</button>
+    <p style="margin-top:15px; cursor:pointer; color:gray;" onclick="closeAuth()">বাতিল</p>
+  </div>
+</div>
+
+<div id="settingsModal" class="modal">
+  <div class="modal-content">
+    <h2 id="settingsHeader">Settings</h2>
+    <p id="settingsSub" style="color:gray; margin-bottom: 20px;">Choose Language Preference:</p>
+    <div style="display:flex; justify-content:center; gap: 15px;">
+      <button class="btn btn-login" onclick="setLanguage('en')">English</button>
+      <button class="btn btn-signup" onclick="setLanguage('bn')">বাংলা</button>
+    </div>
+    <p style="margin-top:25px; cursor:pointer; color:gray;" onclick="document.getElementById('settingsModal').style.display='none'">বাতিল (Cancel)</p>
+  </div>
+</div>
+
+<script>
+const eduDataEN = [
+  { subject: "Physics", level: "SSC", icon: "📗", chapters: ["Physical Quantities and Measurement", "Motion", "Force", "Work, Power and Energy", "State of Matter & Pressure", "Structure of Matter", "Waves and Sound", "Light (Reflection & Refraction)", "Electricity", "Modern Physics"] },
+  { subject: "Chemistry", level: "SSC", icon: "🧪", chapters: ["Concepts of Chemistry", "Structure of Atom", "Periodic Table", "Chemical Bond", "States of Matter", "Chemical Reactions", "Acids, Bases and Salts", "Organic Chemistry Basics", "Environmental Chemistry"] },
+  { subject: "Biology", level: "SSC", icon: "🌱", chapters: ["Cell & Tissue", "Plant Physiology", "Animal Physiology", "Microorganisms", "Classification of Living Things", "Environment & Ecosystem", "Reproduction", "Heredity & Evolution"] },
+  { subject: "Higher Math", level: "SSC", icon: "➗", chapters: ["Algebra", "Geometry", "Trigonometry", "Statistics"] },
+  { subject: "Commerce Group", level: "SSC", icon: "📊", chapters: ["Accounting", "Finance & Banking", "Business Entrepreneurship"] },
+  { subject: "Arts (Humanities)", level: "SSC", icon: "📚", chapters: ["History", "Civics", "Geography", "Economics"] },
+  { subject: "Physics", level: "HSC", icon: "📗", chapters: ["Physical World & Measurement", "Vectors", "Motion", "Newtonian Mechanics", "Work, Energy & Power", "Gravitation", "Properties of Matter", "Thermodynamics", "Waves", "Electrostatics", "Current Electricity", "Magnetic Effects", "Modern Physics"] },
+  { subject: "Chemistry", level: "HSC", icon: "🧪", chapters: ["Atomic Structure", "Chemical Bonding", "Thermochemistry", "Chemical Equilibrium", "Electrochemistry", "Organic Chemistry (Hydrocarbons, Alcohols, etc.)", "Environmental Chemistry"] },
+  { subject: "Biology", level: "HSC", icon: "🌱", chapters: ["Cell & Its Structure", "Cell Division", "Microbiology", "Plant Anatomy & Physiology", "Human Physiology", "Genetics & Evolution", "Biotechnology"] },
+  { subject: "Higher Math", level: "HSC", icon: "➗", chapters: ["Algebra", "Trigonometry", "Coordinate Geometry", "Calculus", "Probability & Statistics"] }
+];
+const eduDataBN = [
+  { subject: "পদার্থবিজ্ঞান", level: "SSC", icon: "📗", chapters: ["ভৌত রাশি ও পরিমাপ", "গতি", "বল", "কাজ, ক্ষমতা ও শক্তি", "পদার্থের অবস্থা ও চাপ", "বস্তুর উপর তাপের প্রভাব", "তরঙ্গ ও শব্দ", "আলোর প্রতিফলন ও প্রতিসরণ", "স্থির ও চল তড়িৎ", "আধুনিক পদার্থবিজ্ঞান"] },
+  { subject: "রসায়ন", level: "SSC", icon: "🧪", chapters: ["রসায়নের ধারণা", "পরমাণুর গঠন", "পর্যায় সারণি", "রাসায়নিক বন্ধন", "পদার্থের অবস্থা", "রাসায়নিক বিক্রিয়া", "এসিড-ক্ষার সমতা", "জৈব রসায়নের প্রাথমিক ধারণা", "পরিবেশ রসায়ন"] },
+  { subject: "জীববিজ্ঞান", level: "SSC", icon: "🌱", chapters: ["কোষ ও টিস্যু", "উদ্ভিদ শারীরতত্ত্ব", "প্রাণী শারীরতত্ত্ব", "অণুজীব", "জীবের শ্রেণিবিন্যাস", "পরিবেশ ও বাস্তুতন্ত্র", "প্রজনন", "বংশগতি ও বিবর্তন"] },
+  { subject: "উচ্চতর গণিত", level: "SSC", icon: "➗", chapters: ["বীজগণিত", "জ্যামিতি", "ত্রিকোণমিতি", "পরিসংখ্যান"] },
+  { subject: "বাণিজ্য বিভাগ", level: "SSC", icon: "📊", chapters: ["হিসাববিজ্ঞান", "ফিন্যান্স ও ব্যাংকিং", "ব্যবসায় উদ্যোগ"] },
+  { subject: "মানবিক বিভাগ", level: "SSC", icon: "📚", chapters: ["ইতিহাস", "পৌরনীতি", "ভূগোল", "অর্থনীতি"] },
+  { subject: "পদার্থবিজ্ঞান", level: "HSC", icon: "📗", chapters: ["ভৌত জগত ও পরিমাপ", "ভেক্টর", "গতিবিদ্যা", "নিউটনিয়ান বলবিদ্যা", "কাজ, শক্তি ও ক্ষমতা", "মহাকর্ষ", "পদার্থের গাঠনিক ধর্ম", "তাপগতিবিদ্যা", "তরঙ্গ", "স্থির তড়িৎ", "চল তড়িৎ", "চৌম্বক প্রভাব", "আধুনিক পদার্থবিজ্ঞান"] },
+  { subject: "রসায়ন", level: "HSC", icon: "🧪", chapters: ["পরমাণুর গঠন", "রাসায়নিক বন্ধন", "তাপ রসায়ন", "রাসায়নিক সাম্যাবস্থা", "তড়িৎ রসায়ন", "জৈব রসায়ন (হাইড্রোকার্বন, অ্যালকোহল ইত্যাদি)", "পরিবেশ রসায়ন"] },
+  { subject: "জীববিজ্ঞান", level: "HSC", icon: "🌱", chapters: ["কোষ ও এর গঠন", "কোষ বিভাজন", "মাইক্রোবায়োলজি", "উদ্ভিদ শারীরতত্ত্ব", "মানব শারীরতত্ত্ব", "জিনতত্ত্ব ও বিবর্তন", "জীবপ্রযুক্তি"] },
+  { subject: "উচ্চতর গণিত", level: "HSC", icon: "➗", chapters: ["বীজগণিত", "ত্রিকোণমিতি", "স্থানাঙ্ক জ্যামিতি", "ক্যালকুলাস", "সম্ভাবনা ও পরিসংখ্যান"] }
+];
+let eduData = [];
+
+let currentUser = null;
+
+function renderAuthUI() {
+  const authDiv = document.getElementById("authUI");
+  if (!currentUser) {
+    authDiv.innerHTML = `
+      <button class="btn btn-login" onclick="openAuth(true)">Login</button>
+      <button class="btn btn-signup" onclick="openAuth(false)">Signup</button>`;
+  } else {
+    const avatar = localStorage.getItem("edusite_avatar") || "👤";
+    const userDisplay = avatar.startsWith("data:") 
+      ? `<img src="${avatar}" style="width:24px; height:24px; border-radius:50%; object-fit:cover; display:inline-block;">` 
+      : avatar;
+    authDiv.innerHTML = `
+      <span style="display:flex; align-items:center; gap:8px; font-weight:600;">
+        ${userDisplay} ${currentUser.split('@')[0]}
+      </span>`;
+  }
+}
+
+function setLanguage(lang) {
+  localStorage.setItem('edusite_lang', lang);
+  alert(lang === 'en' ? "Language changed to English!" : "ভাষা বাংলা হিসেবে সেট করা হয়েছে!");
+  location.reload();
+}
+
+function applyLanguage() {
+  const lang = localStorage.getItem('edusite_lang') || 'bn';
+  eduData = lang === 'en' ? eduDataEN : eduDataBN;
+  
+  if (lang === 'en') {
+    document.querySelector('.hero h1').innerText = "A to Z Preparation for Science";
+    document.querySelector('.hero p').innerText = "All chapters of SSC & HSC in one place";
+    document.querySelector('.video-player h3').innerText = "Student Lab";
+    document.querySelector('.video-player p').innerText = "Click the '📹 Video' button below to start";
+    document.getElementById('contentTitle').innerText = "Dashboard";
+    document.getElementById('contentSubtitle').innerText = "Select a subject from the left to start learning.";
+    document.getElementById('modalHeader').innerText = "Login";
+    document.getElementById('settingsHeader').innerText = "Settings";
+    document.getElementById('settingsSub').innerText = "Choose Language Preference:";
+    document.querySelectorAll('.side-title')[0].innerText = "SSC (Class 9-10)";
+    document.querySelectorAll('.side-title')[1].innerText = "HSC (Class 11-12)";
+  } else {
+    document.querySelector('.hero h1').innerText = "বিজ্ঞান বিভাগের এ টু জেড প্রস্তুতি";
+    document.querySelector('.hero p').innerText = "SSC ও HSC এর সব বিষয়ের সব চ্যাপ্টার এখন এক জায়গায়";
+    document.querySelector('.video-player h3').innerText = "স্টুডেন্ট ল্যাব";
+    document.querySelector('.video-player p').innerText = "ভিডিও শুরু করতে নিচের '📹 ভিডিও' বাটনে ক্লিক করো";
+    document.getElementById('contentTitle').innerText = "ড্যাশবোর্ড";
+    document.getElementById('contentSubtitle').innerText = "বামপাশ থেকে বিষয় নির্বাচন করে পড়াশোনা শুরু করো।";
+    document.getElementById('modalHeader').innerText = "লগইন";
+    document.getElementById('settingsHeader').innerText = "সেটিংস";
+    document.getElementById('settingsSub').innerText = "আপনার পছন্দের ভাষা নির্বাচন করুন:";
+    document.querySelectorAll('.side-title')[0].innerText = "এসএসসি (নবম-দশম শ্রেণি)";
+    document.querySelectorAll('.side-title')[1].innerText = "এইচএসসি (সায়েন্স)";
+  }
+}
+
+function init() {
+  if (localStorage.getItem('edusite_theme') === 'dark') {
+    document.body.classList.add('dark-theme');
+    const icon = document.getElementById('themeIconNav');
+    if (icon) icon.innerText = '☀️';
+  }
+  applyLanguage();
+  currentUser = localStorage.getItem("edusite_user");
+  renderAuthUI();
+  const ssc = document.getElementById("sscMenu"), hsc = document.getElementById("hscMenu");
+  eduData.forEach((item, index) => {
+    const btn = `<button class="subject-btn" onclick="loadChapters(${index})">${item.icon} ${item.subject}</button>`;
+    if(item.level === "SSC") ssc.innerHTML += btn;
+    else hsc.innerHTML += btn;
+  });
+}
+
+function loadChapters(idx) {
+  const sub = eduData[idx];
+  document.getElementById("contentTitle").innerText = sub.subject;
+  const list = document.getElementById("chaptersList");
+  list.innerHTML = "";
+  sub.chapters.forEach(ch => {
+    const lang = localStorage.getItem('edusite_lang') || 'bn';
+    const videoTxt = lang === 'en' ? '📹 Video' : '📹 ভিডিও';
+    const sheetTxt = lang === 'en' ? '📄 Lecture Sheet' : '📄 লেকচার শিট';
+    list.innerHTML += `<div class="chapter-card"><strong>${ch}</strong><br>
+    <div class="pill" onclick="tryPlay('${ch}')">${videoTxt}</div>
+    <div class="pill" onclick="tryAccess()">${sheetTxt}</div></div>`;
+  });
+}
+
+function tryPlay(name) {
+  if(!currentUser) openAuth();
+  else {
+    // ভিডিও ইউআরএল হিসেবে ডেমো ইউটিউব লিঙ্ক ব্যবহার করা হয়েছে
+    document.getElementById("mainPlayer").innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>`;
+    document.getElementById("contentTitle").innerText = "এখন দেখছো: " + name;
+    window.scrollTo({top: 150, behavior: 'smooth'});
+  }
+}
+
+function tryAccess() { if(!currentUser) openAuth(); else alert("এই ফাইলটি শীঘ্রই যোগ করা হবে!"); }
+function openAuth() { document.getElementById("authModal").style.display = "flex"; }
+function closeAuth() { document.getElementById("authModal").style.display = "none"; }
+
+function handleAuth() {
+  const e = document.getElementById("emailField").value;
+  if(e.includes("@")) { 
+    currentUser = e;
+    localStorage.setItem("edusite_user", e);
+    renderAuthUI();
+    closeAuth();
+    alert("সফলভাবে লগইন হয়েছে!");
+  } else alert("সঠিক ইমেইল দিন");
+}
+
+init();
+
+// --- Kebab Menu Logic ---
+function toggleKebab() {
+  document.getElementById('kebabDropdown').classList.toggle('open');
+}
+
+function menuAction(action) {
+  document.getElementById('kebabDropdown').classList.remove('open');
+  if (action === 'logout') {
+    currentUser = null;
+    localStorage.removeItem("edusite_user");
+    renderAuthUI();
+    alert('লগআউট সফল হয়েছে!');
+  } else if (action === 'profile')   { window.location.href = 'profile.html'; }
+  else if (action === 'dashboard')  { alert('📊 Dashboard — শীঘ্রই আসছে!'); }
+  else if (action === 'shop')       { alert('🛒 Shop — শীঘ্রই আসছে!'); }
+  else if (action === 'settings')   { document.getElementById('settingsModal').style.display = 'flex'; }
+  else if (action === 'theme') {
+    const isDark = document.body.classList.toggle('dark-theme');
+    localStorage.setItem('edusite_theme', isDark ? 'dark' : 'light');
+    const icon = document.getElementById('themeIconNav');
+    if (icon) icon.innerText = isDark ? '☀️' : '🌙';
+  }
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  const wrapper = document.getElementById('kebabWrapper');
+  if (wrapper && !wrapper.contains(e.target)) {
+    document.getElementById('kebabDropdown').classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>

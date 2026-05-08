@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Godhuli - Full Science Portal</title>
+  <link rel="stylesheet" href="style.css?v=24">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo-area" onclick="location.reload()">
+    <img src="logo.jpg" alt="Logo">
+    <div>
+      <span class="brand">Godhuli</span>
+      <span class="tagline" data-i18n="tagline">LEARN • GROW • INSPIRE</span>
+    </div>
+  </div>
+
+  <div class="nav-links">
+    <a href="#" class="active" id="navHomeLink" onclick="showDashboard()" data-i18n="nav_home">হোম</a>
+    <a href="#" id="navCoursesLink" onclick="showCourses()" data-i18n="nav_courses">কোর্সসমূহ</a>
+    <a href="#" data-i18n="nav_blog">ব্লগ</a>
+    <a href="#" data-i18n="nav_contact">যোগাযোগ</a>
+    <a href="#" data-i18n="nav_about">আমাদের সম্পর্কে</a>
+  </div>
+
+  <div class="nav-actions" id="authUI">
+    <!-- Auth UI injected by JS -->
+  </div>
+</nav>
+
+<header class="hero-section">
+  <!-- Hero Background Slider -->
+  <div class="hero-bg-slider">
+    <div class="hero-slide" style="background-image: url('bg1.png');"></div>
+    <div class="hero-slide" style="background-image: url('bg2.png');"></div>
+    <div class="hero-slide" style="background-image: url('bg3.png');"></div>
+  </div>
+  <div class="hero-bg-overlay"></div>
+
+  <div class="hero-content">
+    <h1 data-i18n="hero_title">আলোর পথে<br>তোমার <span>স্বপ্নের</span> দিশা</h1>
+    <p data-i18n="hero_subtitle">SSC ও HSC এর সব বিষয়ের সহজ, গোছানো এবং মানসম্পন্ন প্রস্তুতি।</p>
+    <div class="hero-buttons">
+      <button class="hero-btn-main" data-i18n="btn_explore">এক্সপ্লোর করুন &rarr;</button>
+      <button class="hero-btn-sec" data-i18n="btn_view_courses">কোর্সসমূহ দেখুন 📖</button>
+    </div>
+  </div>
+
+  <div class="hero-dots">
+    <span class="dot active" onclick="setSlide(0)"></span>
+    <span class="dot" onclick="setSlide(1)"></span>
+    <span class="dot" onclick="setSlide(2)"></span>
+  </div>
+</header>
+
+<div class="main-wrapper">
+  
+  <aside class="sidebar-left">
+    <ul class="sidebar-menu" id="sidebarMenu">
+      <li><a href="#" class="active" id="dashLink" onclick="showDashboard()"><span class="icon">🏠</span> ড্যাশবোর্ড</a></li>
+      <!-- Subjects injected via JS -->
+    </ul>
+  </aside>
+
+  <main class="content-center">
+    
+    <div class="video-player-container" id="mainPlayer"></div>
+
+    <div id="mainDashboard">
+      <div class="level-filters">
+        <button class="btn-filter active" onclick="filterSubjects('SSC')">SSC</button>
+        <button class="btn-filter" onclick="filterSubjects('HSC')">HSC</button>
+      </div>
+      <div class="section-header">
+        <h2 data-i18n="dash_subjects">বিষয়সমূহ</h2>
+        <a href="#" data-i18n="view_all">সব দেখুন &gt;</a>
+      </div>
+      <div class="subjects-grid" id="subjectsGrid">
+        <!-- Subject Cards injected here -->
+      </div>
+      
+      <br>
+      <div class="section-header">
+        <h2 data-i18n="dash_recent">সাম্প্রতিক ক্লাস</h2>
+        <a href="#" data-i18n="view_all">সব দেখুন &gt;</a>
+      </div>
+      <div class="recent-classes" id="recentClasses">
+        <div class="class-row">
+          <div class="cr-left">
+            <div class="cr-play" onclick="tryPlay('সরলরৈখিক গতি (পর্ব-০১)')">▶</div>
+            <div class="cr-info">
+              <h4>গতি: সরলরৈখিক গতি (পর্ব-০১)</h4>
+              <p>পদার্থবিজ্ঞান ১ম পত্র • ৪৫ মিনিট</p>
+            </div>
+          </div>
+          <button class="cr-action" onclick="tryPlay('সরলরৈখিক গতি (পর্ব-০১)')" data-i18n="btn_play">▶ চালান</button>
+        </div>
+      </div>
+      
+      <br>
+      <div class="section-header">
+        <h2 data-i18n="dash_mentors">আমাদের মেন্টর প্যানেল</h2>
+      </div>
+      <div class="mentors-scroll">
+        <div class="mentor-card">
+          <img src="mentor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Sadia+Akter&background=random&size=200'" alt="Sadia Akter">
+          <div class="mc-info">
+            <h4>Sadia Akter</h4>
+            <p>BSc in Textile<br>Home Economics College</p>
+          </div>
+        </div>
+        <div class="mentor-card">
+          <img src="mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random&size=200'" alt="Hasibul Hasan">
+          <div class="mc-info">
+            <h4>Hasibul Hasan</h4>
+            <p>BSc in CSE<br>Ahsanullah University of Science and Technology</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+    <!-- Container for Chapters -->
+    <div class="chapters-container" id="chaptersContainer">
+      <h3 id="chaptersTitle"></h3>
+      <div class="chapter-list" id="chaptersList"></div>
+      <button class="btn btn-outline" style="margin-top:20px;" onclick="showDashboard()" data-i18n="chapters_back">&larr; ব্যাক টু ড্যাশবোর্ড</button>
+    </div>
+
+    <!-- Container for Courses -->
+    <div id="coursesContainer" style="display:none;">
+      <div class="section-header">
+        <h2 data-i18n="nav_courses">কোর্সসমূহ</h2>
+      </div>
+      <div class="courses-grid">
+        <div class="course-card">
+          <div class="course-thumb" style="background: linear-gradient(135deg, #7C3AED, #3B82F6);"></div>
+          <div class="course-info">
+            <div class="course-badge">HOT</div>
+            <h3 data-i18n="course_hsc_title">HSC 2025 বিজ্ঞান ফুল কোর্স</h3>
+            <p>পদার্থ, রসায়ন, গণিত, জীববিজ্ঞান</p>
+            <div class="course-meta">
+              <div class="course-mentors">
+                <img src="mentor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Sadia+Akter&background=random'" class="mentor-avatar" alt="Mentor">
+                <img src="mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random'" class="mentor-avatar" alt="Mentor">
+                <span class="mentor-count">+2</span>
+              </div>
+              <span>📚 ১২০+ ক্লাস</span>
+            </div>
+            <button class="btn btn-primary" style="width:100%; margin-top:15px;" data-i18n="course_btn_enroll" onclick="tryPlay('course')">এনরোল করুন</button>
+          </div>
+        </div>
+        
+        <div class="course-card">
+          <div class="course-thumb" style="background: linear-gradient(135deg, #10B981, #3B82F6);"></div>
+          <div class="course-info">
+            <h3 data-i18n="course_ssc_title">SSC 2024 ফাইনাল রিভিশন</h3>
+            <p>শেষ মুহূর্তের সেরা প্রস্তুতি</p>
+            <div class="course-meta">
+              <div class="course-mentors">
+                <img src="mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random'" class="mentor-avatar" alt="Mentor">
+                <img src="mentor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Sadia+Akter&background=random'" class="mentor-avatar" alt="Mentor">
+                <span class="mentor-count">+1</span>
+              </div>
+              <span>📚 ৫০+ ক্লাস</span>
+            </div>
+            <button class="btn btn-primary" style="width:100%; margin-top:15px;" data-i18n="course_btn_enroll" onclick="tryPlay('course')">এনরোল করুন</button>
+          </div>
+        </div>
+        
+        <div class="course-card">
+          <div class="course-thumb" style="background: linear-gradient(135deg, #EF4444, #F59E0B);"></div>
+          <div class="course-info">
+            <div class="course-badge" style="background: var(--accent-orange);">NEW</div>
+            <h3 data-i18n="course_med_title">মেডিকেল এডমিশন টার্গেট</h3>
+            <p>জীববিজ্ঞান ও রসায়ন স্পেশাল</p>
+            <div class="course-meta">
+              <div class="course-mentors">
+                <img src="mentor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Sadia+Akter&background=random'" class="mentor-avatar" alt="Mentor">
+                <img src="mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random'" class="mentor-avatar" alt="Mentor">
+              </div>
+              <span>📚 ৮০+ ক্লাস</span>
+            </div>
+            <button class="btn btn-outline" style="width:100%; margin-top:15px;" data-i18n="course_btn_enroll" onclick="tryPlay('course')">এনরোল করুন</button>
+          </div>
+        </div>
+        
+        <div class="course-card">
+          <div class="course-thumb" style="background: linear-gradient(135deg, #8B5CF6, #EC4899);"></div>
+          <div class="course-info">
+            <h3 data-i18n="course_eng_title">ইঞ্জিনিয়ারিং প্রস্তুতি কোর্স</h3>
+            <p>পদার্থ ও উচ্চতর গণিত স্পেশাল</p>
+            <div class="course-meta">
+              <div class="course-mentors">
+                <img src="mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random'" class="mentor-avatar" alt="Mentor">
+                <img src="mentor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Sadia+Akter&background=random'" class="mentor-avatar" alt="Mentor">
+              </div>
+              <span>📚 ৯০+ ক্লাস</span>
+            </div>
+            <button class="btn btn-outline" style="width:100%; margin-top:15px;" data-i18n="course_btn_enroll" onclick="tryPlay('course')">এনরোল করুন</button>
+          </div>
+        </div>
+        
+        <div class="course-card">
+          <div class="course-thumb" style="background: linear-gradient(135deg, #F43F5E, #FBBF24);"></div>
+          <div class="course-info">
+            <div class="course-badge" style="background: #8B5CF6;">PRO</div>
+            <h3 data-i18n="course_versity_title">বিশ্ববিদ্যালয় ক ও গুচ্ছ প্রস্তুতি</h3>
+            <p>বিজ্ঞান বিভাগের সকল বিষয়</p>
+            <div class="course-meta">
+              <div class="course-mentors">
+                <img src="mentor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Sadia+Akter&background=random'" class="mentor-avatar" alt="Mentor">
+                <img src="mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random'" class="mentor-avatar" alt="Mentor">
+                <span class="mentor-count">+3</span>
+              </div>
+              <span>📚 ১১০+ ক্লাস</span>
+            </div>
+            <button class="btn btn-outline" style="width:100%; margin-top:15px;" data-i18n="course_btn_enroll" onclick="tryPlay('course')">এনরোল করুন</button>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-thumb" style="background: linear-gradient(135deg, #14B8A6, #3B82F6);"></div>
+          <div class="course-info">
+            <h3 data-i18n="course_ict_title">HSC আইসিটি ফুল কোর্স</h3>
+            <p>C Programming ও HTML স্পেশাল</p>
+            <div class="course-meta">
+              <div class="course-mentors">
+                <img src="mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random'" class="mentor-avatar" alt="Mentor">
+                <img src="mentor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Sadia+Akter&background=random'" class="mentor-avatar" alt="Mentor">
+              </div>
+              <span>📚 ৪০+ ক্লাস</span>
+            </div>
+            <button class="btn btn-outline" style="width:100%; margin-top:15px;" data-i18n="course_btn_enroll" onclick="tryPlay('course')">এনরোল করুন</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Container for Profile -->
+    <div class="profile-container" id="profileContainer" style="display:none;">
+      <div class="profile-header-premium">
+        <div class="php-avatar" onclick="document.getElementById('profilePicInput').click()" style="cursor:pointer;" title="Change Profile Picture">
+          <span>👤</span>
+        </div>
+        <input type="file" id="profilePicInput" accept="image/*" style="display:none;" onchange="handleProPicPreview(event)">
+        <div class="php-info">
+          <h2 id="profileName">Student Name</h2>
+          <p id="profileEmail">student@example.com</p>
+          <div class="php-level">Level 5 Learner</div>
+        </div>
+        <div class="php-progress-circle">
+          <svg viewBox="0 0 36 36" class="circular-chart purple">
+            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+            <path class="circle" stroke-dasharray="65, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+            <text x="18" y="20.35" class="percentage">65%</text>
+          </svg>
+        </div>
+      </div>
+      
+      <div class="profile-stats">
+        <div class="stat-card">
+          <div class="stat-value">১২</div>
+          <div class="stat-label" data-i18n="prof_stat_classes">সম্পন্ন ক্লাস</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">৫</div>
+          <div class="stat-label" data-i18n="prof_stat_exams">কুইজ/পরীক্ষা</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">A+</div>
+          <div class="stat-label" data-i18n="prof_stat_grade">এভারেজ গ্রেড</div>
+        </div>
+      </div>
+      
+      <div class="profile-layout-grid">
+        <div class="plg-left">
+          <div class="section-header" style="padding:0; margin-bottom:15px;">
+            <h2 data-i18n="prof_enrolled">আমার কোর্সসমূহ</h2>
+          </div>
+          <div class="enrolled-course-mini">
+            <div class="ec-icon">🔬</div>
+            <div class="ec-info">
+              <h4 data-i18n="course_hsc_title">HSC 2025 বিজ্ঞান ফুল কোর্স</h4>
+              <div class="progress-bar-container"><div class="progress-bar-fill" style="width: 45%;"></div></div>
+              <p>45% Complete</p>
+            </div>
+            <button class="btn btn-primary btn-sm" data-i18n="course_btn_continue" onclick="tryPlay('course')">চালিয়ে যান</button>
+          </div>
+          
+          <div class="section-header" style="padding:0; margin-top:25px; margin-bottom:15px;">
+            <h2 data-i18n="prof_badges">অর্জিত ব্যাজ</h2>
+          </div>
+          <div class="badges-container">
+            <div class="badge-item">
+              <div class="badge-icon gold">🏆</div>
+              <span data-i18n="badge_top">টপ স্কোরার</span>
+            </div>
+            <div class="badge-item">
+              <div class="badge-icon silver">⚡</div>
+              <span data-i18n="badge_fast">ফাস্ট লার্নার</span>
+            </div>
+            <div class="badge-item">
+              <div class="badge-icon bronze">🔥</div>
+              <span data-i18n="badge_streak">৭ দিনের স্ট্রিক</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="plg-right">
+          <div class="section-header" style="padding:0; margin-bottom:15px;">
+            <h2 data-i18n="prof_recent_activity">রিসেন্ট অ্যাক্টিভিটি</h2>
+          </div>
+          <div class="activity-timeline premium-timeline">
+            <div class="activity-item">
+              <div class="ai-icon">▶</div>
+              <div class="ai-content">
+                <h4 data-i18n="ai_class1">ভেক্টর (পর্ব-৩) দেখেছেন</h4>
+                <p data-i18n="ai_time1">২ ঘণ্টা আগে</p>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="ai-icon">📝</div>
+              <div class="ai-content">
+                <h4 data-i18n="ai_quiz1">পরিবেশ রসায়ন কুইজে ১০/১০ পেয়েছেন</h4>
+                <p data-i18n="ai_time2">গতকাল</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+  </main>
+  
+  <aside class="sidebar-right">
+    <div class="notice-board">
+      <h3 data-i18n="notice_title">নোটিশ বোর্ড <a href="#" data-i18n="view_all">সব দেখুন &gt;</a></h3>
+      <div class="notice-item">
+        <div class="ni-icon ni-purple">📢</div>
+        <div class="ni-content">
+          <h5 data-i18n="notice_text">HSC 25 ব্যাচের লাইভ ক্লাস রুটিন প্রকাশিত হয়েছে।</h5>
+          <p data-i18n="notice_time">২ দিন আগে</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<div id="authModal" class="modal">
+  <div class="modal-content">
+    <h2 id="modalHeader" data-i18n="auth_login">লগইন</h2>
+    <input type="email" id="emailField" placeholder="Email Address" data-i18n-placeholder="auth_ph_email">
+    <input type="password" id="passField" placeholder="Password" data-i18n-placeholder="auth_ph_pass">
+    <button class="btn btn-primary" style="width:100%; margin-top:10px; padding:12px;" onclick="handleAuth()" data-i18n="auth_btn_submit">Submit</button>
+    <p style="margin-top:15px; cursor:pointer; color:var(--text-muted);" onclick="closeAuth()" data-i18n="auth_btn_cancel">বাতিল</p>
+  </div>
+</div>
+
+<!-- Settings Modal -->
+<div id="settingsModal" class="modal">
+  <div class="modal-content settings-content">
+    <div class="settings-header">
+      <h2 data-i18n="settings_title">⚙️ সেটিংস</h2>
+      <span class="close-btn" onclick="closeSettings()">&times;</span>
+    </div>
+    
+    <div class="settings-tabs">
+      <div class="tab active" onclick="switchSettingsTab('account')" id="tab-account" data-i18n="settings_tab_account">অ্যাকাউন্ট</div>
+      <div class="tab" onclick="switchSettingsTab('language')" id="tab-language" data-i18n="settings_tab_lang">ভাষা</div>
+    </div>
+    
+    <div class="settings-body">
+      <!-- Account Tab -->
+      <div id="settings-account" class="tab-content active">
+        <div style="margin-bottom: 5px; color: var(--text-main); font-weight: 600;" data-i18n="settings_personal_info">Personal Info Change</div>
+
+        <div class="form-group">
+          <label data-i18n="settings_name">Name Update</label>
+          <input type="text" id="settingName" placeholder="Your Full Name" data-i18n-placeholder="settings_ph_name">
+        </div>
+        <div class="form-group">
+          <label data-i18n="settings_dob">Date of Birth</label>
+          <input type="date" id="settingDob" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); background: var(--bg-dark); color: var(--text-main); border-radius: 8px; font-family: 'Inter', sans-serif; box-sizing: border-box;">
+        </div>
+        
+        <div style="margin-top: 20px; margin-bottom: 5px; color: var(--text-main); font-weight: 600;" data-i18n="settings_contact_info">Contact Change</div>
+        <div class="form-group">
+          <label data-i18n="settings_email">Email Address (Gmail/Email)</label>
+          <input type="email" id="settingEmail" placeholder="your.email@gmail.com" data-i18n-placeholder="settings_ph_email">
+        </div>
+        <div class="form-group">
+          <label data-i18n="settings_phone">Phone Number</label>
+          <input type="tel" id="settingPhone" placeholder="+880 1XXX-XXXXXX" data-i18n-placeholder="settings_ph_phone">
+        </div>
+        
+        <div class="form-group" style="margin-top: 25px;">
+          <button class="btn btn-outline" style="width:100%;" onclick="togglePasswordForm()" id="btnChangePassword" data-i18n="settings_change_pass">Change Password</button>
+        </div>
+        
+        <!-- Password Form (Hidden) -->
+        <div id="passwordForm" style="display:none; margin-top:15px; padding-top:15px; border-top:1px solid var(--border-color);">
+          <div class="form-group">
+            <label data-i18n="settings_curr_pass">Current Password</label>
+            <input type="password" placeholder="Current Password" data-i18n-placeholder="settings_ph_curr_pass">
+          </div>
+          <div class="form-group">
+            <label data-i18n="settings_new_pass">New Password</label>
+            <input type="password" placeholder="New Password" data-i18n-placeholder="settings_ph_new_pass">
+          </div>
+          <div class="form-group">
+            <label data-i18n="settings_confirm_pass">Confirm New Password</label>
+            <input type="password" placeholder="Confirm New Password" data-i18n-placeholder="settings_ph_confirm_pass">
+          </div>
+          <div class="password-actions" style="display:flex; gap:10px; margin-top:15px;">
+            <button class="btn btn-primary" onclick="alert('Password Updated!'); togglePasswordForm();" style="flex:1;" data-i18n="settings_btn_update">Update</button>
+            <button class="btn btn-outline" onclick="togglePasswordForm()" style="flex:1;" data-i18n="settings_btn_cancel">Cancel</button>
+          </div>
+        </div>
+        
+        <button class="btn btn-primary" style="width:100%; margin-top:20px;" onclick="saveAccountSettings()" data-i18n="settings_btn_save">Save Changes</button>
+      </div>
+      
+      <!-- Language Tab -->
+      <div id="settings-language" class="tab-content">
+        <div class="form-group">
+          <label style="margin-bottom: 10px; display: block;" data-i18n="settings_select_lang">Select Language</label>
+          <div class="radio-group" style="display:flex; flex-direction:column; gap:15px;">
+            <label class="radio-label"><input type="radio" name="lang" value="bn" checked> Bangla (বাংলা)</label>
+            <label class="radio-label"><input type="radio" name="lang" value="en"> English</label>
+          </div>
+        </div>
+        <button class="btn btn-primary" style="width:100%; margin-top:20px;" onclick="saveLanguageSettings()" data-i18n="settings_btn_save_lang">Save Language</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const i18n = {
+  bn: {
+    nav_home: "হোম", nav_courses: "কোর্সসমূহ", nav_blog: "ব্লগ", nav_contact: "যোগাযোগ", nav_about: "আমাদের সম্পর্কে",
+    tagline: "LEARN • GROW • INSPIRE",
+    hero_title: "আলোর পথে<br>তোমার <span>স্বপ্নের</span> দিশা",
+    hero_subtitle: "SSC ও HSC এর সব বিষয়ের সহজ, গোছানো এবং মানসম্পন্ন প্রস্তুতি।",
+    btn_explore: "এক্সপ্লোর করুন &rarr;", btn_view_courses: "কোর্সসমূহ দেখুন 📖",
+    dash_subjects: "বিষয়সমূহ",
+    dash_recent: "সাম্প্রতিক ক্লাস",
+    dash_mentors: "আমাদের মেন্টর প্যানেল",
+    view_all: "সব দেখুন &gt;",
+    btn_play: "▶ চালান",
+    chapters_back: "&larr; ব্যাক টু ড্যাশবোর্ড",
+    sidebar_dash: "<span class=\"icon\">🏠</span> ড্যাশবোর্ড",
+    notice_title: "নোটিশ বোর্ড <a href=\"#\" data-i18n=\"view_all\">সব দেখুন &gt;</a>",
+    notice_text: "HSC 25 ব্যাচের লাইভ ক্লাস রুটিন প্রকাশিত হয়েছে।",
+    notice_time: "২ দিন আগে",
+    prof_stat_classes: "সম্পন্ন ক্লাস",
+    prof_stat_exams: "কুইজ/পরীক্ষা",
+    prof_stat_grade: "এভারেজ গ্রেড",
+    prof_recent_activity: "রিসেন্ট অ্যাক্টিভিটি",
+    ai_class1: "ভেক্টর (পর্ব-৩) দেখেছেন",
+    ai_time1: "২ ঘণ্টা আগে",
+    ai_quiz1: "পরিবেশ রসায়ন কুইজে ১০/১০ পেয়েছেন",
+    ai_time2: "গতকাল",
+    course_hsc_title: "HSC 2025 বিজ্ঞান ফুল কোর্স",
+    course_ssc_title: "SSC 2024 ফাইনাল রিভিশন",
+    course_med_title: "মেডিকেল এডমিশন টার্গেট",
+    course_eng_title: "ইঞ্জিনিয়ারিং প্রস্তুতি কোর্স",
+    course_versity_title: "বিশ্ববিদ্যালয় ক ও গুচ্ছ প্রস্তুতি",
+    course_ict_title: "HSC আইসিটি ফুল কোর্স",
+    course_btn_enroll: "এনরোল করুন",
+    course_btn_continue: "চালিয়ে যান",
+    prof_badges: "অর্জিত ব্যাজ",
+    prof_enrolled: "আমার কোর্সসমূহ",
+    badge_top: "টপ স্কোরার",
+    badge_fast: "ফাস্ট লার্নার",
+    badge_streak: "৭ দিনের স্ট্রিক",
+    kebab_courses: "কোর্সসমূহ",
+    settings_propic: "প্রোফাইল পিকচার",
+    settings_title: "⚙️ সেটিংস",
+    settings_tab_account: "অ্যাকাউন্ট",
+    settings_tab_lang: "ভাষা",
+    settings_personal_info: "ব্যক্তিগত তথ্য পরিবর্তন",
+    settings_name: "নাম আপডেট",
+    settings_dob: "জন্ম তারিখ",
+    settings_contact_info: "যোগাযোগ পরিবর্তন",
+    settings_email: "ইমেইল এড্রেস",
+    settings_phone: "ফোন নাম্বার",
+    settings_change_pass: "পাসওয়ার্ড পরিবর্তন করুন",
+    settings_curr_pass: "বর্তমান পাসওয়ার্ড",
+    settings_new_pass: "নতুন পাসওয়ার্ড",
+    settings_confirm_pass: "নতুন পাসওয়ার্ড নিশ্চিত করুন",
+    settings_btn_update: "আপডেট",
+    settings_btn_cancel: "বাতিল",
+    settings_btn_save: "সেভ চেঞ্জেস",
+    settings_select_lang: "ভাষা নির্বাচন করুন",
+    settings_btn_save_lang: "সেভ করুন",
+    kebab_menu: "মেন্যু",
+    kebab_dash: "ড্যাশবোর্ড",
+    kebab_profile: "প্রোফাইল",
+    kebab_settings: "সেটিংস",
+    kebab_theme: "ডার্ক/লাইট",
+    kebab_logout: "লগ আউট",
+    btn_login: "লগইন",
+    btn_signup: "সাইন আপ",
+    auth_login: "লগইন",
+    auth_ph_email: "ইমেইল এড্রেস",
+    auth_ph_pass: "পাসওয়ার্ড",
+    auth_btn_submit: "সাবমিট",
+    auth_btn_cancel: "বাতিল",
+    settings_ph_name: "আপনার পুরো নাম",
+    settings_ph_email: "আপনার.ইমেইল@gmail.com",
+    settings_ph_phone: "+৮৮০ ১XXX-XXXXXX",
+    settings_ph_curr_pass: "বর্তমান পাসওয়ার্ড",
+    settings_ph_new_pass: "নতুন পাসওয়ার্ড",
+    settings_ph_confirm_pass: "নতুন পাসওয়ার্ড নিশ্চিত করুন"
+  },
+  en: {
+    nav_home: "Home", nav_courses: "Courses", nav_blog: "Blog", nav_contact: "Contact", nav_about: "About Us",
+    tagline: "LEARN • GROW • INSPIRE",
+    hero_title: "On the Path of Light<br>The Direction of your <span>Dreams</span>",
+    hero_subtitle: "Simple, organized, and quality preparation for all SSC and HSC subjects.",
+    btn_explore: "Explore &rarr;", btn_view_courses: "View Courses 📖",
+    dash_subjects: "Subjects",
+    dash_recent: "Recent Classes",
+    dash_mentors: "Our Mentor Panel",
+    view_all: "View All &gt;",
+    btn_play: "▶ Play",
+    chapters_back: "&larr; Back to Dashboard",
+    sidebar_dash: "<span class=\"icon\">🏠</span> Dashboard",
+    notice_title: "Notice Board <a href=\"#\" data-i18n=\"view_all\">View All &gt;</a>",
+    notice_text: "HSC 25 Live Class Routine Published.",
+    notice_time: "2 days ago",
+    prof_stat_classes: "Completed Classes",
+    prof_stat_exams: "Quizzes/Exams",
+    prof_stat_grade: "Average Grade",
+    prof_recent_activity: "Recent Activity",
+    ai_class1: "Watched Vector (Part 3)",
+    ai_time1: "2 hours ago",
+    ai_quiz1: "Scored 10/10 in Env. Chemistry",
+    ai_time2: "Yesterday",
+    course_hsc_title: "HSC 2025 Science Full Course",
+    course_ssc_title: "SSC 2024 Final Revision",
+    course_med_title: "Medical Admission Target",
+    course_eng_title: "Engineering Prep Course",
+    course_versity_title: "University KA & Guchcho Prep",
+    course_ict_title: "HSC ICT Full Course",
+    course_btn_enroll: "Enroll Now",
+    course_btn_continue: "Continue",
+    prof_badges: "Earned Badges",
+    prof_enrolled: "My Courses",
+    badge_top: "Top Scorer",
+    badge_fast: "Fast Learner",
+    badge_streak: "7 Day Streak",
+    kebab_courses: "Courses",
+    settings_propic: "Profile Picture",
+    settings_title: "⚙️ Settings",
+    settings_tab_account: "Account",
+    settings_tab_lang: "Language",
+    settings_personal_info: "Personal Info Change",
+    settings_name: "Name Update",
+    settings_dob: "Date of Birth",
+    settings_contact_info: "Contact Change",
+    settings_email: "Email Address",
+    settings_phone: "Phone Number",
+    settings_change_pass: "Change Password",
+    settings_curr_pass: "Current Password",
+    settings_new_pass: "New Password",
+    settings_confirm_pass: "Confirm New Password",
+    settings_btn_update: "Update",
+    settings_btn_cancel: "Cancel",
+    settings_btn_save: "Save Changes",
+    settings_select_lang: "Select Language",
+    settings_btn_save_lang: "Save Language",
+    kebab_menu: "Menu",
+    kebab_dash: "Dashboard",
+    kebab_profile: "Profile",
+    kebab_settings: "Settings",
+    kebab_theme: "Dark/Light",
+    kebab_logout: "Log Out",
+    btn_login: "Login",
+    btn_signup: "Sign Up",
+    auth_login: "Login",
+    auth_ph_email: "Email Address",
+    auth_ph_pass: "Password",
+    auth_btn_submit: "Submit",
+    auth_btn_cancel: "Cancel",
+    settings_ph_name: "Your Full Name",
+    settings_ph_email: "your.email@gmail.com",
+    settings_ph_phone: "+880 1XXX-XXXXXX",
+    settings_ph_curr_pass: "Current Password",
+    settings_ph_new_pass: "New Password",
+    settings_ph_confirm_pass: "Confirm New Password"
+  }
+};
+
+let currentLang = localStorage.getItem('edusite_lang') || 'bn';
+
+function applyLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('edusite_lang', lang);
+  
+  // Update static texts
+  const elements = document.querySelectorAll('[data-i18n]');
+  elements.forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[lang] && i18n[lang][key]) {
+      el.innerHTML = i18n[lang][key];
+    }
+  });
+
+  // Update placeholders
+  const placeElements = document.querySelectorAll('[data-i18n-placeholder]');
+  placeElements.forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (i18n[lang] && i18n[lang][key]) {
+      el.placeholder = i18n[lang][key];
+    }
+  });
+
+  // Re-render UI components if they are currently loaded
+  if (typeof renderSubjects === "function") renderSubjects();
+  if (typeof renderAuthUI === "function") renderAuthUI();
+
+  // Update language radio buttons in settings
+  const langRadios = document.querySelectorAll('input[name="lang"]');
+  if (langRadios) {
+    langRadios.forEach(radio => {
+      radio.checked = (radio.value === lang);
+    });
+  }
+}
+
+const eduDataBN = [
+  // SSC
+  { subject: "পদার্থবিজ্ঞান", level: "SSC", icon: "📗", chapters: ["১. ভৌত রাশি ও পরিমাপ", "২. গতি", "৩. বল", "৪. কাজ, ক্ষমতা ও শক্তি"] },
+  { subject: "রসায়ন", level: "SSC", icon: "🧪", chapters: ["১. রসায়নের ধারণা", "২. পদার্থের অবস্থা", "৩. পদার্থের গঠন", "৪. পর্যায় সারণি"] },
+  { subject: "উচ্চতর গণিত", level: "SSC", icon: "➗", chapters: ["১. সেট ও ফাংশন", "২. বীজগাণিতিক রাশি", "৩. জ্যামিতি", "৪. জ্যামিতিক অঙ্কন"] },
+  { subject: "জীববিজ্ঞান", level: "SSC", icon: "🌱", chapters: ["১. জীবন পাঠ", "২. জীবকোষ ও টিস্যু", "৩. কোষ বিভাজন"] },
+  { subject: "সাধারণ গণিত", level: "SSC", icon: "🔢", chapters: ["১. বাস্তব সংখ্যা", "২. সেট ও ফাংশন", "৩. বীজগাণিতিক রাশি"] },
+  
+  // HSC
+  { subject: "পদার্থবিজ্ঞান ১ম পত্র", level: "HSC", icon: "📗", chapters: ["১. ভৌতজগৎ ও পরিমাপ", "২. ভেক্টর", "৩. গতিবিদ্যা", "৪. নিউটনিয়ান বলবিদ্যা"] },
+  { subject: "পদার্থবিজ্ঞান ২য় পত্র", level: "HSC", icon: "📘", chapters: ["১. তাপগতিবিদ্যা", "২. স্থির তড়িৎ", "৩. চল তড়িৎ"] },
+  { subject: "রসায়ন ১ম পত্র", level: "HSC", icon: "🧪", chapters: ["১. ল্যাবরেটরির নিরাপদ ব্যবহার", "২. গুণগত রসায়ন", "৩. মৌলের পর্যায়বৃত্ত ধর্ম"] },
+  { subject: "রসায়ন ২য় পত্র", level: "HSC", icon: "⚗️", chapters: ["১. পরিবেশ রসায়ন", "২. জৈব রসায়ন", "৩. পরিমাণগত রসায়ন"] },
+  { subject: "উচ্চতর গণিত ১ম পত্র", level: "HSC", icon: "➗", chapters: ["১. ম্যাট্রিক্স ও নির্ণায়ক", "২. ভেক্টর", "৩. সরলরেখা"] },
+  { subject: "উচ্চতর গণিত ২য় পত্র", level: "HSC", icon: "✖️", chapters: ["১. জটিল সংখ্যা", "২. বহুপদী ও বহুপদী সমীকরণ"] },
+  { subject: "জীববিজ্ঞান ১ম পত্র", level: "HSC", icon: "🌿", chapters: ["১. কোষ ও এর গঠন", "২. কোষ বিভাজন"] },
+  { subject: "জীববিজ্ঞান ২য় পত্র", level: "HSC", icon: "🧬", chapters: ["১. প্রাণীর বিভিন্নতা ও শ্রেণিবিন্যাস", "২. প্রাণীর পরিচিতি"] }
+];
+
+const eduDataEN = [
+  // SSC
+  { subject: "Physics", level: "SSC", icon: "📗", chapters: ["1. Physical Quantities", "2. Motion", "3. Force", "4. Work, Power & Energy"] },
+  { subject: "Chemistry", level: "SSC", icon: "🧪", chapters: ["1. Concepts of Chemistry", "2. State of Matter", "3. Structure of Matter", "4. Periodic Table"] },
+  { subject: "Higher Math", level: "SSC", icon: "➗", chapters: ["1. Set & Functions", "2. Algebraic Expressions", "3. Geometry", "4. Geometric Constructions"] },
+  { subject: "Biology", level: "SSC", icon: "🌱", chapters: ["1. Life Lessons", "2. Cells & Tissues", "3. Cell Division"] },
+  { subject: "General Math", level: "SSC", icon: "🔢", chapters: ["1. Real Numbers", "2. Set & Functions", "3. Algebraic Expressions"] },
+  
+  // HSC
+  { subject: "Physics 1st Paper", level: "HSC", icon: "📗", chapters: ["1. Physical World", "2. Vector", "3. Dynamics", "4. Newtonian Mechanics"] },
+  { subject: "Physics 2nd Paper", level: "HSC", icon: "📘", chapters: ["1. Thermodynamics", "2. Static Electricity", "3. Current Electricity"] },
+  { subject: "Chemistry 1st Paper", level: "HSC", icon: "🧪", chapters: ["1. Safe Use of Lab", "2. Qualitative Chemistry", "3. Periodic Properties"] },
+  { subject: "Chemistry 2nd Paper", level: "HSC", icon: "⚗️", chapters: ["1. Environmental Chem", "2. Organic Chem", "3. Quantitative Chem"] },
+  { subject: "Higher Math 1st Paper", level: "HSC", icon: "➗", chapters: ["1. Matrices", "2. Vector", "3. Straight Lines"] },
+  { subject: "Higher Math 2nd Paper", level: "HSC", icon: "✖️", chapters: ["1. Complex Numbers", "2. Polynomials"] },
+  { subject: "Biology 1st Paper", level: "HSC", icon: "🌿", chapters: ["1. Cell & Structure", "2. Cell Division"] },
+  { subject: "Biology 2nd Paper", level: "HSC", icon: "🧬", chapters: ["1. Animal Diversity", "2. Animal Intro"] }
+];
+
+function getEduData() {
+  return currentLang === 'en' ? eduDataEN : eduDataBN;
+}
+
+let currentUser = null;
+let currentLevel = 'SSC';
+
+function updateSliderImages(isLight) {
+  const slides = document.querySelectorAll('.hero-slide');
+  if (slides.length >= 3) {
+    if (isLight) {
+      slides[0].style.backgroundImage = "url('bg1_day.jpg')";
+      slides[1].style.backgroundImage = "url('bg2_day.jpg')";
+      slides[2].style.backgroundImage = "url('bg3_day.jpg')";
+    } else {
+      slides[0].style.backgroundImage = "url('bg1.png')";
+      slides[1].style.backgroundImage = "url('bg2.png')";
+      slides[2].style.backgroundImage = "url('bg3.png')";
+    }
+  }
+}
+
+function toggleTheme() {
+  document.body.classList.toggle('light-theme');
+  const isLight = document.body.classList.contains('light-theme');
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  updateSliderImages(isLight);
+}
+
+function loadTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  let isLight = false;
+  if (savedTheme) {
+    if (savedTheme === 'light') isLight = true;
+  } else {
+    // Auto detect day/night if no preference is saved
+    const hour = new Date().getHours();
+    // 6 AM to 6 PM is Day
+    if (hour >= 6 && hour < 18) {
+      isLight = true;
+    }
+  }
+  
+  if (isLight) {
+    document.body.classList.add('light-theme');
+  }
+  
+  updateSliderImages(isLight);
+}
+
+function renderAuthUI() {
+  const authDiv = document.getElementById("authUI");
+  const langStr = i18n[currentLang] || i18n['bn'];
+  const kebabMenu = `
+    <div class="kebab-wrapper" id="kebabWrapper">
+      <button class="kebab-btn" onclick="toggleKebab()">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="kebab-dropdown" id="kebabDropdown">
+        <div class="dropdown-header">${langStr.kebab_menu}</div>
+        <a class="dropdown-item" href="#" onclick="showDashboard()">
+          <div class="di-icon">🏠</div> ${langStr.kebab_dash}
+        </a>
+        <a class="dropdown-item" href="#" onclick="menuAction('profile')">
+          <div class="di-icon">👤</div> ${langStr.kebab_profile}
+        </a>
+        <a class="dropdown-item" href="#" onclick="menuAction('settings')">
+          <div class="di-icon">⚙️</div> ${langStr.kebab_settings}
+        </a>
+        <a class="dropdown-item" href="#" onclick="toggleTheme(); toggleKebab();">
+          <div class="di-icon">🌓</div> ${langStr.kebab_theme}
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item logout" href="#" onclick="menuAction('logout')">
+          <div class="di-icon">🚪</div> ${langStr.kebab_logout}
+        </a>
+      </div>
+    </div>
+  `;
+
+  const pic = localStorage.getItem('edusite_propic');
+  const avatarHtml = pic ? `<img src="${pic}" style="width:28px; height:28px; border-radius:50%; object-fit:cover; border:2px solid var(--primary);">` : `👤`;
+
+  if (!currentUser) {
+    authDiv.innerHTML = `
+      <button class="btn btn-outline" onclick="openAuth(true)">${langStr.btn_login}</button>
+      <button class="btn btn-primary" onclick="openAuth(false)">${langStr.btn_signup}</button>
+      ${kebabMenu}
+    `;
+  } else {
+    authDiv.innerHTML = `
+      <span style="display:flex; align-items:center; gap:8px; font-weight:600; color:var(--text-main); cursor:pointer;" onclick="menuAction('profile')">
+        ${avatarHtml} ${currentUser.split('@')[0]}
+      </span>
+      ${kebabMenu}
+    `;
+  }
+}
+
+function filterSubjects(level) {
+  currentLevel = level;
+  document.querySelectorAll('.level-filters .btn-filter').forEach(btn => {
+    btn.classList.toggle('active', btn.innerText === level);
+  });
+  renderSubjects();
+}
+
+function renderSubjects() {
+  const subjectsGrid = document.getElementById("subjectsGrid");
+  const sidebarMenu = document.getElementById("sidebarMenu");
+  
+  subjectsGrid.innerHTML = "";
+  // Reset sidebar to just Dashboard
+  sidebarMenu.innerHTML = `<li><a href="#" class="active" id="dashLink" onclick="showDashboard()"><span class="icon">🏠</span> ড্যাশবোর্ড</a></li>`;
+  
+  getEduData().forEach((item, index) => {
+    if (item.level === currentLevel) {
+      // Add to sidebar
+      sidebarMenu.innerHTML += `<li><a href="#" onclick="loadChapters(${index}, this)"><span class="icon">${item.icon}</span> ${item.subject}</a></li>`;
+      
+      // Add to grid
+      subjectsGrid.innerHTML += `
+        <div class="subject-card" onclick="loadChapters(${index})">
+          <div class="sc-top">
+            <div class="sc-icon">${item.icon}</div>
+            <div>
+              <h3 class="sc-title">${item.subject}</h3>
+              <div class="sc-subtitle">${Math.floor(Math.random() * 50 + 100)}+ ${currentLang === 'en' ? 'Classes' : 'ক্লাস'}</div>
+            </div>
+          </div>
+          <div class="sc-action">${currentLang === 'en' ? 'Start' : 'শুরু করুন'} &rarr;</div>
+        </div>
+      `;
+    }
+  });
+}
+
+function toggleKebab() {
+  const dropdown = document.getElementById("kebabDropdown");
+  if(dropdown) {
+    dropdown.classList.toggle("open");
+  }
+}
+
+function menuAction(action) {
+  if (action === 'logout') {
+    localStorage.removeItem("edusite_user");
+    location.reload();
+  } else if (action === 'profile') {
+    if(!currentUser) openAuth();
+    else showProfile();
+    toggleKebab();
+  } else if (action === 'settings') {
+    openSettings();
+    toggleKebab();
+  }
+}
+
+function init() {
+  loadTheme();
+  currentUser = localStorage.getItem("edusite_user");
+  renderAuthUI();
+  updateProPicUI();
+  filterSubjects('SSC');
+  applyLanguage(currentLang);
+}
+
+function showDashboard() {
+  document.getElementById("mainDashboard").style.display = "block";
+  document.getElementById("chaptersContainer").style.display = "none";
+  document.getElementById("profileContainer").style.display = "none";
+  document.getElementById("coursesContainer").style.display = "none";
+  document.getElementById("mainPlayer").style.display = "none";
+  document.getElementById("mainPlayer").innerHTML = ""; // Stop video
+  
+  // Update sidebar active state
+  document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+  document.getElementById('dashLink').classList.add('active');
+  
+  // Update top nav
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const homeLink = document.getElementById('navHomeLink');
+  if(homeLink) homeLink.classList.add('active');
+  
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function showCourses() {
+  document.getElementById("mainDashboard").style.display = "none";
+  document.getElementById("chaptersContainer").style.display = "none";
+  document.getElementById("profileContainer").style.display = "none";
+  document.getElementById("coursesContainer").style.display = "block";
+  document.getElementById("mainPlayer").style.display = "none";
+  document.getElementById("mainPlayer").innerHTML = ""; // Stop video
+  
+  // Update top nav
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const coursesLink = document.getElementById('navCoursesLink');
+  if(coursesLink) coursesLink.classList.add('active');
+  
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function showProfile() {
+  document.getElementById("mainDashboard").style.display = "none";
+  document.getElementById("chaptersContainer").style.display = "none";
+  document.getElementById("coursesContainer").style.display = "none";
+  document.getElementById("profileContainer").style.display = "block";
+  document.getElementById("mainPlayer").style.display = "none";
+  document.getElementById("mainPlayer").innerHTML = ""; // Stop video
+  
+  // Setup user details
+  const storedName = localStorage.getItem('edusite_name');
+  document.getElementById("profileName").innerText = storedName ? storedName : (currentUser ? currentUser.split('@')[0].toUpperCase() : "Student");
+  document.getElementById("profileEmail").innerText = currentUser || "student@example.com";
+  
+  document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function loadChapters(idx, element) {
+  // Update sidebar active state
+  document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+  if (element) {
+    element.classList.add('active');
+  }
+
+  const sub = getEduData()[idx];
+  document.getElementById("mainDashboard").style.display = "none";
+  document.getElementById("profileContainer").style.display = "none";
+  document.getElementById("coursesContainer").style.display = "none";
+  const chContainer = document.getElementById("chaptersContainer");
+  chContainer.style.display = "block";
+  
+  document.getElementById("chaptersTitle").innerText = sub.icon + " " + sub.subject;
+  const list = document.getElementById("chaptersList");
+  list.innerHTML = "";
+  
+  sub.chapters.forEach(ch => {
+    list.innerHTML += `
+      <div class="chapter-item">
+        <div class="chapter-title">${ch}</div>
+        <div class="chapter-actions">
+          <div class="pill-btn" onclick="tryPlay('${ch}')">${currentLang === 'en' ? '▶ Video' : '▶ ভিডিও'}</div>
+          <div class="pill-btn" onclick="tryAccess()">${currentLang === 'en' ? '📄 Sheet' : '📄 শিট'}</div>
+          <div class="pill-btn" onclick="tryQuiz()">${currentLang === 'en' ? '📝 Quiz' : '📝 কুইজ'}</div>
+        </div>
+      </div>
+    `;
+  });
+  
+  if (window.innerWidth <= 1000) {
+    chContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+  } else {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+}
+
+function tryPlay(name) {
+  if(!currentUser) {
+    openAuth();
+    return;
+  }
+  const player = document.getElementById("mainPlayer");
+  player.style.display = "block";
+  player.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  player.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function tryAccess() { if(!currentUser) openAuth(); else alert("এই ফাইলটি শীঘ্রই যোগ করা হবে!"); }
+function tryQuiz() { if(!currentUser) openAuth(); else alert("এই চ্যাপ্টারের কুইজ শীঘ্রই আসছে!"); }
+
+function openAuth() { document.getElementById("authModal").style.display = "flex"; }
+function closeAuth() { document.getElementById("authModal").style.display = "none"; }
+
+function handleAuth() {
+  const e = document.getElementById("emailField").value;
+  if(e.includes("@")) { 
+    currentUser = e;
+    localStorage.setItem("edusite_user", e);
+    renderAuthUI();
+    closeAuth();
+  } else alert("সঠিক ইমেইল দিন");
+}
+
+function toggleKebab() {
+  document.getElementById('kebabDropdown').classList.toggle('open');
+}
+
+
+
+function openSettings() {
+  document.getElementById("settingsModal").style.display = "flex";
+}
+function closeSettings() {
+  document.getElementById("settingsModal").style.display = "none";
+}
+function switchSettingsTab(tabName) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.settings-tabs .tab').forEach(t => t.classList.remove('active'));
+  
+  document.getElementById('settings-' + tabName).classList.add('active');
+  document.getElementById('tab-' + tabName).classList.add('active');
+}
+function togglePasswordForm() {
+  const form = document.getElementById("passwordForm");
+  const btn = document.getElementById("btnChangePassword");
+  if(form.style.display === "none") {
+    form.style.display = "block";
+    btn.style.display = "none";
+  } else {
+    form.style.display = "none";
+    btn.style.display = "block";
+  }
+}
+function handleProPicPreview(event) {
+  const file = event.target.files[0];
+  if(file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      localStorage.setItem('edusite_propic', e.target.result);
+      updateProPicUI();
+    }
+    reader.readAsDataURL(file);
+  }
+}
+
+function updateProPicUI() {
+  const pic = localStorage.getItem('edusite_propic');
+  if (pic) {
+    const profAvatar = document.querySelector('.php-avatar');
+    if(profAvatar) profAvatar.innerHTML = `<img src="${pic}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">`;
+    renderAuthUI();
+  }
+}
+
+function saveAccountSettings() {
+  const nameInput = document.getElementById("settingName").value;
+  if (nameInput) {
+    localStorage.setItem('edusite_name', nameInput);
+  }
+  alert(currentLang === 'en' ? "Account Settings Updated!" : "অ্যাকাউন্ট সেটিংস আপডেট করা হয়েছে!");
+  closeSettings();
+  if (document.getElementById("profileContainer").style.display === "block") {
+     showProfile();
+  }
+}
+function saveLanguageSettings() {
+  const selectedLang = document.querySelector('input[name="lang"]:checked').value;
+  applyLanguage(selectedLang);
+  alert(selectedLang === 'en' ? "Language changed to English!" : "ভাষা পরিবর্তন করা হয়েছে!");
+  closeSettings();
+}
+
+document.addEventListener('click', function(e) {
+  const wrapper = document.getElementById('kebabWrapper');
+  if (wrapper && !wrapper.contains(e.target)) {
+    const dropdown = document.getElementById('kebabDropdown');
+    if (dropdown) dropdown.classList.remove('open');
+  }
+});
+
+let currentSlide = 0;
+let slideInterval;
+
+function startSlider() {
+  const slides = document.querySelectorAll('.hero-slide');
+  if(slides.length === 0) return;
+  slides[0].classList.add('active');
+  slideInterval = setInterval(() => {
+    setSlide((currentSlide + 1) % slides.length);
+  }, 5000);
+}
+
+function setSlide(index) {
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dots .dot');
+  if(slides.length === 0) return;
+  
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  
+  currentSlide = index;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+  
+  // Reset interval when user clicks
+  clearInterval(slideInterval);
+  slideInterval = setInterval(() => {
+    setSlide((currentSlide + 1) % slides.length);
+  }, 5000);
+}
+
+init();
+startSlider();
+
+// Touch Swipe Logic for Mobile Slider
+let touchStartX = 0;
+let touchEndX = 0;
+
+const heroSection = document.querySelector('.hero-section');
+
+heroSection.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+}, {passive: true});
+
+heroSection.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+}, {passive: true});
+
+function handleSwipe() {
+  const diff = touchEndX - touchStartX;
+  const slides = document.querySelectorAll('.hero-slide');
+  if (Math.abs(diff) > 50) { 
+    if (diff < 0) {
+      // Swiped left, go to next slide
+      setSlide((currentSlide + 1) % slides.length);
+    } else {
+      // Swiped right, go to previous slide
+      setSlide((currentSlide - 1 + slides.length) % slides.length);
+    }
+  }
+}
+</script>
+</body>
+</html>

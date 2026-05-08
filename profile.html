@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Godhuli - Profile</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .profile-card {
+      max-width: 500px;
+      margin: 80px auto;
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border: 1px solid #f1f5f9;
+    }
+    .profile-img-preview {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 4px solid var(--primary);
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+    }
+    .upload-btn {
+      background: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 25px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+    }
+    .upload-btn:hover { 
+      background: var(--accent); 
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+    }
+    input[type="file"] { display: none; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo" onclick="window.location.href='index.html'">
+    <img src="logo.jpg" style="height: 100px; object-fit: contain; border-radius: 8px;">
+  </div>
+  <div style="display:flex; align-items:center;">
+    <button class="btn btn-login" onclick="window.location.href='index.html'">🏠 Back to Home</button>
+  </div>
+</nav>
+
+<div class="profile-card">
+  <h2 style="margin-top:0; color:var(--dark);">My Profile</h2>
+  <div id="previewContainer">
+    <img id="avatarPreview" class="profile-img-preview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2394a3b8'><path d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/></svg>" alt="Profile Picture">
+  </div>
+  <h3 id="profileName" style="margin: 10px 0 5px; font-size: 1.5rem;">User Name</h3>
+  <p id="profileEmail" style="color: #64748b; margin: 0;">user@example.com</p>
+
+  <label class="upload-btn">
+    📷 Upload New Picture
+    <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)">
+  </label>
+</div>
+
+<script>
+  function loadProfile() {
+    const user = localStorage.getItem("edusite_user");
+    if (!user) {
+      alert("Please login first to view your profile!");
+      window.location.href = "index.html";
+      return;
+    }
+    document.getElementById("profileEmail").innerText = user;
+    document.getElementById("profileName").innerText = user.split('@')[0];
+
+    const savedAvatar = localStorage.getItem("edusite_avatar");
+    if (savedAvatar && savedAvatar.startsWith("data:")) {
+      document.getElementById("avatarPreview").src = savedAvatar;
+    }
+  }
+
+  function handleImageUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const base64Image = e.target.result;
+        // Update current preview
+        document.getElementById("avatarPreview").src = base64Image;
+        // Save to browser cache
+        localStorage.setItem("edusite_avatar", base64Image);
+        alert("✅ Profile picture upgraded successfully! Go back to Home to see it in your navbar.");
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  loadProfile();
+</script>
+
+</body>
+</html>
