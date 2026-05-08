@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hasibcore.github.io/Edusite/sitemap.xml
