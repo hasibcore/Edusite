@@ -733,8 +733,11 @@ function renderAuthUI() {
       </button>
       <div class="kebab-dropdown" id="kebabDropdown">
         <div class="dropdown-header">${langStr.kebab_menu}</div>
-        <a class="dropdown-item" href="#" onclick="showDashboard()">
+        <a class="dropdown-item" href="#" onclick="showDashboard(); toggleKebab();">
           <div class="di-icon">🏠</div> ${langStr.kebab_dash}
+        </a>
+        <a class="dropdown-item" href="#" onclick="showCourses(); toggleKebab();">
+          <div class="di-icon">📚</div> ${langStr.kebab_courses}
         </a>
         <a class="dropdown-item" href="#" onclick="menuAction('profile')">
           <div class="di-icon">👤</div> ${langStr.kebab_profile}
