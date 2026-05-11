@@ -415,6 +415,50 @@
 
     <!-- Contact Section -->
     <div id="contactContainer" style="display:none; animation: fadeIn 0.4s ease;">
+      <style>
+        .contact-badges-row { display: flex; gap: 15px; margin-bottom: 25px; justify-content: flex-end; flex-wrap: wrap; }
+        .badge-card { display: flex; align-items: center; gap: 10px; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 8px 15px; border-radius: 12px; }
+        .neon-purple { border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 0 15px rgba(168, 85, 247, 0.1); }
+        .neon-blue { border-color: rgba(59, 130, 246, 0.4); box-shadow: 0 0 15px rgba(59, 130, 246, 0.1); }
+        .neon-orange { border-color: rgba(245, 158, 11, 0.4); box-shadow: 0 0 15px rgba(245, 158, 11, 0.1); }
+        .bc-title { font-size: 0.8rem; font-weight: 700; color: #fff; }
+        .bc-sub { font-size: 0.65rem; color: rgba(255,255,255,0.5); }
+        .glass-main-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 25px; }
+        .contact-glass-left, .contact-glass-right { background: rgba(255, 255, 255, 0.02) !important; backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 30px; }
+        .glass-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 10px; color: #fff; }
+        .glass-desc { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 25px; }
+        .glass-info-card { display: flex; align-items: center; justify-content: space-between; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); padding: 15px 20px; border-radius: 16px; margin-bottom: 12px; transition: 0.3s; }
+        .gic-main { display: flex; align-items: center; gap: 15px; }
+        .gic-icon-wrap { width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .gic-purple { background: rgba(168, 85, 247, 0.1); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.2); }
+        .gic-blue { background: rgba(59, 130, 246, 0.1); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.2); }
+        .gic-green { background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.2); }
+        .gic-orange { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.2); }
+        .gic-label { font-size: 1rem; font-weight: 700; color: #fff; display: block; }
+        .gic-value { color: rgba(255,255,255,0.9); font-size: 0.9rem; text-decoration: none; }
+        .gic-sub { font-size: 0.75rem; color: rgba(255,255,255,0.4); display: block; }
+        .gs-links-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 15px; }
+        .gs-card { display: flex; align-items: center; gap: 12px; padding: 10px 15px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; text-decoration: none; transition: 0.3s; }
+        .gs-card:hover { transform: translateX(5px); border-color: #3b82f6; }
+        .gs-card-multi { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 10px 15px; }
+        .gs-card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+        .gs-card-bottom { display: flex; gap: 6px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+        .gs-mini-icon { flex: 1; text-align: center; padding: 5px; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: 0.8rem; transition: 0.3s; }
+        .gs-mini-icon.fb { background: rgba(24, 119, 242, 0.1); color: #1877F2; }
+        .gs-mini-icon.li { background: rgba(10, 102, 194, 0.1); color: #0A66C2; }
+        .gs-mini-icon.gh { background: rgba(255, 255, 255, 0.05); color: #fff; }
+        .cgr-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+        .cgr-icon { width: 45px; height: 45px; background: #3b82f6; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+        .cf-glass-group { margin-bottom: 18px; }
+        .cf-glass-group label { display: block; color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-bottom: 8px; }
+        .input-wrap { position: relative; }
+        .iw-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
+        .cf-glass-group input, .cf-glass-group textarea { width: 100%; padding: 12px 12px 12px 40px; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; color: #fff; box-sizing: border-box; }
+        .neon-submit-btn { width: 100%; padding: 14px; border: none; border-radius: 12px; background: linear-gradient(90deg, #a855f7, #3b82f6); color: #fff; font-weight: 800; cursor: pointer; transition: 0.3s; }
+        .contact-stats-footer { display: flex; justify-content: space-between; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 16px; margin-top: 30px; flex-wrap: wrap; gap: 15px; }
+        .csf-item { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 150px; }
+        @media (max-width: 900px) { .glass-main-grid { grid-template-columns: 1fr; } }
+      </style>
       
       <!-- Top Badges Row -->
       <div class="contact-badges-row">
