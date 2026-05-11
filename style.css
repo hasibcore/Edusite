@@ -172,7 +172,7 @@ body {
 .mentors-scroll::-webkit-scrollbar-track { background: var(--bg-dark); border-radius: 4px; }
 .mentors-scroll::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
 
-.mentor-card { min-width: 200px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; text-align: center; transition: 0.3s; flex-shrink: 0; }
+.mentor-card { width: 220px; min-width: 220px; max-width: 220px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; text-align: center; transition: 0.3s; flex-shrink: 0; }
 .mentor-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 .mentor-card img { width: 100%; height: 220px; object-fit: cover; object-position: top center; }
 .mc-info { padding: 15px; }
