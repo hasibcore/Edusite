@@ -88,10 +88,20 @@
                   radial-gradient(circle at bottom,#7c3aed 0%,transparent 30%), #020617);
       border-radius: 40px; border: 1px solid var(--contact-border, rgba(255,255,255,0.05));
     }
-    .contact-wrapper { display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px; position: relative; z-index: 2; width: 100%; }
-    @media (max-width: 1100px) {
-      .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+    .contact-wrapper { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 60px; 
+      position: relative; 
+      z-index: 2; 
+      width: 100%; 
+      max-width: 900px; 
+      margin: 0 auto; 
+    }
+    @media (max-width: 768px) {
       .contact-section-inner { padding: 40px 20px; }
+      .contact-wrapper { gap: 40px; }
+      .title h1 { font-size: 32px; }
     }
     .left-side { display: flex; flex-direction: column; gap: 20px; }
     .title h1 { font-size: 42px; line-height: 1.1; font-weight: 700; background: var(--contact-title-grad, linear-gradient(to right,#fff,#a855f7,#38bdf8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
