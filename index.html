@@ -415,72 +415,90 @@
 
     <!-- Contact Section -->
     <div id="contactContainer" style="display:none; animation: fadeIn 0.4s ease;">
-      <div class="contact-hero">
-        <div class="contact-icon">✉️</div>
-        <h2>যোগাযোগ করুন</h2>
-        <p>আপনার যেকোনো প্রশ্ন, মতামত বা পরামর্শ পাঠান — আমরা সাড়া দেব!</p>
-      </div>
 
-      <div class="contact-grid">
-        <!-- Contact Form Box -->
-        <div class="contact-form-box">
-          <h3>📩 মেসেজ পাঠান</h3>
-          <form id="contactForm" action="https://formspree.io/f/hasibulhasancore@gmail.com" method="POST" onsubmit="handleContactSubmit(event)">
+      <div class="contact-main-grid">
+        <!-- LEFT: Info + Social -->
+        <div class="contact-left">
+          <h2 class="contact-title">📍 যোগাযোগের তথ্য</h2>
+          <p class="contact-desc">আপনার যেকোনো প্রশ্ন, মতামত বা পরামর্শ জানাতে আমাদের সাথে যোগাযোগ করুন।</p>
+
+          <div class="ci-card">
+            <div class="ci-icon-wrap ci-purple">📧</div>
+            <div>
+              <div class="ci-title">ইমেইল</div>
+              <a href="mailto:hasibulhasancore@gmail.com" class="ci-link">hasibulhasancore@gmail.com</a>
+              <div class="ci-sub">আমরা সাধারণত ২৪ ঘণ্টার মধ্যে উত্তর দেই।</div>
+            </div>
+          </div>
+
+          <div class="ci-card">
+            <div class="ci-icon-wrap ci-blue">🌐</div>
+            <div>
+              <div class="ci-title">ওয়েবসাইট</div>
+              <a href="https://hasibcore.github.io/Edusite/" target="_blank" class="ci-link">Godhuli EduSite ↗</a>
+              <div class="ci-sub">আমাদের ওয়েবসাইট ভিজিট করুন।</div>
+            </div>
+          </div>
+
+          <div class="ci-card">
+            <div class="ci-icon-wrap ci-green">📍</div>
+            <div>
+              <div class="ci-title">অবস্থান</div>
+              <div class="ci-link">বাংলাদেশ</div>
+              <div class="ci-sub">অনলাইন ভিত্তিক শিক্ষা প্ল্যাটফর্ম</div>
+            </div>
+          </div>
+
+          <div class="ci-card">
+            <div class="ci-icon-wrap ci-orange">⏰</div>
+            <div>
+              <div class="ci-title">সাপোর্ট সময়</div>
+              <div class="ci-link">প্রতিদিন: সকাল ৯টা - রাত ১০টা</div>
+              <div class="ci-sub">শুক্রবার বন্ধ</div>
+            </div>
+          </div>
+
+          <!-- Social Media -->
+          <div class="ci-social-box">
+            <div class="ci-social-title">আমাদের সাথে যুক্ত থাকুন</div>
+            <div class="ci-social-desc">সোশ্যাল মিডিয়ায় আমাদের ফলো করুন এবং আপডেট থাকুন।</div>
+            <div class="ci-social-icons">
+              <a href="#" class="ci-social-btn ci-fb" title="Facebook">f</a>
+              <a href="#" class="ci-social-btn ci-yt" title="YouTube">▶</a>
+              <a href="#" class="ci-social-btn ci-tg" title="Telegram">✈</a>
+              <a href="#" class="ci-social-btn ci-wa" title="WhatsApp">✆</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div class="contact-right">
+          <h3 class="cf-title">📍 আমাদের মেসেজ পাঠান</h3>
+          <p class="cf-desc">নিচের ফর্মটি পূরণ করে আমাদের মেসেজ পাঠান।</p>
+
+          <form id="contactForm" onsubmit="handleContactSubmit(event)">
             <div class="cf-group">
               <label>আপনার নাম</label>
-              <input type="text" name="name" placeholder="আপনার পুরো নাম" required>
+              <input type="text" name="name" placeholder="আপনার পূর্ণ নাম লিখুন" required>
             </div>
             <div class="cf-group">
               <label>ইমেইল</label>
-              <input type="email" name="email" placeholder="আপনার ইমেইল এড্রেস" required>
+              <input type="email" name="email" placeholder="আপনার ইমেইল লিখুন" required>
             </div>
             <div class="cf-group">
               <label>বিষয়</label>
-              <input type="text" name="subject" placeholder="কী বিষয়ে লিখছেন?">
+              <input type="text" name="subject" placeholder="বিষয় লিখুন">
             </div>
             <div class="cf-group">
               <label>আপনার বার্তা</label>
-              <textarea name="message" rows="5" placeholder="আপনার প্রশ্ন বা মতামত এখানে লিখুন..." required></textarea>
+              <textarea name="message" rows="6" placeholder="আপনার বার্তা এখানে লিখুন..." required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary cf-submit" id="cfSubmitBtn">
-              <span id="cfBtnText">📨 পাঠান</span>
+            <button type="submit" class="cf-send-btn" id="cfSubmitBtn">
+              <span id="cfBtnText">✈ মেসেজ পাঠান</span>
             </button>
           </form>
           <div id="contactSuccess" style="display:none;" class="cf-success">
             ✅ আপনার বার্তা সফলভাবে পাঠানো হয়েছে! আমরা শীঘ্রই উত্তর দেব।
-          </div>
-        </div>
-
-        <!-- Contact Info Box -->
-        <div class="contact-info-box">
-          <h3>📍 যোগাযোগের তথ্য</h3>
-          <div class="ci-item">
-            <div class="ci-icon">📧</div>
-            <div>
-              <p class="ci-label">ইমেইল</p>
-              <a href="mailto:hasibulhasancore@gmail.com" class="ci-value">hasibulhasancore@gmail.com</a>
-            </div>
-          </div>
-          <div class="ci-item">
-            <div class="ci-icon">🌐</div>
-            <div>
-              <p class="ci-label">ওয়েবসাইট</p>
-              <a href="https://hasibcore.github.io/Edusite/" class="ci-value">Godhuli EduSite</a>
-            </div>
-          </div>
-          <div class="ci-item">
-            <div class="ci-icon">📍</div>
-            <div>
-              <p class="ci-label">অবস্থান</p>
-              <span class="ci-value">বাংলাদেশ 🇧🇩</span>
-            </div>
-          </div>
-          <div class="ci-item">
-            <div class="ci-icon">⏰</div>
-            <div>
-              <p class="ci-label">সাড়া দেওয়ার সময়</p>
-              <span class="ci-value">২৪ ঘণ্টার মধ্যে</span>
-            </div>
           </div>
         </div>
       </div>
