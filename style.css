@@ -142,18 +142,23 @@ body {
 .sidebar-menu a:hover { background: var(--bg-hover); color: var(--text-main); }
 .sidebar-menu a.active { background: rgba(124, 58, 237, 0.2); color: white; border-left: 4px solid var(--primary); }
 .sidebar-menu a .icon { 
-  width: 40px !important; 
-  height: 40px !important; 
-  min-width: 40px !important;
+  width: 42px !important; 
+  height: 42px !important; 
+  min-width: 42px !important;
+  min-height: 42px !important;
+  max-width: 42px !important;
+  max-height: 42px !important;
   aspect-ratio: 1 / 1 !important;
   border-radius: 50% !important; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   flex-shrink: 0 !important;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.5), rgba(124, 58, 237, 0.5));
-  box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
-  font-size: 1.2rem;
+  padding: 0 !important;
+  line-height: 1 !important;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.6), rgba(124, 58, 237, 0.6));
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.5);
+  font-size: 1.3rem;
   transition: 0.3s;
 }
 .sidebar-menu a:hover .icon {
@@ -173,16 +178,21 @@ body {
 .subject-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 .sc-top { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
 .sc-icon { 
-  width: 52px !important; 
-  height: 52px !important; 
-  min-width: 52px !important;
+  width: 55px !important; 
+  height: 55px !important; 
+  min-width: 55px !important;
+  min-height: 55px !important;
+  max-width: 55px !important;
+  max-height: 55px !important;
   aspect-ratio: 1 / 1 !important;
   border-radius: 50% !important; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
+  display: flex !important; 
+  align-items: center !important; 
+  justify-content: center !important; 
   flex-shrink: 0 !important;
-  font-size: 1.6rem; 
+  padding: 0 !important;
+  line-height: 1 !important;
+  font-size: 1.7rem; 
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(124, 58, 237, 0.2));
   border: 1px solid rgba(124, 58, 237, 0.3);
   box-shadow: 0 0 15px rgba(124, 58, 237, 0.2);
