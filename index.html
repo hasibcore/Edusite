@@ -437,16 +437,19 @@
         .gic-label { font-size: 1rem; font-weight: 700; color: #fff; display: block; }
         .gic-value { color: rgba(255,255,255,0.9); font-size: 0.9rem; text-decoration: none; }
         .gic-sub { font-size: 0.75rem; color: rgba(255,255,255,0.4); display: block; }
-        .gs-links-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 15px; }
-        .gs-card { display: flex; align-items: center; gap: 12px; padding: 10px 15px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; text-decoration: none; transition: 0.3s; }
-        .gs-card:hover { transform: translateX(5px); border-color: #3b82f6; }
-        .gs-card-multi { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 10px 15px; }
-        .gs-card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-        .gs-card-bottom { display: flex; gap: 6px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
-        .gs-mini-icon { flex: 1; text-align: center; padding: 5px; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: 0.8rem; transition: 0.3s; }
-        .gs-mini-icon.fb { background: rgba(24, 119, 242, 0.1); color: #1877F2; }
-        .gs-mini-icon.li { background: rgba(10, 102, 194, 0.1); color: #0A66C2; }
-        .gs-mini-icon.gh { background: rgba(255, 255, 255, 0.05); color: #fff; }
+        .gs-links-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 15px; }
+        .gs-card { display: flex; align-items: center; gap: 15px; padding: 12px 18px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; text-decoration: none; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
+        .gs-card:hover { transform: translateX(10px) scale(1.02); border-color: #3b82f6; background: rgba(59, 130, 246, 0.08); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .gs-card-multi { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 12px 18px; transition: 0.4s; }
+        .gs-card-multi:hover { border-color: #a855f7; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .gs-card-top { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
+        .gs-card-bottom { display: flex; gap: 8px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+        .gs-mini-icon { flex: 1; text-align: center; padding: 8px; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 0.85rem; transition: 0.3s; }
+        .gs-mini-icon.fb { background: rgba(24, 119, 242, 0.1); color: #1877F2; border: 1px solid rgba(24, 119, 242, 0.1); }
+        .gs-mini-icon.li { background: rgba(10, 102, 194, 0.1); color: #0A66C2; border: 1px solid rgba(10, 102, 194, 0.1); }
+        .gs-mini-icon.gh { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .gs-avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.1); flex-shrink: 0; }
+        .gs-card:hover .gs-avatar, .gs-card-multi:hover .gs-avatar { border-color: #3b82f6; transform: scale(1.1); transition: 0.3s; }
         .cgr-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
         .cgr-icon { width: 45px; height: 45px; background: #3b82f6; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
         .cf-glass-group { margin-bottom: 18px; }
@@ -545,30 +548,35 @@
             <div class="gs-links-grid">
               <!-- Godhuli Page -->
               <a href="https://www.facebook.com/share/1E2QAmpt9v/" target="_blank" class="gs-card">
-                <div class="gs-card-icon fb-page">🔗</div>
+                <div class="gic-icon-wrap gic-blue" style="width:45px; height:45px; font-size:1rem;">🔗</div>
                 <div class="gs-card-info">
                   <span class="gs-card-name">Godhuli FB Page</span>
+                  <span class="gic-sub">অফিসিয়াল ফেসবুক পেজ</span>
                 </div>
               </a>
               
               <!-- Hasibul Hasan Socials -->
               <div class="gs-card-multi">
                 <div class="gs-card-top">
-                  <div class="gs-card-icon fb-user">👤</div>
-                  <div class="gs-card-info"><span class="gs-card-name">Hasibul Hasan</span></div>
+                  <img src="mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random'" class="gs-avatar" alt="Hasibul Hasan">
+                  <div class="gs-card-info">
+                    <span class="gs-card-name">Hasibul Hasan</span>
+                    <span class="gic-sub">Founder & Administrator</span>
+                  </div>
                 </div>
                 <div class="gs-card-bottom">
-                  <a href="https://www.facebook.com/share/1HH2dSgzZE/" target="_blank" class="gs-mini-icon fb">f</a>
-                  <a href="https://www.linkedin.com/in/hasibul-hasan-229272367" target="_blank" class="gs-mini-icon li">in</a>
-                  <a href="https://github.com/hasibcore" target="_blank" class="gs-mini-icon gh">git</a>
+                  <a href="https://www.facebook.com/share/1HH2dSgzZE/" target="_blank" class="gs-mini-icon fb" title="Facebook">f</a>
+                  <a href="https://www.linkedin.com/in/hasibul-hasan-229272367" target="_blank" class="gs-mini-icon li" title="LinkedIn">in</a>
+                  <a href="https://github.com/hasibcore" target="_blank" class="gs-mini-icon gh" title="GitHub">git</a>
                 </div>
               </div>
 
               <!-- Sadia Akter -->
               <a href="https://www.facebook.com/share/14hnBYToCwN/" target="_blank" class="gs-card">
-                <div class="gs-card-icon fb-user">👤</div>
+                <img src="mentor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Sadia+Akter&background=random'" class="gs-avatar" alt="Sadia Akter" style="object-position: center 30%;">
                 <div class="gs-card-info">
                   <span class="gs-card-name">Sadia Akter</span>
+                  <span class="gic-sub">Senior Mentor</span>
                 </div>
               </a>
             </div>
