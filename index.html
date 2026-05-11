@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -64,6 +65,52 @@
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css?v=25">
+  <style>
+    /* Theme Overrides for Contact Section */
+    body.light-theme {
+      --contact-inner-bg: #f1f5f9;
+      --contact-card-bg: #ffffff;
+      --contact-text-h: #1e293b;
+      --contact-text-p: #475569;
+      --contact-input-bg: #ffffff;
+      --contact-border: #e2e8f0;
+    }
+    
+    /* Notification Pulse */
+    .nav-notification { position: relative; cursor: pointer; padding: 10px; color: var(--text-muted); font-size: 1.2rem; display: flex; align-items: center; }
+    .notification-badge { position: absolute; top: 5px; right: 5px; width: 8px; height: 8px; background: #ef4444; border-radius: 50%; animation: pulse-red 2s infinite; }
+    @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+
+    .contact-section-inner {
+      position: relative; padding: 60px 40px; overflow: hidden;
+      background: var(--contact-inner-bg, radial-gradient(circle at top left,#6d28d9 0%,transparent 30%),
+                  radial-gradient(circle at top right,#0ea5e9 0%,transparent 25%),
+                  radial-gradient(circle at bottom,#7c3aed 0%,transparent 30%), #020617);
+      border-radius: 40px; border: 1px solid var(--contact-border, rgba(255,255,255,0.05));
+    }
+    .contact-wrapper { display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px; position: relative; z-index: 2; width: 100%; }
+    @media (max-width: 1100px) {
+      .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+      .contact-section-inner { padding: 40px 20px; }
+    }
+    .left-side { display: flex; flex-direction: column; gap: 20px; }
+    .title h1 { font-size: 42px; line-height: 1.1; font-weight: 700; background: var(--contact-title-grad, linear-gradient(to right,#fff,#a855f7,#38bdf8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .title p { margin-top: 10px; color: var(--contact-text-p, #cbd5e1); font-size: 15px; }
+    .contact-card, .social-box, .form-box, .stat { background: var(--contact-card-bg, rgba(10,15,35,0.6)); border: 1px solid var(--contact-border, rgba(255,255,255,0.08)); border-radius: 20px; }
+    .contact-card h2, .social-box h3, .form-header h2, .stat h4, .input-group label { color: var(--contact-text-h, #ffffff); }
+    .contact-card p, .social-box p, .form-header p, .stat p { color: var(--contact-text-p, #cbd5e1); }
+    .input-box input, .input-box textarea { background: var(--contact-input-bg, rgba(0,0,0,0.3)); color: var(--contact-text-h, #ffffff); border-color: var(--contact-border, rgba(255,255,255,0.1)); }
+    .submit-btn { width: 100%; border: none; padding: 15px; border-radius: 12px; font-size: 17px; font-weight: 700; color: #fff; cursor: pointer; background: linear-gradient(90deg, #ec4899, var(--primary), #0ea5e9); transition: .4s; }
+    .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4); }
+    .bottom-stats { margin-top: 35px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+    .stat { padding: 18px; text-align: center; }
+    .mentor-link-card { display: flex; align-items: center; gap: 12px; background: var(--bg-hover); padding: 12px; border-radius: 18px; border: 1px solid var(--border-color); text-decoration: none; transition: 0.3s; }
+    .mentor-link-card:hover { transform: translateX(8px); border-color: var(--primary); }
+    .m-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
+    .m-info h4 { margin: 0; font-size: 1rem; color: var(--contact-text-h, #fff); }
+    .m-info p { margin: 1px 0 0; font-size: 0.75rem; color: var(--contact-text-p, #cbd5e1); }
+    @media(max-width: 1000px) { .contact-wrapper { grid-template-columns: 1fr; } .bottom-stats { grid-template-columns: repeat(2, 1fr); } }
+  </style>
 </head>
 <body>
 
@@ -85,6 +132,10 @@
   </div>
 
   <div class="nav-actions" id="authUI">
+    <div class="nav-notification" title="Notifications" onclick="alert('কোন নতুন নোটিশ নেই')">
+      <i class="fa-regular fa-bell"></i>
+      <span class="notification-badge"></span>
+    </div>
     <!-- Auth UI injected by JS -->
   </div>
 </nav>
@@ -418,65 +469,6 @@
 
     <!-- Contact Section -->
     <div id="contactContainer" style="display:none; animation: fadeIn 0.4s ease;">
-      <style>
-        /* Requested Theme CSS Integration */
-        .contact-section-inner {
-          position: relative; padding: 40px 20px; overflow: hidden;
-          background: radial-gradient(circle at top left,#6d28d9 0%,transparent 30%),
-                      radial-gradient(circle at top right,#0ea5e9 0%,transparent 25%),
-                      radial-gradient(circle at bottom,#7c3aed 0%,transparent 30%), #020617;
-          border-radius: 40px;
-        }
-        .contact-wrapper { display: grid; grid-template-columns: 1fr 1.1fr; gap: 35px; position: relative; z-index: 2; }
-        .left-side { display: flex; flex-direction: column; gap: 25px; }
-        .title h1 { font-size: 48px; line-height: 1.1; font-weight: 700; background: linear-gradient(to right,#fff,#a855f7,#38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .title p { margin-top: 15px; color: #cbd5e1; font-size: 16px; }
-        .contact-card { position: relative; padding: 25px; border-radius: 24px; background: rgba(10,15,35,.55); backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,.08); transition: .4s; }
-        .contact-card:hover { transform: translateY(-8px); border-color: #a855f7; box-shadow: 0 0 25px rgba(168,85,247,.35); }
-        .card-content { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-        .info { display: flex; gap: 15px; align-items: center; }
-        .icon { width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; background: linear-gradient(135deg,#7c3aed,#0ea5e9); box-shadow: 0 0 15px rgba(168,85,247,.5); color: #fff; }
-        .text h2 { font-size: 22px; margin-bottom: 5px; color: #fff; }
-        .text p { color: #cbd5e1; font-size: 14px; margin: 0; }
-        .badge { padding: 8px 15px; border-radius: 12px; font-weight: 600; font-size: 13px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); color: #fff; }
-        
-        /* Social & Mentor Cards */
-        .social-box { padding: 30px; border-radius: 30px; background: rgba(10,15,35,.55); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,.08); }
-        .social-box h3 { font-size: 28px; margin-bottom: 15px; color: #fff; }
-        .social-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        .mentor-link-card { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); text-decoration: none; transition: 0.3s; }
-        .mentor-link-card:hover { background: rgba(255,255,255,0.08); transform: translateX(10px); border-color: #38bdf8; }
-        .m-avatar { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2px solid #a855f7; }
-        .m-info h4 { margin: 0; font-size: 1.1rem; color: #fff; }
-        .m-info p { margin: 2px 0 0; font-size: 0.8rem; color: #cbd5e1; }
-        .m-socials { display: flex; gap: 10px; margin-top: 8px; }
-        .m-icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #fff; background: rgba(255,255,255,0.1); transition: 0.3s; }
-        .m-icon:hover { transform: scale(1.2); filter: brightness(1.2); }
-        .m-fb { background: #1877f2; } .m-li { background: #0a66c2; } .m-gh { background: #333; }
-
-        /* Form */
-        .form-box { padding: 40px; border-radius: 35px; background: rgba(10,15,35,.65); backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,.08); }
-        .form-header h2 { font-size: 32px; margin-bottom: 10px; background: linear-gradient(to right,#fff,#c084fc,#38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .form-header p { color: #cbd5e1; margin-bottom: 30px; }
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; margin-bottom: 10px; font-weight: 600; color: #fff; }
-        .input-box { position: relative; }
-        .input-box i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #c084fc; }
-        .input-box textarea + i { top: 25px; }
-        .input-box input, .input-box textarea { width: 100%; padding: 15px 15px 15px 50px; border-radius: 15px; border: 1px solid rgba(255,255,255,.1); background: rgba(0,0,0,0.3); color: #fff; outline: none; transition: .3s; font-family: inherit; }
-        .input-box input:focus, .input-box textarea:focus { border-color: #a855f7; box-shadow: 0 0 15px rgba(168,85,247,.2); }
-        .submit-btn { width: 100%; border: none; padding: 18px; border-radius: 15px; font-size: 18px; font-weight: 700; color: #fff; cursor: pointer; background: linear-gradient(90deg, #ec4899, #7c3aed, #0ea5e9); transition: .4s; }
-        .submit-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(168,85,247,.5); }
-
-        .bottom-stats { margin-top: 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .stat { padding: 20px; border-radius: 20px; background: rgba(10,15,35,.55); border: 1px solid rgba(255,255,255,.08); backdrop-filter: blur(15px); text-align: center; }
-        .stat i { font-size: 28px; margin-bottom: 10px; background: linear-gradient(to right,#c084fc,#38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .stat h4 { font-size: 16px; margin-bottom: 5px; color: #fff; }
-        .stat p { color: #cbd5e1; font-size: 13px; margin: 0; }
-
-        @media(max-width: 1000px) { .contact-wrapper { grid-template-columns: 1fr; } .bottom-stats { grid-template-columns: repeat(2, 1fr); } }
-      </style>
-
       <div class="contact-section-inner">
         <div class="contact-wrapper">
           <!-- LEFT -->
@@ -1151,6 +1143,31 @@ function init() {
   applyLanguage(currentLang);
 }
 
+function showContact() {
+  document.getElementById("mainDashboard").style.display = "none";
+  document.getElementById("chaptersContainer").style.display = "none";
+  document.getElementById("coursesContainer").style.display = "none";
+  document.getElementById("sajawContainer").style.display = "none";
+  document.getElementById("profileContainer").style.display = "none";
+  document.getElementById("mainPlayer").style.display = "none";
+  document.getElementById("mainPlayer").innerHTML = "";
+  document.getElementById("contactContainer").style.display = "block";
+  
+  // Resolve "Empty Right Side" by centering the content
+  const rightSidebar = document.querySelector('.sidebar-right');
+  if(rightSidebar) rightSidebar.style.display = "none";
+  const mainWrapper = document.querySelector('.main-wrapper');
+  if(mainWrapper) mainWrapper.style.gridTemplateColumns = "260px 1fr";
+  
+  // Update top nav
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+  const contactLink = document.getElementById('navContactLink');
+  if(contactLink) contactLink.classList.add('active');
+  
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
 function showDashboard() {
   document.getElementById("mainDashboard").style.display = "block";
   document.getElementById("chaptersContainer").style.display = "none";
@@ -1159,8 +1176,14 @@ function showDashboard() {
   document.getElementById("sajawContainer").style.display = "none";
   document.getElementById("contactContainer").style.display = "none";
   document.getElementById("mainPlayer").style.display = "none";
-  document.getElementById("mainPlayer").innerHTML = ""; // Stop video
+  document.getElementById("mainPlayer").innerHTML = "";
   
+  // Restore sidebar
+  const rightSidebar = document.querySelector('.sidebar-right');
+  if(rightSidebar) rightSidebar.style.display = "block";
+  const mainWrapper = document.querySelector('.main-wrapper');
+  if(mainWrapper) mainWrapper.style.gridTemplateColumns = "260px 1fr 300px";
+
   // Update sidebar active state
   document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
   document.getElementById('dashLink').classList.add('active');
@@ -1208,25 +1231,6 @@ function showProfile() {
   
   document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-  window.scrollTo({top: 0, behavior: 'smooth'});
-}
-
-function showContact() {
-  document.getElementById("mainDashboard").style.display = "none";
-  document.getElementById("chaptersContainer").style.display = "none";
-  document.getElementById("coursesContainer").style.display = "none";
-  document.getElementById("sajawContainer").style.display = "none";
-  document.getElementById("profileContainer").style.display = "none";
-  document.getElementById("mainPlayer").style.display = "none";
-  document.getElementById("mainPlayer").innerHTML = "";
-  document.getElementById("contactContainer").style.display = "block";
-  
-  // Update top nav
-  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-  document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
-  const contactLink = document.getElementById('navContactLink');
-  if(contactLink) contactLink.classList.add('active');
-  
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
@@ -1374,9 +1378,6 @@ function handleAuth() {
   } else alert("সঠিক ইমেইল দিন");
 }
 
-function toggleKebab() {
-  document.getElementById('kebabDropdown').classList.toggle('open');
-}
 
 
 
