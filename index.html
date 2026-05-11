@@ -498,12 +498,35 @@
           <!-- Bottom Social Links -->
           <div class="glass-social-box">
             <h3>আমাদের সাথে যুক্ত থাকুন</h3>
-            <p>সোশ্যাল মিডিয়ায় আমাদের ফলো করুন এবং আপডেট থাকুন।</p>
-            <div class="gs-links">
-              <a href="https://www.facebook.com/share/1HH2dSgzZE/" target="_blank" class="gs-btn gs-fb" title="Facebook">f</a>
-              <a href="https://www.facebook.com/share/1E2QAmpt9v/" target="_blank" class="gs-btn gs-yt" title="YouTube">▶</a>
-              <a href="https://www.linkedin.com/in/hasibul-hasan-229272367" target="_blank" class="gs-btn gs-li" title="LinkedIn">in</a>
-              <a href="https://github.com/hasibcore" target="_blank" class="gs-btn gs-gh" title="GitHub">git</a>
+            <div class="gs-links-grid">
+              <!-- Godhuli Page -->
+              <a href="https://www.facebook.com/share/1E2QAmpt9v/" target="_blank" class="gs-card">
+                <div class="gs-card-icon fb-page">🔗</div>
+                <div class="gs-card-info">
+                  <span class="gs-card-name">Godhuli FB Page</span>
+                </div>
+              </a>
+              
+              <!-- Hasibul Hasan Socials -->
+              <div class="gs-card-multi">
+                <div class="gs-card-top">
+                  <div class="gs-card-icon fb-user">👤</div>
+                  <div class="gs-card-info"><span class="gs-card-name">Hasibul Hasan</span></div>
+                </div>
+                <div class="gs-card-bottom">
+                  <a href="https://www.facebook.com/share/1HH2dSgzZE/" target="_blank" class="gs-mini-icon fb">f</a>
+                  <a href="https://www.linkedin.com/in/hasibul-hasan-229272367" target="_blank" class="gs-mini-icon li">in</a>
+                  <a href="https://github.com/hasibcore" target="_blank" class="gs-mini-icon gh">git</a>
+                </div>
+              </div>
+
+              <!-- Sadia Akter -->
+              <a href="https://www.facebook.com/share/14hnBYToCwN/" target="_blank" class="gs-card">
+                <div class="gs-card-icon fb-user">👤</div>
+                <div class="gs-card-info">
+                  <span class="gs-card-name">Sadia Akter</span>
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -1199,6 +1222,8 @@ function showContact() {
 }
 
 async function handleContactSubmit(e) {
+  // If we don't have a form ID, we should use standard POST.
+  // But let's try to make fetch work with the email endpoint.
   e.preventDefault();
   const btn = document.getElementById('cfSubmitBtn');
   const btnText = document.getElementById('cfBtnText');
@@ -1220,12 +1245,11 @@ async function handleContactSubmit(e) {
       form.style.display = 'none';
       success.style.display = 'block';
     } else {
-      btnText.textContent = '❌ বিফল! আবার চেষ্টা করুন';
-      btn.disabled = false;
+      // If fetch fails, we fall back to standard form submission
+      form.submit();
     }
   } catch(err) {
-    btnText.textContent = '❌ বিফল! আবার চেষ্টা করুন';
-    btn.disabled = false;
+    form.submit();
   }
 }
 
