@@ -805,3 +805,12 @@ body.light-theme .kebab-item:hover {
     grid-template-columns: 1fr;
   }
 }
+
+.ci-team-card-expanded { display: flex; flex-direction: column; gap: 12px; padding: 15px; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 14px; }
+.ci-team-main { display: flex; align-items: center; gap: 15px; }
+.ci-team-socials-row { display: flex; gap: 10px; margin-top: 5px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); }
+.ci-mini-link { flex: 1; display: flex; align-items: center; justify-content: center; padding: 8px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.85rem; transition: 0.3s; }
+.ci-mini-link.fb { background: rgba(24, 119, 242, 0.1); color: #1877F2; border: 1px solid rgba(24, 119, 242, 0.2); }
+.ci-mini-link.li { background: rgba(10, 102, 194, 0.1); color: #0A66C2; border: 1px solid rgba(10, 102, 194, 0.2); }
+.ci-mini-link.gh { background: rgba(255, 255, 255, 0.05); color: #E6EDF3; border: 1px solid rgba(255, 255, 255, 0.1); }
+.ci-mini-link:hover { transform: translateY(-2px); filter: brightness(1.2); }
