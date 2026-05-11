@@ -77,7 +77,7 @@
     <a href="#" class="active" id="navHomeLink" onclick="showDashboard()" data-i18n="nav_home">হোম</a>
     <a href="#" id="navCoursesLink" onclick="showCourses()" data-i18n="nav_courses">কোর্সসমূহ</a>
     <a href="#" data-i18n="nav_blog">ব্লগ</a>
-    <a href="#" data-i18n="nav_contact">যোগাযোগ</a>
+    <a href="#" id="navContactLink" onclick="showContact()" data-i18n="nav_contact">যোগাযোগ</a>
     <a href="#" data-i18n="nav_about">আমাদের সম্পর্কে</a>
   </div>
 
@@ -411,6 +411,81 @@
       </div>
       
       <button class="btn btn-outline" style="margin-top:20px;" onclick="showDashboard()" data-i18n="chapters_back">&larr; ব্যাক টু ড্যাশবোর্ড</button>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contactContainer" style="display:none; animation: fadeIn 0.4s ease;">
+      <div class="contact-hero">
+        <div class="contact-icon">✉️</div>
+        <h2>যোগাযোগ করুন</h2>
+        <p>আপনার যেকোনো প্রশ্ন, মতামত বা পরামর্শ পাঠান — আমরা সাড়া দেব!</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Form Box -->
+        <div class="contact-form-box">
+          <h3>📩 মেসেজ পাঠান</h3>
+          <form id="contactForm" action="https://formspree.io/f/hasibulhasancore@gmail.com" method="POST" onsubmit="handleContactSubmit(event)">
+            <div class="cf-group">
+              <label>আপনার নাম</label>
+              <input type="text" name="name" placeholder="আপনার পুরো নাম" required>
+            </div>
+            <div class="cf-group">
+              <label>ইমেইল</label>
+              <input type="email" name="email" placeholder="আপনার ইমেইল এড্রেস" required>
+            </div>
+            <div class="cf-group">
+              <label>বিষয়</label>
+              <input type="text" name="subject" placeholder="কী বিষয়ে লিখছেন?">
+            </div>
+            <div class="cf-group">
+              <label>আপনার বার্তা</label>
+              <textarea name="message" rows="5" placeholder="আপনার প্রশ্ন বা মতামত এখানে লিখুন..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary cf-submit" id="cfSubmitBtn">
+              <span id="cfBtnText">📨 পাঠান</span>
+            </button>
+          </form>
+          <div id="contactSuccess" style="display:none;" class="cf-success">
+            ✅ আপনার বার্তা সফলভাবে পাঠানো হয়েছে! আমরা শীঘ্রই উত্তর দেব।
+          </div>
+        </div>
+
+        <!-- Contact Info Box -->
+        <div class="contact-info-box">
+          <h3>📍 যোগাযোগের তথ্য</h3>
+          <div class="ci-item">
+            <div class="ci-icon">📧</div>
+            <div>
+              <p class="ci-label">ইমেইল</p>
+              <a href="mailto:hasibulhasancore@gmail.com" class="ci-value">hasibulhasancore@gmail.com</a>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">🌐</div>
+            <div>
+              <p class="ci-label">ওয়েবসাইট</p>
+              <a href="https://hasibcore.github.io/Edusite/" class="ci-value">Godhuli EduSite</a>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">📍</div>
+            <div>
+              <p class="ci-label">অবস্থান</p>
+              <span class="ci-value">বাংলাদেশ 🇧🇩</span>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">⏰</div>
+            <div>
+              <p class="ci-label">সাড়া দেওয়ার সময়</p>
+              <span class="ci-value">২৪ ঘণ্টার মধ্যে</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-outline" style="margin-top:30px;" onclick="showDashboard()">&larr; ব্যাক টু ড্যাশবোর্ড</button>
     </div>
     
   </main>
@@ -936,6 +1011,7 @@ function showDashboard() {
   document.getElementById("profileContainer").style.display = "none";
   document.getElementById("coursesContainer").style.display = "none";
   document.getElementById("sajawContainer").style.display = "none";
+  document.getElementById("contactContainer").style.display = "none";
   document.getElementById("mainPlayer").style.display = "none";
   document.getElementById("mainPlayer").innerHTML = ""; // Stop video
   
@@ -956,6 +1032,7 @@ function showCourses() {
   document.getElementById("chaptersContainer").style.display = "none";
   document.getElementById("profileContainer").style.display = "none";
   document.getElementById("sajawContainer").style.display = "none";
+  document.getElementById("contactContainer").style.display = "none";
   document.getElementById("coursesContainer").style.display = "block";
   document.getElementById("mainPlayer").style.display = "none";
   document.getElementById("mainPlayer").innerHTML = ""; // Stop video
@@ -973,6 +1050,7 @@ function showProfile() {
   document.getElementById("chaptersContainer").style.display = "none";
   document.getElementById("coursesContainer").style.display = "none";
   document.getElementById("sajawContainer").style.display = "none";
+  document.getElementById("contactContainer").style.display = "none";
   document.getElementById("profileContainer").style.display = "block";
   document.getElementById("mainPlayer").style.display = "none";
   document.getElementById("mainPlayer").innerHTML = ""; // Stop video
@@ -985,6 +1063,56 @@ function showProfile() {
   document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function showContact() {
+  document.getElementById("mainDashboard").style.display = "none";
+  document.getElementById("chaptersContainer").style.display = "none";
+  document.getElementById("coursesContainer").style.display = "none";
+  document.getElementById("sajawContainer").style.display = "none";
+  document.getElementById("profileContainer").style.display = "none";
+  document.getElementById("mainPlayer").style.display = "none";
+  document.getElementById("mainPlayer").innerHTML = "";
+  document.getElementById("contactContainer").style.display = "block";
+  
+  // Update top nav
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+  const contactLink = document.getElementById('navContactLink');
+  if(contactLink) contactLink.classList.add('active');
+  
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+async function handleContactSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('cfSubmitBtn');
+  const btnText = document.getElementById('cfBtnText');
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('contactSuccess');
+  
+  btnText.textContent = '⏳ পাঠানো হচ্ছে...';
+  btn.disabled = true;
+  
+  const data = new FormData(form);
+  
+  try {
+    const res = await fetch('https://formspree.io/f/hasibulhasancore@gmail.com', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      form.style.display = 'none';
+      success.style.display = 'block';
+    } else {
+      btnText.textContent = '❌ বিফল! আবার চেষ্টা করুন';
+      btn.disabled = false;
+    }
+  } catch(err) {
+    btnText.textContent = '❌ বিফল! আবার চেষ্টা করুন';
+    btn.disabled = false;
+  }
 }
 
 function loadChapters(idx, element) {
