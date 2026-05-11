@@ -415,124 +415,191 @@
 
     <!-- Contact Section -->
     <div id="contactContainer" style="display:none; animation: fadeIn 0.4s ease;">
-
-      <div class="contact-main-grid">
-        <!-- LEFT: Info + Social -->
-        <div class="contact-left">
-          <h2 class="contact-title">📍 যোগাযোগের তথ্য</h2>
-          <p class="contact-desc">আপনার যেকোনো প্রশ্ন, মতামত বা পরামর্শ জানাতে আমাদের সাথে যোগাযোগ করুন।</p>
-
-          <div class="ci-card">
-            <div class="ci-icon-wrap ci-purple">📧</div>
-            <div>
-              <div class="ci-title">ইমেইল</div>
-              <a href="mailto:hasibulhasancore@gmail.com" class="ci-link">hasibulhasancore@gmail.com</a>
-              <div class="ci-sub">আমরা সাধারণত ২৪ ঘণ্টার মধ্যে উত্তর দেই।</div>
-            </div>
-          </div>
-
-          <div class="ci-card">
-            <div class="ci-icon-wrap ci-blue">🌐</div>
-            <div>
-              <div class="ci-title">ওয়েবসাইট</div>
-              <a href="https://hasibcore.github.io/Edusite/" target="_blank" class="ci-link">Godhuli EduSite ↗</a>
-              <div class="ci-sub">আমাদের ওয়েবসাইট ভিজিট করুন।</div>
-            </div>
-          </div>
-
-          <div class="ci-card">
-            <div class="ci-icon-wrap ci-green">📍</div>
-            <div>
-              <div class="ci-title">অবস্থান</div>
-              <div class="ci-link">বাংলাদেশ</div>
-              <div class="ci-sub">অনলাইন ভিত্তিক শিক্ষা প্ল্যাটফর্ম</div>
-            </div>
-          </div>
-
-          <div class="ci-card">
-            <div class="ci-icon-wrap ci-orange">⏰</div>
-            <div>
-              <div class="ci-title">সাপোর্ট সময়</div>
-              <div class="ci-link">প্রতিদিন: সকাল ৯টা - রাত ১০টা</div>
-              <div class="ci-sub">শুক্রবার বন্ধ</div>
-            </div>
-          </div>
-
-          <!-- Social Media -->
-          <div class="ci-social-box">
-            <div class="ci-social-title">আমাদের সাথে যুক্ত থাকুন</div>
-            <p class="ci-social-desc">সোশ্যাল মিডিয়ায় আমাদের ফলো করুন এবং আপডেট থাকুন।</p>
-            
-            <div class="ci-team-links">
-              <a href="https://www.facebook.com/share/1E2QAmpt9v/" target="_blank" class="ci-team-card">
-                <div class="ci-team-icon fb-page">🔗</div>
-                <div class="ci-team-info">
-                  <span class="ci-team-name">Godhuli Official FB Page</span>
-                  <span class="ci-team-sub">লাইক ও ফলো দিয়ে যুক্ত থাকুন</span>
-                </div>
-                <div class="ci-team-arrow">→</div>
-              </a>
-              
-              <div class="ci-team-card-expanded">
-                <div class="ci-team-main">
-                  <div class="ci-team-icon fb-user">👤</div>
-                  <div class="ci-team-info">
-                    <span class="ci-team-name">Hasibul Hasan</span>
-                    <span class="ci-team-sub">Founder & Administrator</span>
-                  </div>
-                </div>
-                <div class="ci-team-socials-row">
-                  <a href="https://www.facebook.com/share/1HH2dSgzZE/" target="_blank" class="ci-mini-link fb" title="Facebook">f</a>
-                  <a href="https://www.linkedin.com/in/hasibul-hasan-229272367" target="_blank" class="ci-mini-link li" title="LinkedIn">in</a>
-                  <a href="https://github.com/hasibcore" target="_blank" class="ci-mini-link gh" title="GitHub">git</a>
-                </div>
-              </div>
-              
-              <a href="https://www.facebook.com/share/14hnBYToCwN/" target="_blank" class="ci-team-card">
-                <div class="ci-team-icon fb-user">👤</div>
-                <div class="ci-team-info">
-                  <span class="ci-team-name">Sadia Akter</span>
-                  <span class="ci-team-sub">Senior Mentor & Educator</span>
-                </div>
-                <div class="ci-team-arrow">→</div>
-              </a>
-            </div>
+      
+      <!-- Top Badges Row -->
+      <div class="contact-badges-row">
+        <div class="badge-card neon-purple">
+          <div class="bc-icon">⚡</div>
+          <div class="bc-info">
+            <span class="bc-title">২৪ ঘণ্টার রিপ্লাই</span>
+            <span class="bc-sub">Fast Response</span>
           </div>
         </div>
-
-        <!-- RIGHT: Form -->
-        <div class="contact-right">
-          <h3 class="cf-title">📍 আমাদের মেসেজ পাঠান</h3>
-          <p class="cf-desc">নিচের ফর্মটি পূরণ করে আমাদের মেসেজ পাঠান।</p>
-
-          <form id="contactForm" action="https://formspree.io/hasibulhasancore@gmail.com" method="POST" onsubmit="handleContactSubmit(event)">
-            <div class="cf-group">
-              <label>আপনার নাম</label>
-              <input type="text" name="name" placeholder="আপনার পূর্ণ নাম লিখুন" required>
-            </div>
-            <div class="cf-group">
-              <label>ইমেইল</label>
-              <input type="email" name="email" placeholder="আপনার ইমেইল লিখুন" required>
-            </div>
-            <div class="cf-group">
-              <label>বিষয়</label>
-              <input type="text" name="subject" placeholder="বিষয় লিখুন">
-            </div>
-            <div class="cf-group">
-              <label>আপনার বার্তা</label>
-              <textarea name="message" rows="6" placeholder="আপনার বার্তা এখানে লিখুন..." required></textarea>
-            </div>
-            <button type="submit" class="cf-send-btn" id="cfSubmitBtn">
-              <span id="cfBtnText">✈ মেসেজ পাঠান</span>
-            </button>
-          </form>
-          <div id="contactSuccess" style="display:none;" class="cf-success">
-            ✅ আপনার বার্তা সফলভাবে পাঠানো হয়েছে! আমরা শীঘ্রই উত্তর দেব।
+        <div class="badge-card neon-blue">
+          <div class="bc-icon">👥</div>
+          <div class="bc-info">
+            <span class="bc-title">১০K+ শিক্ষার্থী</span>
+            <span class="bc-sub">Trusted by Students</span>
+          </div>
+        </div>
+        <div class="badge-card neon-orange">
+          <div class="bc-icon">🛡️</div>
+          <div class="bc-info">
+            <span class="bc-title">নির্ভরযোগ্য সেবা</span>
+            <span class="bc-sub">Quality Education</span>
           </div>
         </div>
       </div>
 
-      <button class="btn btn-outline" style="margin-top:30px;" onclick="showDashboard()">&larr; ব্যাক টু ড্যাশবোর্ড</button>
+      <div class="glass-main-grid">
+        <!-- LEFT: Glowing Info Cards -->
+        <div class="contact-glass-left">
+          <h2 class="glass-title">📍 যোগাযোগের তথ্য</h2>
+          <p class="glass-desc">আপনার যেকোনো প্রশ্ন, মতামত বা পরামর্শ জানাতে আমাদের সাথে যোগাযোগ করুন।</p>
+
+          <div class="glass-info-card">
+            <div class="gic-main">
+              <div class="gic-icon-wrap gic-purple">📧</div>
+              <div class="gic-content">
+                <span class="gic-label">ইমেইল</span>
+                <a href="mailto:hasibulhasancore@gmail.com" class="gic-value">hasibulhasancore@gmail.com</a>
+                <span class="gic-sub">আমরা সাধারণত ২৪ ঘণ্টার মধ্যে উত্তর দেই।</span>
+              </div>
+            </div>
+            <div class="gic-badge">28h<br><small>REPLY</small></div>
+          </div>
+
+          <div class="glass-info-card">
+            <div class="gic-main">
+              <div class="gic-icon-wrap gic-blue">🌐</div>
+              <div class="gic-content">
+                <span class="gic-label">ওয়েবসাইট</span>
+                <a href="https://hasibcore.github.io/Edusite/" target="_blank" class="gic-value">Godhuli EduSite ↗</a>
+                <span class="gic-sub">আমাদের ওয়েবসাইট ভিজিট করুন।</span>
+              </div>
+            </div>
+            <div class="gic-badge-icon">↗<br><small>VISIT</small></div>
+          </div>
+
+          <div class="glass-info-card">
+            <div class="gic-main">
+              <div class="gic-icon-wrap gic-green">📍</div>
+              <div class="gic-content">
+                <span class="gic-label">অবস্থান</span>
+                <span class="gic-value">বাংলাদেশ</span>
+                <span class="gic-sub">অনলাইন ভিত্তিক শিক্ষা প্ল্যাটফর্ম</span>
+              </div>
+            </div>
+            <div class="gic-status"><span class="dot"></span> ONLINE</div>
+          </div>
+
+          <div class="glass-info-card">
+            <div class="gic-main">
+              <div class="gic-icon-wrap gic-orange">⏰</div>
+              <div class="gic-content">
+                <span class="gic-label">সাপোর্ট সময়</span>
+                <span class="gic-value">প্রতিদিন: সকাল ৯টা - রাত ১০টা</span>
+                <span class="gic-sub">শুক্রবার বন্ধ</span>
+              </div>
+            </div>
+            <div class="gic-badge-icon">🎧<br><small>SUPPORT</small></div>
+          </div>
+
+          <!-- Bottom Social Links -->
+          <div class="glass-social-box">
+            <h3>আমাদের সাথে যুক্ত থাকুন</h3>
+            <p>সোশ্যাল মিডিয়ায় আমাদের ফলো করুন এবং আপডেট থাকুন।</p>
+            <div class="gs-links">
+              <a href="https://www.facebook.com/share/1HH2dSgzZE/" target="_blank" class="gs-btn gs-fb" title="Facebook">f</a>
+              <a href="https://www.facebook.com/share/1E2QAmpt9v/" target="_blank" class="gs-btn gs-yt" title="YouTube">▶</a>
+              <a href="https://www.linkedin.com/in/hasibul-hasan-229272367" target="_blank" class="gs-btn gs-li" title="LinkedIn">in</a>
+              <a href="https://github.com/hasibcore" target="_blank" class="gs-btn gs-gh" title="GitHub">git</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Neon Glass Form -->
+        <div class="contact-glass-right">
+          <div class="cgr-header">
+            <div class="cgr-icon">✈️</div>
+            <div>
+              <h3>আমাদের মেসেজ পাঠান</h3>
+              <p>নিচের ফর্মটি পূরণ করে আমাদের মেসেজ পাঠান।</p>
+            </div>
+          </div>
+
+          <form id="contactForm" action="https://formspree.io/hasibulhasancore@gmail.com" method="POST" onsubmit="handleContactSubmit(event)">
+            <div class="cf-glass-group">
+              <label>আপনার নাম</label>
+              <div class="input-wrap">
+                <span class="iw-icon">👤</span>
+                <input type="text" name="name" placeholder="আপনার পূর্ণ নাম লিখুন" required>
+              </div>
+            </div>
+            <div class="cf-glass-group">
+              <label>ইমেইল</label>
+              <div class="input-wrap">
+                <span class="iw-icon">📧</span>
+                <input type="email" name="email" placeholder="আপনার ইমেইল লিখুন" required>
+              </div>
+            </div>
+            <div class="cf-glass-group">
+              <label>বিষয়</label>
+              <div class="input-wrap">
+                <span class="iw-icon">🔖</span>
+                <input type="text" name="subject" placeholder="বিষয় লিখুন">
+              </div>
+            </div>
+            <div class="cf-glass-group">
+              <label>আপনার বার্তা</label>
+              <div class="input-wrap">
+                <span class="iw-icon" style="top:15px; transform:none;">✍️</span>
+                <textarea name="message" rows="5" placeholder="আপনার বার্তা এখানে লিখুন..." required></textarea>
+              </div>
+            </div>
+            <button type="submit" class="neon-submit-btn" id="cfSubmitBtn">
+              <span id="cfBtnText">🚀 মেসেজ পাঠান</span>
+            </button>
+            <div class="cf-footer-note">
+              <span class="check-icon">✓</span> আমরা দ্রুত আপনাকে উত্তর দেব।
+            </div>
+          </form>
+          <div id="contactSuccess" style="display:none;" class="cf-glass-success">
+            ✅ আপনার বার্তা সফলভাবে পাঠানো হয়েছে! আমরা শীঘ্রই উত্তর দেব।
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Footer Row -->
+      <div class="contact-stats-footer">
+        <div class="csf-item">
+          <span class="csf-icon">🎓</span>
+          <div>
+            <strong>মানসম্মত শিক্ষা</strong>
+            <small>সেরা কোর্স ও অভিজ্ঞ শিক্ষক</small>
+          </div>
+        </div>
+        <div class="csf-item">
+          <span class="csf-icon">💡</span>
+          <div>
+            <strong>ইন্টারেক্টিভ লার্নিং</strong>
+            <small>প্র্যাকটিক্যাল ও প্রজেক্ট ভিত্তিক শিক্ষা</small>
+          </div>
+        </div>
+        <div class="csf-item">
+          <span class="csf-icon">🌍</span>
+          <div>
+            <strong>বিশ্বমানের স্টুডেন্ট</strong>
+            <small>বাংলাদেশ সহ বিশ্বজুড়ে শিক্ষার্থী</small>
+          </div>
+        </div>
+        <div class="csf-item">
+          <span class="csf-icon">⚡</span>
+          <div>
+            <strong>লাইফটাইম সাপোর্ট</strong>
+            <small>আজীবন সাপোর্ট ও গাইডলাইন</small>
+          </div>
+        </div>
+        <div class="csf-item">
+          <span class="csf-icon">🛡️</span>
+          <div>
+            <strong>সুরক্ষা ও বিশ্বাসযোগ্যতা</strong>
+            <small>আপনার তথ্য আমাদের কাছে নিরাপদ</small>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-outline" style="margin-top:30px; border-color:rgba(255,255,255,0.2);" onclick="showDashboard()">&larr; ব্যাক টু ড্যাশবোর্ড</button>
     </div>
     
   </main>
