@@ -464,28 +464,31 @@
             <p class="ci-social-desc">সোশ্যাল মিডিয়ায় আমাদের ফলো করুন এবং আপডেট থাকুন।</p>
             
             <div class="ci-team-links">
-              <a href="https://www.facebook.com/share/1E2QAmpt9v/" target="_blank" class="ci-team-item">
-                <div class="ci-team-icon fb-page">📄</div>
+              <a href="https://www.facebook.com/share/1E2QAmpt9v/" target="_blank" class="ci-team-card">
+                <div class="ci-team-icon fb-page">🔗</div>
                 <div class="ci-team-info">
-                  <span class="ci-team-name">Godhuli FB Page</span>
-                  <span class="ci-team-sub">অফিসিয়াল ফেসবুক পেজ</span>
+                  <span class="ci-team-name">Godhuli Official FB Page</span>
+                  <span class="ci-team-sub">লাইক ও ফলো দিয়ে যুক্ত থাকুন</span>
                 </div>
+                <div class="ci-team-arrow">→</div>
               </a>
               
-              <a href="https://www.facebook.com/share/1HH2dSgzZE/" target="_blank" class="ci-team-item">
+              <a href="https://www.facebook.com/share/1HH2dSgzZE/" target="_blank" class="ci-team-card">
                 <div class="ci-team-icon fb-user">👤</div>
                 <div class="ci-team-info">
                   <span class="ci-team-name">Hasibul Hasan</span>
-                  <span class="ci-team-sub">Admin & Founder</span>
+                  <span class="ci-team-sub">Founder & Administrator</span>
                 </div>
+                <div class="ci-team-arrow">→</div>
               </a>
               
-              <a href="https://www.facebook.com/share/14hnBYToCwN/" target="_blank" class="ci-team-item">
+              <a href="https://www.facebook.com/share/14hnBYToCwN/" target="_blank" class="ci-team-card">
                 <div class="ci-team-icon fb-user">👤</div>
                 <div class="ci-team-info">
                   <span class="ci-team-name">Sadia Akter</span>
-                  <span class="ci-team-sub">Senior Mentor</span>
+                  <span class="ci-team-sub">Senior Mentor & Educator</span>
                 </div>
+                <div class="ci-team-arrow">→</div>
               </a>
             </div>
           </div>
@@ -496,7 +499,7 @@
           <h3 class="cf-title">📍 আমাদের মেসেজ পাঠান</h3>
           <p class="cf-desc">নিচের ফর্মটি পূরণ করে আমাদের মেসেজ পাঠান।</p>
 
-          <form id="contactForm" onsubmit="handleContactSubmit(event)">
+          <form id="contactForm" action="https://formspree.io/hasibulhasancore@gmail.com" method="POST" onsubmit="handleContactSubmit(event)">
             <div class="cf-group">
               <label>আপনার নাম</label>
               <input type="text" name="name" placeholder="আপনার পূর্ণ নাম লিখুন" required>
@@ -1135,7 +1138,7 @@ async function handleContactSubmit(e) {
   const data = new FormData(form);
   
   try {
-    const res = await fetch('https://formspree.io/f/hasibulhasancore@gmail.com', {
+    const res = await fetch('https://formspree.io/hasibulhasancore@gmail.com', {
       method: 'POST',
       body: data,
       headers: { 'Accept': 'application/json' }
