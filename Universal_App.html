@@ -217,14 +217,14 @@
       </div>
       <div class="mentors-scroll">
         <div class="mentor-card">
-          <img src="mentor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Sadia+Akter&background=random&size=200'" alt="Sadia Akter" style="object-position: center 30%;">
+          <img src="assets/images/mentor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Sadia+Akter&background=random&size=200'" alt="Sadia Akter" style="object-position: center 30%;">
           <div class="mc-info">
             <h4>Sadia Akter</h4>
             <p>BSc in Textile<br>Home Economics College</p>
           </div>
         </div>
         <div class="mentor-card">
-          <img src="mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random&size=200'" alt="Hasibul Hasan">
+          <img src="assets/images/mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random&size=200'" alt="Hasibul Hasan">
           <div class="mc-info">
             <h4>Hasibul Hasan</h4>
             <p>BSc in CSE<br>Ahsanullah University of Science and Technology</p>
@@ -255,8 +255,8 @@
             <p>পদার্থ, রসায়ন, গণিত, জীববিজ্ঞান</p>
             <div class="course-meta">
               <div class="course-mentors">
-                <img src="mentor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Sadia+Akter&background=random'" class="mentor-avatar" alt="Mentor">
-                <img src="mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random'" class="mentor-avatar" alt="Mentor">
+                <img src="assets/images/mentor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Sadia+Akter&background=random'" class="mentor-avatar" alt="Mentor">
+                <img src="assets/images/mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random'" class="mentor-avatar" alt="Mentor">
                 <span class="mentor-count">+2</span>
               </div>
               <span>📚 ১২০+ ক্লাস</span>
@@ -459,7 +459,7 @@
       <div class="sajaw-gallery" id="sajawGallery">
         <!-- Cover first -->
         <div class="sajaw-page sajaw-cover-special">
-          <img src="sajaw_cover.png" alt="Sajaw Cover">
+          <img src="assets/images/sajaw_cover.png" alt="Sajaw Cover">
           <div class="sajaw-page-label">প্রচ্ছদ (Cover Page)</div>
         </div>
         <!-- 17 Pages injected via JS -->
@@ -526,7 +526,7 @@
 
                 <!-- Hasibul Hasan -->
                 <div class="mentor-link-card" style="cursor: default;">
-                  <img src="mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random'" class="m-avatar">
+                  <img src="assets/images/mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random'" class="m-avatar">
                   <div class="m-info">
                     <h4>Hasibul Hasan</h4>
                     <p>Founder & Administrator</p>
@@ -540,7 +540,7 @@
 
                 <!-- Sadia Akter -->
                 <a href="https://www.facebook.com/share/14hnBYToCwN/" target="_blank" class="mentor-link-card">
-                  <img src="mentor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Sadia+Akter&background=random'" class="m-avatar" style="object-position: center 30%;">
+                  <img src="assets/images/mentor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Sadia+Akter&background=random'" class="m-avatar" style="object-position: center 30%;">
                   <div class="m-info">
                     <h4>Sadia Akter</h4>
                     <p>Senior Mentor</p>
@@ -985,13 +985,13 @@ function updateSliderImages(isLight) {
   const slides = document.querySelectorAll('.hero-slide');
   if (slides.length >= 3) {
     if (isLight) {
-      slides[0].style.backgroundImage = "url('bg1_day.jpg')";
-      slides[1].style.backgroundImage = "url('bg2_day.jpg')";
-      slides[2].style.backgroundImage = "url('bg3_day.jpg')";
+      slides[0].style.backgroundImage = "url('assets/images/bg1_day.jpg')";
+      slides[1].style.backgroundImage = "url('assets/images/bg2_day.jpg')";
+      slides[2].style.backgroundImage = "url('assets/images/bg3_day.jpg')";
     } else {
-      slides[0].style.backgroundImage = "url('bg1.png')";
-      slides[1].style.backgroundImage = "url('bg2.png')";
-      slides[2].style.backgroundImage = "url('bg3.png')";
+      slides[0].style.backgroundImage = "url('assets/images/bg1.png')";
+      slides[1].style.backgroundImage = "url('assets/images/bg2.png')";
+      slides[2].style.backgroundImage = "url('assets/images/bg3.png')";
     }
   }
 }
@@ -1329,7 +1329,7 @@ function showSajaw() {
   for(let i = 1; i <= 17; i++) {
     gallery.innerHTML += `
       <div class="sajaw-page" onclick="alert('Viewing Page ${i}')">
-        <img src="sajaw_page_sample.png" onerror="this.src='https://via.placeholder.com/400x560?text=Page+${i}'" alt="Page ${i}">
+        <img src="assets/images/sajaw_page_sample.png" onerror="this.src='https://via.placeholder.com/400x560?text=Page+${i}'" alt="Page ${i}">
         <div class="sajaw-page-label">${pageLabel} ${i}</div>
       </div>
     `;
