@@ -576,13 +576,12 @@ body {
 
 /* Light Theme Overrides */
 body.light-theme {
-  --bg-dark: #F3F4F6;
-  --bg-card: #FFFFFF;
-  --bg-hover: #F9FAFB;
-  --bg-hover: #E5E7EB;
-  --border-color: #D1D5DB;
-  --text-main: #111827;
-  --text-muted: #4B5563;
+  --bg-dark: #f0f2f5;
+  --bg-card: #ffffff;
+  --bg-hover: #eef2f6;
+  --border-color: #e2e8f0;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
 }
 body.light-theme .navbar {
   background: rgba(255, 255, 255, 0.8);
@@ -608,6 +607,43 @@ body.light-theme .kebab-dropdown {
 }
 body.light-theme .kebab-item:hover {
   background: var(--bg-hover);
+}
+body.light-theme .subject-card, 
+body.light-theme .course-card, 
+body.light-theme .class-row,
+body.light-theme .notice-board,
+body.light-theme .stat-card,
+body.light-theme .enrolled-course-mini,
+body.light-theme .badge-item,
+body.light-theme .sajaw-header,
+body.light-theme .sajaw-page {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+body.light-theme .sidebar-left,
+body.light-theme .sidebar-right {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+body.light-theme .sc-icon,
+body.light-theme .cr-play,
+body.light-theme .mqi-icon {
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+body.light-theme .progress-bar-container {
+  background: #e2e8f0;
+}
+body.light-theme .hero-section {
+  background-color: #ffffff;
+  border-color: #e2e8f0;
+}
+body.light-theme .hero-content p {
+  color: #4b5563;
+  text-shadow: none;
+}
+body.light-theme .hero-content h1 {
+  text-shadow: none;
 }
 
 /* Settings Modal Specifics */
@@ -1318,17 +1354,19 @@ body.light-theme .kebab-item:hover {
 }
 
 body.light-theme .mhome-feature-card {
-  background: #fff;
+  background: #ffffff;
   border-color: #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
 }
 body.light-theme .mhome-quick-item {
-  background: #fff;
+  background: #ffffff;
   border-color: #e2e8f0;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 body.light-theme .mobile-bottom-nav {
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.96);
   border-top-color: #e2e8f0;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.04);
 }
 body.light-theme .mbn-item.active {
   color: var(--primary);
