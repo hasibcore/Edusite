@@ -64,7 +64,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css?v=25">
+  <link rel="stylesheet" href="style.css?v=26">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
@@ -406,11 +406,11 @@
   </div>
 
   <div class="nav-links">
-    <a href="#" class="active" id="navHomeLink" onclick="showDashboard()" data-i18n="nav_home">হোম</a>
-    <a href="#" id="navCoursesLink" onclick="showCourses()" data-i18n="nav_courses">কোর্সসমূহ</a>
-    <a href="#" data-i18n="nav_blog">ব্লগ</a>
-    <a href="#" id="navContactLink" onclick="showContact()" data-i18n="nav_contact">যোগাযোগ</a>
-    <a href="#" data-i18n="nav_about">আমাদের সম্পর্কে</a>
+    <a href="#" class="active" id="navHomeLink" onclick="showDashboard(); return false;"><i class="fa-solid fa-house nav-link-icon" aria-hidden="true"></i><span data-i18n="nav_home">হোম</span></a>
+    <a href="#" id="navCoursesLink" onclick="showCourses(); return false;"><i class="fa-solid fa-book nav-link-icon" aria-hidden="true"></i><span data-i18n="nav_courses">কোর্সসমূহ</span></a>
+    <a href="#" id="navBlogLink" onclick="showBlogComing(); return false;"><i class="fa-solid fa-pen-nib nav-link-icon" aria-hidden="true"></i><span data-i18n="nav_blog">ব্লগ</span></a>
+    <a href="#" id="navContactLink" onclick="showContact(); return false;"><i class="fa-solid fa-phone nav-link-icon" aria-hidden="true"></i><span data-i18n="nav_contact">যোগাযোগ</span></a>
+    <a href="#" id="navAboutLink" onclick="showBlogComing(); return false;"><i class="fa-solid fa-circle-info nav-link-icon" aria-hidden="true"></i><span data-i18n="nav_about">আমাদের সম্পর্কে</span></a>
   </div>
 
   <div class="nav-actions" id="authUI">
@@ -435,8 +435,8 @@
     <h1 data-i18n="hero_title">আলোর পথে<br>তোমার <span>স্বপ্নের</span> দিশা</h1>
     <p data-i18n="hero_subtitle">SSC ও HSC এর সব বিষয়ের সহজ, গোছানো এবং মানসম্পন্ন প্রস্তুতি।</p>
     <div class="hero-buttons">
-      <button class="hero-btn-main" data-i18n="btn_explore">এক্সপ্লোর করুন &rarr;</button>
-      <button class="hero-btn-sec" data-i18n="btn_view_courses">কোর্সসমূহ দেখুন 📖</button>
+      <button type="button" class="hero-btn-main" data-i18n="btn_explore" onclick="document.querySelector('.level-filters')?.scrollIntoView({behavior:'smooth', block:'start'})">এক্সপ্লোর করুন &rarr;</button>
+      <button type="button" class="hero-btn-sec" data-i18n="btn_view_courses" onclick="showCourses()">কোর্সসমূহ দেখুন 📖</button>
     </div>
   </div>
 
@@ -462,6 +462,59 @@
     <div class="video-player-container" id="mainPlayer"></div>
 
     <div id="mainDashboard">
+      <section class="mobile-home-showcase" aria-label="Highlights">
+        <div class="mhome-section-header">
+          <h2 class="mhome-why-title"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> <span data-i18n="why_godhuli_title">কেন গোধূলি সেরা?</span></h2>
+          <a href="#" class="mhome-see-all" onclick="showCourses(); return false;" data-i18n="view_all">সব দেখুন &gt;</a>
+        </div>
+        <div class="mhome-feature-row">
+          <div class="mhome-feature-card mfc-purple">
+            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+            <strong data-i18n="mhome_feat1_title">২৪ ঘণ্টার রিপ্লাই</strong>
+            <span data-i18n="mhome_feat1_sub">Fast Response</span>
+          </div>
+          <div class="mhome-feature-card mfc-green">
+            <i class="fa-solid fa-users" aria-hidden="true"></i>
+            <strong data-i18n="mhome_feat2_title">১০K+ শিক্ষার্থী</strong>
+            <span data-i18n="mhome_feat2_sub">Trusted by Students</span>
+          </div>
+          <div class="mhome-feature-card mfc-gold">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            <strong data-i18n="mhome_feat3_title">নির্ভরযোগ্য সেবা</strong>
+            <span data-i18n="mhome_feat3_sub">Quality Education</span>
+          </div>
+        </div>
+        <p class="mhome-quick-heading" data-i18n="mhome_quick_heading">দ্রুত যোগাযোগ</p>
+        <div class="mhome-quick-list">
+          <a class="mhome-quick-item" href="mailto:hasibulhasancore@gmail.com">
+            <span class="mqi-icon mqi-mail"><i class="fa-solid fa-envelope" aria-hidden="true"></i></span>
+            <span class="mqi-body">
+              <span class="mqi-title" data-i18n="mhome_q_email">ইমেইল</span>
+              <span class="mqi-line">hasibulhasancore@gmail.com</span>
+              <span class="mqi-sub" data-i18n="mhome_q_email_sub">আমরা সাধারণত ২৪ ঘণ্টার মধ্যে উত্তর দেই।</span>
+            </span>
+            <i class="fa-solid fa-chevron-right mqi-chevron" aria-hidden="true"></i>
+          </a>
+          <a class="mhome-quick-item" href="https://hasibcore.github.io/Edusite/" target="_blank" rel="noopener noreferrer">
+            <span class="mqi-icon mqi-web"><i class="fa-solid fa-globe" aria-hidden="true"></i></span>
+            <span class="mqi-body">
+              <span class="mqi-title" data-i18n="mhome_q_web">ওয়েবসাইট</span>
+              <span class="mqi-line">Godhuli EduSite ↗</span>
+              <span class="mqi-sub" data-i18n="mhome_q_web_sub">আমাদের ওয়েবসাইট ভিজিট করুন।</span>
+            </span>
+            <i class="fa-solid fa-chevron-right mqi-chevron" aria-hidden="true"></i>
+          </a>
+          <a class="mhome-quick-item" href="https://wa.me/8801712345678" target="_blank" rel="noopener noreferrer">
+            <span class="mqi-icon mqi-wa"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></span>
+            <span class="mqi-body">
+              <span class="mqi-title" data-i18n="mhome_q_wa">হোয়াটসঅ্যাপ</span>
+              <span class="mqi-line"><span data-i18n="mhome_q_wa_num">+৮৮০ ১XXX-XXXXXX</span></span>
+              <span class="mqi-sub" data-i18n="mhome_q_wa_sub">চ্যাটের মাধ্যমে দ্রুত সাপোর্ট নিন।</span>
+            </span>
+            <i class="fa-solid fa-chevron-right mqi-chevron" aria-hidden="true"></i>
+          </a>
+        </div>
+      </section>
       <div class="level-filters">
         <button class="btn-filter active" onclick="filterSubjects('SSC')">SSC</button>
         <button class="btn-filter" onclick="filterSubjects('HSC')">HSC</button>
@@ -972,6 +1025,13 @@
 
 </div>
 
+<nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Mobile navigation">
+  <a href="#" class="mbn-item active" id="mbnHome" onclick="showDashboard(); return false;"><i class="fa-solid fa-house" aria-hidden="true"></i><span data-i18n="nav_home">হোম</span></a>
+  <a href="#" class="mbn-item" id="mbnCourses" onclick="showCourses(); return false;"><i class="fa-solid fa-book" aria-hidden="true"></i><span data-i18n="nav_courses">কোর্সসমূহ</span></a>
+  <a href="#" class="mbn-item" id="mbnBlog" onclick="showBlogComing(); return false;"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span data-i18n="nav_blog">ব্লগ</span></a>
+  <a href="#" class="mbn-item" id="mbnProfile" onclick="if(!currentUser){openAuth();} else {showProfile();} return false;"><i class="fa-regular fa-user" aria-hidden="true"></i><span data-i18n="mbn_profile">প্রোফাইল</span></a>
+</nav>
+
 <div id="authModal" class="modal">
   <div class="modal-content">
     <h2 id="modalHeader" data-i18n="auth_login">লগইন</h2>
@@ -1065,6 +1125,16 @@
 const i18n = {
   bn: {
     nav_home: "হোম", nav_courses: "কোর্সসমূহ", nav_blog: "ব্লগ", nav_contact: "যোগাযোগ", nav_about: "আমাদের সম্পর্কে",
+    why_godhuli_title: "কেন গোধূলি সেরা?",
+    mhome_feat1_title: "২৪ ঘণ্টার রিপ্লাই", mhome_feat1_sub: "Fast Response",
+    mhome_feat2_title: "১০K+ শিক্ষার্থী", mhome_feat2_sub: "Trusted by Students",
+    mhome_feat3_title: "নির্ভরযোগ্য সেবা", mhome_feat3_sub: "Quality Education",
+    mhome_quick_heading: "দ্রুত যোগাযোগ",
+    mhome_q_email: "ইমেইল", mhome_q_email_sub: "আমরা সাধারণত ২৪ ঘণ্টার মধ্যে উত্তর দেই।",
+    mhome_q_web: "ওয়েবসাইট", mhome_q_web_sub: "আমাদের ওয়েবসাইট ভিজিট করুন।",
+    mhome_q_wa: "হোয়াটসঅ্যাপ", mhome_q_wa_num: "+৮৮০ ১XXX-XXXXXX", mhome_q_wa_sub: "চ্যাটের মাধ্যমে দ্রুত সাপোর্ট নিন।",
+    mbn_profile: "প্রোফাইল",
+    blog_coming: "ব্লগ ও আমাদের সম্পর্কে পাতা শীঘ্রই যুক্ত হচ্ছে। ধৈর্য ধরুন!",
     tagline: "LEARN • GROW • INSPIRE",
     hero_title: "আলোর পথে<br>তোমার <span>স্বপ্নের</span> দিশা",
     hero_subtitle: "SSC ও HSC এর সব বিষয়ের সহজ, গোছানো এবং মানসম্পন্ন প্রস্তুতি।",
@@ -1146,6 +1216,16 @@ const i18n = {
   },
   en: {
     nav_home: "Home", nav_courses: "Courses", nav_blog: "Blog", nav_contact: "Contact", nav_about: "About Us",
+    why_godhuli_title: "Why Godhuli?",
+    mhome_feat1_title: "24h reply", mhome_feat1_sub: "Fast Response",
+    mhome_feat2_title: "10K+ Students", mhome_feat2_sub: "Trusted by Students",
+    mhome_feat3_title: "Reliable service", mhome_feat3_sub: "Quality Education",
+    mhome_quick_heading: "Quick contact",
+    mhome_q_email: "Email", mhome_q_email_sub: "We usually reply within 24 hours.",
+    mhome_q_web: "Website", mhome_q_web_sub: "Visit our official site.",
+    mhome_q_wa: "WhatsApp", mhome_q_wa_num: "+880 1XXX-XXXXXX", mhome_q_wa_sub: "Get quick support via chat.",
+    mbn_profile: "My Profile",
+    blog_coming: "Blog and About pages are coming soon. Stay tuned!",
     tagline: "LEARN • GROW • INSPIRE",
     hero_title: "On the Path of Light<br>The Direction of your <span>Dreams</span>",
     hero_subtitle: "Simple, organized, and quality preparation for all SSC and HSC subjects.",
@@ -1396,8 +1476,8 @@ function renderAuthUI() {
     `;
   } else {
     authDiv.innerHTML = `
-      <span style="display:flex; align-items:center; gap:8px; font-weight:600; color:var(--text-main); cursor:pointer;" onclick="menuAction('profile')">
-        ${avatarHtml} ${currentUser.split('@')[0]}
+      <span class="nav-user-chip" onclick="menuAction('profile')">
+        ${avatarHtml}<span class="nav-user-name">${currentUser.split('@')[0]}</span>
       </span>
       ${kebabMenu}
     `;
@@ -1484,10 +1564,15 @@ function init() {
   }
   else showDashboard();
 
+  refreshMobileTabPad();
+
   let _gridResizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(_gridResizeTimer);
-    _gridResizeTimer = setTimeout(syncMainWrapperGrid, 120);
+    _gridResizeTimer = setTimeout(() => {
+      syncMainWrapperGrid();
+      refreshMobileTabPad();
+    }, 120);
   });
 }
 
@@ -1523,6 +1608,33 @@ function syncMainWrapperGrid() {
   else mainWrapper.style.removeProperty('grid-template-columns');
 }
 
+function showBlogComing() {
+  const t = (i18n[currentLang] && i18n[currentLang].blog_coming) ? i18n[currentLang].blog_coming : 'Coming soon.';
+  alert(t);
+}
+
+function refreshMobileTabPad() {
+  const n = document.getElementById('mobileBottomNav');
+  const hidden = !n || n.classList.contains('mobile-bottom-nav--hidden');
+  const isMobile = window.innerWidth <= 768;
+  document.body.classList.toggle('mobile-tab-pad', isMobile && !hidden);
+}
+
+function setMobileBottomNavVisible(show) {
+  const n = document.getElementById('mobileBottomNav');
+  if (!n) return;
+  n.classList.toggle('mobile-bottom-nav--hidden', !show);
+  refreshMobileTabPad();
+}
+
+function syncMobileTabNav(which) {
+  document.querySelectorAll('.mbn-item').forEach(el => el.classList.remove('active'));
+  if (which === 'home') document.getElementById('mbnHome')?.classList.add('active');
+  else if (which === 'courses') document.getElementById('mbnCourses')?.classList.add('active');
+  else if (which === 'blog') document.getElementById('mbnBlog')?.classList.add('active');
+  else if (which === 'profile') document.getElementById('mbnProfile')?.classList.add('active');
+}
+
 function showContact() {
   if (window.location.hash !== '#contact') window.location.hash = 'contact';
   document.getElementById("mainDashboard").style.display = "none";
@@ -1547,6 +1659,7 @@ function showContact() {
   const contactLink = document.getElementById('navContactLink');
   if(contactLink) contactLink.classList.add('active');
   
+  setMobileBottomNavVisible(false);
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
@@ -1577,6 +1690,9 @@ function showDashboard() {
   const homeLink = document.getElementById('navHomeLink');
   if(homeLink) homeLink.classList.add('active');
   
+  setMobileBottomNavVisible(true);
+  syncMobileTabNav('home');
+  refreshMobileTabPad();
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
@@ -1599,6 +1715,9 @@ function showCourses() {
   if(coursesLink) coursesLink.classList.add('active');
   
   syncMainWrapperGrid();
+  setMobileBottomNavVisible(true);
+  syncMobileTabNav('courses');
+  refreshMobileTabPad();
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
@@ -1632,6 +1751,8 @@ function showCheckout(courseName, price) {
   document.getElementById("discountRow").style.display = "none";
   
   syncMainWrapperGrid();
+  setMobileBottomNavVisible(false);
+  refreshMobileTabPad();
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
@@ -1686,6 +1807,9 @@ function showProfile() {
   document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   syncMainWrapperGrid();
+  setMobileBottomNavVisible(true);
+  syncMobileTabNav('profile');
+  refreshMobileTabPad();
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
@@ -1764,6 +1888,8 @@ function loadChapters(idx, element) {
   });
   
   syncMainWrapperGrid();
+  setMobileBottomNavVisible(false);
+  refreshMobileTabPad();
   if (window.innerWidth <= 1000) {
     chContainer.scrollIntoView({ behavior: "smooth", block: "start" });
   } else {
@@ -1810,6 +1936,8 @@ function showSajaw() {
   if(link) link.classList.add('active');
   
   syncMainWrapperGrid();
+  setMobileBottomNavVisible(false);
+  refreshMobileTabPad();
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
