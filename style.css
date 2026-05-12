@@ -1137,6 +1137,17 @@ body.light-theme .kebab-item:hover {
 }
 
 @media (max-width: 768px) {
+  /* Contact Section Mobile Fixes */
+  .contact-section-inner { padding: 30px 15px; width: 100%; box-sizing: border-box; }
+  .contact-two-col { grid-template-columns: 1fr !important; width: 100% !important; gap: 25px; }
+  .contact-left-col, .contact-right-col { width: 100% !important; min-width: 0; }
+  .contact-right-col { position: static !important; top: auto; }
+  .cform-box { padding: 25px 15px; width: 100%; box-sizing: border-box; }
+  .contact-top-row { flex-direction: column; align-items: stretch; }
+  .contact-top-badges { justify-content: center; }
+  .cinfo-card { padding: 15px; width: 100%; box-sizing: border-box; }
+  .cadmin-card { width: 100%; box-sizing: border-box; }
+
   .mobile-home-showcase {
     display: block;
     padding: 0 16px 8px;
