@@ -358,8 +358,14 @@ body {
     background-color: var(--bg-card);
     border: 1px solid rgba(255,255,255,0.08);
     box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+    min-height: 0;
   }
   .hero-bg-slider { height: 220px; }
+  .hero-bg-overlay {
+    height: 220px;
+    bottom: auto;
+    background: linear-gradient(to bottom, rgba(11,14,20,0.65) 0%, rgba(11,14,20,0.35) 45%, transparent 100%);
+  }
   .hero-content {
     padding: 20px 18px 24px;
     text-align: center;
@@ -383,6 +389,35 @@ body {
     font-size: 0.88rem;
   }
   .hero-dots { top: 210px; }
+
+  /* Light theme mobile hero — readable text, soft overlay (no harsh band) */
+  body.light-theme .hero-bg-overlay {
+    background: linear-gradient(to bottom, rgba(15,23,42,0.28) 0%, rgba(15,23,42,0.06) 55%, transparent 100%);
+  }
+  body.light-theme .hero-content {
+    background: linear-gradient(180deg, rgba(255,255,255,0.97) 0%, #f1f5f9 100%);
+  }
+  body.light-theme .hero-content h1 {
+    color: #0f172a;
+    text-shadow: none;
+  }
+  body.light-theme .hero-content h1 span {
+    color: var(--primary);
+  }
+  body.light-theme .hero-content p {
+    color: #334155;
+    text-shadow: none;
+    font-weight: 500;
+  }
+  body.light-theme .hero-btn-sec {
+    border-color: rgba(124, 58, 237, 0.4);
+    color: #5b21b6;
+    background: rgba(255,255,255,0.95);
+  }
+  body.light-theme .hero-btn-sec:hover {
+    background: rgba(124, 58, 237, 0.08);
+    color: var(--primary);
+  }
 
   /* Main layout */
   .main-wrapper {
@@ -638,12 +673,14 @@ body.light-theme .hero-section {
   background-color: #ffffff;
   border-color: #e2e8f0;
 }
-body.light-theme .hero-content p {
-  color: #4b5563;
-  text-shadow: none;
-}
-body.light-theme .hero-content h1 {
-  text-shadow: none;
+@media (min-width: 769px) {
+  body.light-theme .hero-content p {
+    color: #4b5563;
+    text-shadow: none;
+  }
+  body.light-theme .hero-content h1 {
+    text-shadow: none;
+  }
 }
 
 /* Settings Modal Specifics */
