@@ -276,7 +276,10 @@ body {
   .sidebar-right { display: none; }
 }
 @media (max-width: 1000px) {
-  .main-wrapper { grid-template-columns: 1fr; width: 100%; padding: 0; }
+  .contact-two-col { grid-template-columns: 1fr; gap: 20px; }
+.contact-right-col { position: static; top: auto; }
+.cform-box { padding: 30px 20px; }
+.contact-section-inner { padding: 30px 20px; }
   .sidebar-left { display: none; }
   .nav-links { display: none; }
   .hero-section { border-radius: 0; }
@@ -902,6 +905,12 @@ body.light-theme .kebab-item:hover {
 @media (max-width: 768px) {
   .contact-badges-row { flex-direction: column; align-items: flex-start; }
   .csf-item { flex: 0 0 100%; }
+
+  /* Mobile adjustments for Contact Section */
+  .contact-two-col { grid-template-columns: 1fr; }
+  .contact-right-col { position: static; top: auto; }
+  .cform-box { padding: 30px 20px; }
+  .contact-section-inner { padding: 30px 20px; }
 }
 /* Social Links Grid in Neon Design */
 .gs-links-grid {
