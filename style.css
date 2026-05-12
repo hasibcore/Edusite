@@ -281,7 +281,6 @@ body {
 .cform-box { padding: 30px 20px; }
 .contact-section-inner { padding: 30px 20px; }
   .sidebar-left { display: none; }
-  .nav-links { display: none; }
   .hero-section { border-radius: 0; }
 }
 @media (max-width: 768px) {
@@ -290,6 +289,34 @@ body {
   .logo-area img { width: 35px; height: 35px; }
   .logo-area .brand { font-size: 1.2rem; }
   .logo-area .tagline { display: none; } /* Hide tagline for clean look */
+  
+  /* Mobile Navigation Links */
+  .nav-links { 
+    display: flex; 
+    flex-direction: row; 
+    gap: 12px; 
+    overflow-x: auto; 
+    white-space: nowrap;
+    padding: 0 5px;
+    scrollbar-width: none;
+    order: -1;
+    width: 100%;
+    flex-basis: 100%;
+    margin-top: 5px;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { 
+    font-size: 0.85rem; 
+    padding: 6px 12px; 
+    flex-shrink: 0;
+  }
+  .nav-links a.active::after { bottom: -8px; }
+
+  /* Navbar needs to wrap */
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
   
   /* Auth UI buttons scaled down */
   .nav-actions .btn { padding: 8px 12px; font-size: 0.85rem; }

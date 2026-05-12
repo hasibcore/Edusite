@@ -65,52 +65,308 @@
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css?v=25">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    /* Theme Overrides for Contact Section */
-    body.light-theme {
-      --contact-inner-bg: #f1f5f9;
-      --contact-card-bg: #ffffff;
-      --contact-text-h: #1e293b;
-      --contact-text-p: #475569;
-      --contact-input-bg: #ffffff;
-      --contact-border: #e2e8f0;
-    }
-    
     /* Notification Pulse */
     .nav-notification { position: relative; cursor: pointer; padding: 10px; color: var(--text-muted); font-size: 1.2rem; display: flex; align-items: center; }
     .notification-badge { position: absolute; top: 5px; right: 5px; width: 8px; height: 8px; background: #ef4444; border-radius: 50%; animation: pulse-red 2s infinite; }
-    @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+    @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.7); } 70% { box-shadow: 0 0 0 10px rgba(239,68,68,0); } 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); } }
 
+    /* ====== CONTACT SECTION ====== */
     .contact-section-inner {
-      position: relative; padding: 40px 20px; overflow: hidden;
-      background: var(--contact-inner-bg, radial-gradient(circle at top left,#6d28d9 0%,transparent 30%),
-                  radial-gradient(circle at top right,#0ea5e9 0%,transparent 25%),
-                  radial-gradient(circle at bottom,#7c3aed 0%,transparent 30%), #020617);
-      border-radius: 40px; border: 1px solid var(--contact-border, rgba(255,255,255,0.05));
+      position: relative; padding: 50px 40px; overflow: hidden;
+      background: radial-gradient(circle at 10% 10%, rgba(109, 40, 217, 0.15) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 10%, rgba(14, 165, 233, 0.1) 0%, transparent 35%),
+                  radial-gradient(circle at 50% 90%, rgba(124, 58, 237, 0.12) 0%, transparent 40%), #020617;
+      border-radius: 32px; border: 1px solid rgba(255,255,255,0.06);
     }
-    .contact-card, .social-box, .form-box, .stat { background: var(--contact-card-bg, rgba(10,15,35,0.6)); border: 1px solid var(--contact-border, rgba(255,255,255,0.08)); }
-    .contact-card h2, .social-box h3, .form-header h2, .stat h4, .input-group label { color: var(--contact-text-h, #ffffff); }
-    .contact-card p, .social-box p, .form-header p, .stat p, .title p { color: var(--contact-text-p, #cbd5e1); }
-    .input-box input, .input-box textarea { background: var(--contact-input-bg, rgba(0,0,0,0.3)); color: var(--contact-text-h, #ffffff); border-color: var(--contact-border, rgba(255,255,255,0.1)); }
+    body.light-theme .contact-section-inner {
+      background: linear-gradient(135deg,#f8fafc 0%,#f1f5f9 100%);
+      border-color: #e2e8f0;
+    }
+    .contact-top-row {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 20px; margin-bottom: 36px; flex-wrap: wrap;
+    }
+    .contact-main-title {
+      font-size: 36px; font-weight: 800; color: #fff; margin: 0 0 8px;
+    }
+    body.light-theme .contact-main-title { color: #1e293b; }
+    .contact-main-sub { color: #94a3b8; font-size: 15px; margin: 0; }
+    body.light-theme .contact-main-sub { color: #475569; }
+    
+    .contact-top-badges { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start; }
+    .ctb-badge {
+      display: flex; align-items: center; gap: 10px; padding: 10px 18px;
+      border-radius: 16px; border: 1px solid; font-size: 13px; font-weight: 700;
+      backdrop-filter: blur(10px); transition: 0.3s;
+    }
+    .ctb-badge:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .ctb-badge div { display: flex; flex-direction: column; line-height: 1.3; }
+    .ctb-badge span { font-size: 11px; font-weight: 500; opacity: 0.8; }
+    
+    .ctb-blue { background: rgba(14,165,233,0.1); border-color: rgba(14,165,233,0.25); color: #38bdf8; }
+    .ctb-green { background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.25); color: #34d399; }
+    .ctb-gold { background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.25); color: #fbbf24; }
 
-    .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; position: relative; z-index: 2; width: 100%; }
-    .left-side { display: flex; flex-direction: column; gap: 20px; }
-    .title h1 { font-size: 42px; line-height: 1.1; font-weight: 700; background: var(--contact-title-grad, linear-gradient(to right,#fff,#a855f7,#38bdf8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .title p { margin-top: 10px; color: var(--contact-text-p, #cbd5e1); font-size: 15px; }
-    .contact-card, .social-box, .form-box, .stat { background: var(--contact-card-bg, rgba(10,15,35,0.6)); border: 1px solid var(--contact-border, rgba(255,255,255,0.08)); border-radius: 20px; }
-    .contact-card h2, .social-box h3, .form-header h2, .stat h4, .input-group label { color: var(--contact-text-h, #ffffff); }
-    .contact-card p, .social-box p, .form-header p, .stat p { color: var(--contact-text-p, #cbd5e1); }
-    .input-box input, .input-box textarea { background: var(--contact-input-bg, rgba(0,0,0,0.3)); color: var(--contact-text-h, #ffffff); border-color: var(--contact-border, rgba(255,255,255,0.1)); }
-    .submit-btn { width: 100%; border: none; padding: 15px; border-radius: 12px; font-size: 17px; font-weight: 700; color: #fff; cursor: pointer; background: linear-gradient(90deg, #ec4899, var(--primary), #0ea5e9); transition: .4s; }
-    .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4); }
-    .bottom-stats { margin-top: 35px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
-    .stat { padding: 18px; text-align: center; }
-    .mentor-link-card { display: flex; align-items: center; gap: 12px; background: var(--bg-hover); padding: 12px; border-radius: 18px; border: 1px solid var(--border-color); text-decoration: none; transition: 0.3s; }
-    .mentor-link-card:hover { transform: translateX(8px); border-color: var(--primary); }
-    .m-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
-    .m-info h4 { margin: 0; font-size: 1rem; color: var(--contact-text-h, #fff); }
-    .m-info p { margin: 1px 0 0; font-size: 0.75rem; color: var(--contact-text-p, #cbd5e1); }
-    @media(max-width: 1000px) { .contact-wrapper { grid-template-columns: 1fr; } .bottom-stats { grid-template-columns: repeat(2, 1fr); } }
+    body.light-theme .ctb-blue { background: #e0f2fe; border-color: #bae6fd; color: #0369a1; }
+    body.light-theme .ctb-green { background: #dcfce7; border-color: #bbf7d0; color: #15803d; }
+    body.light-theme .ctb-gold { background: #fef3c7; border-color: #fde68a; color: #b45309; }
+
+    .contact-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+    @media(max-width: 900px) { .contact-two-col { grid-template-columns: 1fr; } }
+    .contact-left-col { display: flex; flex-direction: column; gap: 14px; }
+
+    .cinfo-card {
+      display: flex; align-items: center; gap: 18px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px; padding: 20px 24px;
+      transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); backdrop-filter: blur(15px);
+    }
+    body.light-theme .cinfo-card { background: #ffffff; border-color: #f1f5f9; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+    .cinfo-card:hover { border-color: var(--primary); transform: translateX(8px); background: rgba(255,255,255,0.06); }
+    body.light-theme .cinfo-card:hover { background: #f8fafc; box-shadow: 0 10px 30px rgba(124,58,237,0.08); }
+
+    .cinfo-icon {
+      width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: #fff; background: rgba(124, 58, 237, 0.15);
+      border: 1px solid rgba(124, 58, 237, 0.3); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); transition: 0.3s;
+    }
+    .cinfo-icon i { filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
+    .cinfo-icon-cyan { background: rgba(14, 165, 233, 0.15); border-color: rgba(14, 165, 233, 0.3); color: #38bdf8; }
+    .cinfo-icon-red  { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.3); color: #f87171; }
+    .cinfo-icon-gold { background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.3); color: #fbbf24; }
+    
+    body.light-theme .cinfo-icon { background: #fff; border-color: #e2e8f0; color: var(--primary); }
+    body.light-theme .cinfo-icon-cyan { color: #0ea5e9; }
+    body.light-theme .cinfo-icon-red { color: #ef4444; }
+    body.light-theme .cinfo-icon-gold { color: #d97706; }
+
+    .cinfo-text { flex: 1; }
+    .cinfo-text h3 { font-size: 16px; font-weight: 700; color: #fff; margin: 0 0 4px; }
+    body.light-theme .cinfo-text h3 { color: #1e293b; }
+    .cinfo-text p { font-size: 13px; color: #94a3b8; margin: 0; }
+    .cinfo-link { font-size: 13px; color: #a78bfa; text-decoration: none; font-weight: 600; }
+    .cinfo-link:hover { color: #c4b5fd; }
+    .cinfo-strong { font-size: 13px; color: #e2e8f0; font-weight: 600; margin: 0 0 2px; }
+    body.light-theme .cinfo-strong { color: #334155; }
+
+    .cinfo-badge {
+      padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 700;
+      white-space: nowrap; text-align: center; flex-shrink: 0;
+      background: rgba(124,58,237,0.15); color: #a78bfa; border: 1px solid rgba(124,58,237,0.3);
+      display: flex; flex-direction: column; align-items: center; text-decoration: none;
+    }
+    .cinfo-badge span { font-size: 16px; font-weight: 800; line-height: 1; }
+    .cinfo-badge-cyan { background: rgba(14,165,233,0.15); color: #38bdf8; border-color: rgba(14,165,233,0.3); }
+    .cinfo-badge-support { background: rgba(245,158,11,0.12); color: #fbbf24; border-color: rgba(245,158,11,0.3); flex-direction: row; gap: 5px; }
+
+    .cinfo-online {
+      display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700;
+      color: #34d399; white-space: nowrap; flex-shrink: 0;
+    }
+    .online-dot { width: 8px; height: 8px; border-radius: 50%; background: #34d399; animation: pulse-green 2s infinite; }
+    
+    .cadmin-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; padding: 22px; backdrop-filter: blur(12px);
+      transition: 0.3s;
+    }
+    body.light-theme .cadmin-card { background: #fff; border-color: #e2e8f0; }
+    .cadmin-card:hover { transform: translateY(-4px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(124,58,237,0.2); }
+
+    .cadmin-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+    .cadmin-img-wrap {
+      width: 65px; height: 65px; border-radius: 50%; position: relative;
+      padding: 3px; background: linear-gradient(135deg, #7c3aed, #0ea5e9);
+    }
+    .cadmin-img-wrap img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid #020617; }
+    body.light-theme .cadmin-img-wrap img { border-color: #fff; }
+    
+    .cadmin-status-dot {
+      position: absolute; bottom: 4px; right: 4px; width: 12px; height: 12px;
+      background: #22c55e; border: 2px solid #020617; border-radius: 50%;
+      animation: pulse-green 2s infinite;
+    }
+    body.light-theme .cadmin-status-dot { border-color: #fff; }
+
+    .cadmin-info h3 { font-size: 18px; font-weight: 700; color: #fff; margin: 0 0 4px; }
+    body.light-theme .cadmin-info h3 { color: #1e293b; }
+    .cadmin-info p { font-size: 13px; color: #a78bfa; font-weight: 600; margin: 0; }
+
+    .cadmin-socials { display: flex; gap: 10px; justify-content: space-between; }
+    .casi {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 19px; color: #fff; text-decoration: none;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .casi i { filter: drop-shadow(0 0 3px rgba(255,255,255,0.2)); }
+    .casi:hover { transform: translateY(-5px) scale(1.1); }
+    
+    body.light-theme .casi { background: #fff; border-color: #e2e8f0; color: #64748b; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+    
+    .casi-gm:hover { background: #ea4335; box-shadow: 0 8px 20px rgba(234,67,53,0.5); border-color: transparent; color: #fff; }
+    .casi-gh:hover { background: #24292e; box-shadow: 0 8px 20px rgba(36,41,46,0.5); border-color: transparent; color: #fff; }
+    .casi-li:hover { background: #0077b5; box-shadow: 0 8px 20px rgba(0,119,181,0.5); border-color: transparent; color: #fff; }
+    .casi-fb:hover { background: #1877f2; box-shadow: 0 8px 20px rgba(24,119,242,0.5); border-color: transparent; color: #fff; }
+    .casi-in:hover { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); box-shadow: 0 8px 20px rgba(220,39,67,0.5); border-color: transparent; color: #fff; }
+    .contact-right-col { position: sticky; top: 80px; }
+    .cform-box {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px; padding: 40px; backdrop-filter: blur(25px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    }
+    body.light-theme .cform-box { background: #ffffff; border-color: #f1f5f9; box-shadow: 0 20px 50px rgba(124,58,237,0.06); }
+    .cform-header { display: flex; align-items: center; gap: 20px; margin-bottom: 8px; }
+    .cform-icon-wrap {
+      width: 56px; height: 56px; border-radius: 18px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; color: #fff;
+      background: linear-gradient(135deg,#8b5cf6,#0ea5e9);
+      box-shadow: 0 8px 20px rgba(139,92,246,0.3);
+    }
+    .cform-header h2 { font-size: 22px; font-weight: 800; color: #fff; margin: 0 0 4px; }
+    body.light-theme .cform-header h2 { color: #1e293b; }
+    .cform-header p { font-size: 14px; color: #94a3b8; margin: 0; }
+    .cform-divider { height: 1px; background: linear-gradient(to right,rgba(124,58,237,0.2),transparent); margin: 24px 0; }
+    body.light-theme .cform-divider { background: linear-gradient(to right,rgba(124,58,237,0.1),transparent); }
+
+    .cform-group { margin-bottom: 22px; }
+    .cform-group label { display: block; margin-bottom: 10px; font-weight: 700; font-size: 14px; color: #cbd5e1; }
+    body.light-theme .cform-group label { color: #475569; }
+    .cform-input-wrap { position: relative; }
+    .cform-input-wrap i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--primary); opacity: 0.8; font-size: 18px; pointer-events: none; }
+    .cform-input-wrap .cform-textarea-icon { top: 22px; transform: none; }
+    .cform-input-wrap input, .cform-input-wrap textarea {
+      width: 100%; padding: 16px 18px 16px 52px;
+      border-radius: 16px; background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.08); outline: none;
+      font-family: inherit; font-size: 15px; color: #fff;
+      transition: 0.3s; box-sizing: border-box;
+    }
+    body.light-theme .cform-input-wrap input,
+    body.light-theme .cform-input-wrap textarea {
+      background: #f8fafc; border-color: #e2e8f0; color: #1e293b;
+    }
+    .cform-input-wrap textarea { height: 140px; resize: none; padding-top: 18px; }
+    .cform-input-wrap input:focus, .cform-input-wrap textarea:focus {
+      border-color: var(--primary); background: rgba(0,0,0,0.3); box-shadow: 0 0 20px rgba(124,58,237,0.15);
+    }
+    body.light-theme .cform-input-wrap input:focus, body.light-theme .cform-input-wrap textarea:focus {
+      background: #fff; border-color: var(--primary); box-shadow: 0 0 20px rgba(124,58,237,0.1);
+    }
+    .cform-submit-btn {
+      width: 100%; border: none; padding: 18px; border-radius: 18px;
+      font-size: 17px; font-weight: 800; color: #fff; cursor: pointer;
+      background: linear-gradient(90deg,#7c3aed,#3b82f6);
+      box-shadow: 0 10px 25px rgba(124,58,237,0.4); transition: 0.4s;
+    }
+    .cform-submit-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(124,58,237,0.6); filter: brightness(1.1); }
+    .cform-note { text-align: center; font-size: 12px; color: #64748b; margin: 12px 0 0; }
+    .cform-note i { color: #34d399; margin-right: 4px; }
+    .contact-bottom-stats {
+      display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;
+    }
+    .cbs-item {
+      display: flex; align-items: center; gap: 12px; flex: 1; min-width: 160px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 16px;
+    }
+    body.light-theme .cbs-item { background: #f8fafc; border-color: #e2e8f0; }
+    .cbs-item i { font-size: 22px; color: #a78bfa; flex-shrink: 0; }
+    .cbs-item b { font-size: 13px; color: #e2e8f0; display: block; margin-bottom: 2px; }
+    body.light-theme .cbs-item b { color: #1e293b; }
+    .cbs-item span { font-size: 11px; color: #64748b; }
+    @media(max-width: 768px) {
+      .contact-section-inner { padding: 30px 20px; }
+      .contact-top-row { flex-direction: column; }
+      .contact-right-col { position: static; }
+      .cform-box { padding: 24px 18px; }
+      .contact-bottom-stats { flex-direction: column; }
+    }
+
+    /* ====== CHECKOUT SECTION ====== */
+    .checkout-container {
+      max-width: 900px; margin: 40px auto; padding: 0 20px;
+    }
+    .checkout-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 32px; overflow: hidden; backdrop-filter: blur(25px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    }
+    body.light-theme .checkout-card { background: #fff; border-color: #f1f5f9; box-shadow: 0 30px 60px rgba(124,58,237,0.08); }
+    
+    .checkout-header {
+      padding: 40px; background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(59,130,246,0.1));
+      border-bottom: 1px solid rgba(255,255,255,0.06); text-align: center;
+    }
+    body.light-theme .checkout-header { background: #f8fafc; border-color: #f1f5f9; }
+    .checkout-header h2 { font-size: 28px; font-weight: 800; color: #fff; margin: 0; }
+    body.light-theme .checkout-header h2 { color: #1e293b; }
+    
+    .checkout-content { padding: 40px; display: grid; grid-template-columns: 1fr 320px; gap: 40px; }
+    @media(max-width: 800px) { .checkout-content { grid-template-columns: 1fr; } }
+    
+    .checkout-summary h3 { font-size: 18px; color: #fff; margin-bottom: 20px; }
+    body.light-theme .checkout-summary h3 { color: #1e293b; }
+    
+    .order-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px; background: rgba(255,255,255,0.04); border-radius: 20px;
+      margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.06);
+    }
+    body.light-theme .order-item { background: #f8fafc; border-color: #e2e8f0; }
+    .oi-info h4 { font-size: 17px; color: #fff; margin: 0 0 4px; }
+    body.light-theme .oi-info h4 { color: #1e293b; }
+    .oi-info p { font-size: 13px; color: #94a3b8; margin: 0; }
+    .oi-price { font-size: 18px; font-weight: 800; color: #a78bfa; }
+    
+    .coupon-box { margin-top: 30px; }
+    .coupon-input-group { display: flex; gap: 10px; margin-top: 10px; }
+    .coupon-input-group input {
+      flex: 1; padding: 14px 18px; border-radius: 14px;
+      background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1);
+      color: #fff; outline: none; font-size: 14px;
+    }
+    body.light-theme .coupon-input-group input { background: #f8fafc; border-color: #e2e8f0; color: #1e293b; }
+    .btn-apply {
+      padding: 0 20px; border-radius: 14px; border: none;
+      background: var(--primary); color: #fff; font-weight: 700; cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-apply:hover { filter: brightness(1.2); }
+    
+    .checkout-sidebar {
+      background: rgba(255,255,255,0.03); border-radius: 24px; padding: 30px;
+      border: 1px solid rgba(255,255,255,0.06); height: fit-content;
+    }
+    body.light-theme .checkout-sidebar { background: #f8fafc; border-color: #e2e8f0; }
+    .total-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 15px; color: #94a3b8; }
+    .total-row.grand-total { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; margin-top: 15px; color: #fff; font-weight: 800; font-size: 20px; }
+    body.light-theme .total-row.grand-total { color: #1e293b; border-color: #e2e8f0; }
+    .discount-text { color: #34d399; font-weight: 600; }
+    
+    .payment-methods { margin-top: 25px; }
+    .pm-label { font-size: 12px; font-weight: 700; color: #64748b; margin-bottom: 10px; display: block; text-transform: uppercase; }
+    .pm-icons { display: flex; gap: 10px; margin-bottom: 25px; }
+    .pm-icon { width: 45px; height: 30px; border-radius: 6px; background: #fff; padding: 4px; object-fit: contain; }
+    
+    .btn-confirm-order {
+      width: 100%; padding: 18px; border-radius: 16px; border: none;
+      background: linear-gradient(90deg, #7c3aed, #3b82f6);
+      color: #fff; font-size: 16px; font-weight: 800; cursor: pointer;
+      transition: 0.4s; box-shadow: 0 10px 25px rgba(124,58,237,0.3);
+    }
+    .btn-confirm-order:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(124,58,237,0.5); }
+    .btn-back-courses {
+      display: block; text-align: center; margin-top: 20px; font-size: 14px;
+      color: #94a3b8; text-decoration: none; transition: 0.3s;
+    }
+    .btn-back-courses:hover { color: var(--primary); }
   </style>
 </head>
 <body>
@@ -329,7 +585,7 @@
               </div>
               <span>📚 ১১০+ ক্লাস</span>
             </div>
-            <button class="btn btn-outline" style="width:100%; margin-top:15px;" data-i18n="course_btn_enroll" onclick="tryPlay('course')">এনরোল করুন</button>
+            <button class="btn btn-outline" style="width:100%; margin-top:15px;" data-i18n="course_btn_enroll" onclick="showCheckout('HSC 2025 বিজ্ঞান ফুল কোর্স', 4500)">এনরোল করুন</button>
           </div>
         </div>
 
@@ -345,7 +601,63 @@
               </div>
               <span>📚 ৪০+ ক্লাস</span>
             </div>
-            <button class="btn btn-outline" style="width:100%; margin-top:15px;" data-i18n="course_btn_enroll" onclick="tryPlay('course')">এনরোল করুন</button>
+            <button class="btn btn-outline" style="width:100%; margin-top:15px;" data-i18n="course_btn_enroll" onclick="showCheckout('HSC আইসিটি ফুল কোর্স', 1500)">এনরোল করুন</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENROLLMENT / CHECKOUT PAGE -->
+    <div class="checkout-container" id="checkoutContainer" style="display:none;">
+      <div class="checkout-card">
+        <div class="checkout-header">
+          <h2>অর্ডার কনফার্মেশন</h2>
+        </div>
+        <div class="checkout-content">
+          <div class="checkout-summary">
+            <h3>অর্ডার ডিটেইলস</h3>
+            <div class="order-item">
+              <div class="oi-info">
+                <h4 id="checkoutCourseName">HSC 2025 বিজ্ঞান ফুল কোর্স</h4>
+                <p>ফুল এক্সেস + শিট + কুইজ</p>
+              </div>
+              <div class="oi-price" id="checkoutPrice">৪৫০০৳</div>
+            </div>
+            
+            <div class="coupon-box">
+              <label class="pm-label">আপনার কাছে কি কুপন আছে?</label>
+              <div class="coupon-input-group">
+                <input type="text" id="couponInput" placeholder="কুপন কোড দিন (যেমন: HASIB10)">
+                <button class="btn-apply" onclick="applyCoupon()">Apply</button>
+              </div>
+              <p id="couponMsg" style="font-size:12px; margin-top:8px;"></p>
+            </div>
+          </div>
+          
+          <div class="checkout-sidebar">
+            <div class="total-row">
+              <span>কোর্স প্রাইস</span>
+              <span id="basePriceText">৪৫০০৳</span>
+            </div>
+            <div class="total-row" id="discountRow" style="display:none;">
+              <span>ডিসকাউন্ট</span>
+              <span class="discount-text" id="discountValueText">-৫০০৳</span>
+            </div>
+            <div class="total-row grand-total">
+              <span>মোট পেয়িবল</span>
+              <span id="grandTotalText">৪৫০০৳</span>
+            </div>
+            
+            <div class="payment-methods">
+              <span class="pm-label">পেমেন্ট মেথড</span>
+              <div class="pm-icons">
+                <img src="https://searchvectorlogo.com/wp-content/uploads/2020/02/bkash-logo-vector.png" class="pm-icon" alt="Bkash">
+                <img src="https://searchvectorlogo.com/wp-content/uploads/2021/03/nagad-logo-vector.png" class="pm-icon" alt="Nagad">
+                <img src="https://logodix.com/logo/1721595.png" class="pm-icon" alt="Rocket">
+              </div>
+              <button class="btn-confirm-order" onclick="confirmOrder()">অর্ডার কনফার্ম করুন</button>
+              <a href="#" class="btn-back-courses" onclick="showCourses()">ফিরে যান</a>
+            </div>
           </div>
         </div>
       </div>
@@ -394,7 +706,7 @@
           </div>
           <div class="enrolled-course-mini">
             <div class="ec-icon">🔬</div>
-            <div class="ec-info">
+        <div class="ec-info">
               <h4 data-i18n="course_hsc_title">HSC 2025 বিজ্ঞান ফুল কোর্স</h4>
               <div class="progress-bar-container"><div class="progress-bar-fill" style="width: 45%;"></div></div>
               <p>45% Complete</p>
@@ -471,162 +783,153 @@
     <!-- Contact Section -->
     <div id="contactContainer" style="display:none; animation: fadeIn 0.4s ease;">
       <div class="contact-section-inner">
-        <div class="contact-wrapper">
-          <!-- LEFT -->
-          <div class="left-side">
-            <div class="title">
-              <h1>যোগাযোগের তথ্য</h1>
-              <p>আপনার যেকোনো প্রশ্ন, মতামত বা পরামর্শ জানাতে আমাদের সাথে যোগাযোগ করুন।</p>
-            </div>
 
-            <!-- Email Card -->
-            <div class="contact-card">
-              <div class="card-content">
-                <div class="info">
-                  <div class="icon"><i class="fa-solid fa-envelope"></i></div>
-                  <div class="text">
-                    <h2>ইমেইল</h2>
-                    <p>hasibulhasancore@gmail.com</p>
-                    <p>আমরা সাধারণত ২৪ ঘণ্টার মধ্যে উত্তর দেই।</p>
-                  </div>
-                </div>
-                <div class="badge">24h Reply</div>
+        <!-- TOP ROW -->
+        <div class="contact-top-row">
+          <div class="contact-title-block">
+            <h1 class="contact-main-title">&#128205; যোগাযোগের তথ্য</h1>
+            <p class="contact-main-sub">আপনার যেকোনো প্রশ্ন, মতামত বা পরামর্শ জানাতে আমাদের সাথে যোগাযোগ করুন।</p>
+          </div>
+          <div class="contact-top-badges">
+            <div class="ctb-badge ctb-blue"><i class="fa-solid fa-bolt"></i><div>২৪ ঘণ্টার রিপ্লাই<span>Fast Response</span></div></div>
+            <div class="ctb-badge ctb-green"><i class="fa-solid fa-users"></i><div>১০K+ শিক্ষার্থী<span>Trusted by Students</span></div></div>
+            <div class="ctb-badge ctb-gold"><i class="fa-solid fa-shield-halved"></i><div>নির্ভরযোগ্য সেবা<span>Quality Education</span></div></div>
+          </div>
+        </div>
+
+        <!-- TWO COLUMN -->
+        <div class="contact-two-col">
+
+          <!-- LEFT COLUMN -->
+          <div class="contact-left-col">
+
+            <div class="cinfo-card">
+              <div class="cinfo-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="cinfo-text">
+                <h3>ইমেইল</h3>
+                <a href="mailto:hasibulhasancore@gmail.com" class="cinfo-link">hasibulhasancore@gmail.com</a>
+                <p>আমরা সাধারণত ২৪ ঘণ্টার মধ্যে উত্তর দেই।</p>
               </div>
+              <a href="mailto:hasibulhasancore@gmail.com" class="cinfo-badge"><span>28h</span>REPLY</a>
             </div>
 
-            <!-- Web Card -->
-            <div class="contact-card">
-              <div class="card-content">
-                <div class="info">
-                  <div class="icon"><i class="fa-solid fa-globe"></i></div>
-                  <div class="text">
-                    <h2>ওয়েবসাইট</h2>
-                    <p>Godhuli EduSite</p>
-                    <p>আমাদের ওয়েবসাইট ভিজিট করুন।</p>
-                  </div>
-                </div>
-                <div class="badge">Visit</div>
+            <div class="cinfo-card">
+              <div class="cinfo-icon cinfo-icon-cyan"><i class="fa-solid fa-globe"></i></div>
+              <div class="cinfo-text">
+                <h3>ওয়েবসাইট</h3>
+                <a href="https://hasibcore.github.io/Edusite/" target="_blank" class="cinfo-link">Godhuli EduSite &#8599;</a>
+                <p>আমাদের ওয়েবসাইট ভিজিট করুন।</p>
               </div>
+              <a href="https://hasibcore.github.io/Edusite/" target="_blank" class="cinfo-badge cinfo-badge-cyan">VISIT</a>
             </div>
 
-            <!-- Social/Mentor Panel -->
-            <div class="social-box">
-              <h3>আমাদের সাথে যুক্ত থাকুন</h3>
-              <p>সোশ্যাল মিডিয়ায় আমাদের ফলো করুন এবং আপডেট থাকুন।</p>
-              
-              <div class="social-grid">
-                <!-- Godhuli Page -->
-                <a href="https://www.facebook.com/share/1E2QAmpt9v/" target="_blank" class="mentor-link-card">
-                  <div class="icon" style="width:50px; height:50px; font-size:18px;"><i class="fa-solid fa-link"></i></div>
-                  <div class="m-info">
-                    <h4>Godhuli Official Page</h4>
-                    <p>Stay updated with our latest news</p>
-                  </div>
-                </a>
+            <div class="cinfo-card">
+              <div class="cinfo-icon cinfo-icon-red"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="cinfo-text">
+                <h3>অবস্থান</h3>
+                <p class="cinfo-strong">বাংলাদেশ</p>
+                <p>অনলাইন ডিজিটাল শিক্ষা প্ল্যাটফর্ম</p>
+              </div>
+              <div class="cinfo-online"><span class="online-dot"></span>ONLINE</div>
+            </div>
 
-                <!-- Hasibul Hasan -->
-                <div class="mentor-link-card" style="cursor: default;">
-                  <img src="assets/images/mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random'" class="m-avatar">
-                  <div class="m-info">
-                    <h4>Hasibul Hasan</h4>
-                    <p>Founder & Administrator</p>
-                    <div class="m-socials">
-                      <a href="https://www.facebook.com/share/1HH2dSgzZE/" target="_blank" class="m-icon m-fb"><i class="fab fa-facebook-f"></i></a>
-                      <a href="https://www.linkedin.com/in/hasibul-hasan-229272367" target="_blank" class="m-icon m-li"><i class="fab fa-linkedin-in"></i></a>
-                      <a href="https://github.com/hasibcore" target="_blank" class="m-icon m-gh"><i class="fab fa-github"></i></a>
-                    </div>
-                  </div>
+            <div class="cinfo-card">
+              <div class="cinfo-icon cinfo-icon-gold"><i class="fa-solid fa-clock"></i></div>
+              <div class="cinfo-text">
+                <h3>সাপোর্ট সময়</h3>
+                <p class="cinfo-strong">প্রতিদিন: সকাল ৯টা - রাত ১০টা</p>
+                <p>শুক্রবার বন্ধ</p>
+              </div>
+              <div class="cinfo-badge cinfo-badge-support" style="text-decoration:none;"><i class="fa-solid fa-headset"></i> SUPPORT</div>
+            </div>
+
+            <!-- ADMIN PROFILE CARD -->
+            <div class="cadmin-card">
+              <div class="cadmin-header">
+                <div class="cadmin-img-wrap">
+                  <img src="assets/images/mentor2.png" onerror="this.src='https://ui-avatars.com/api/?name=Hasibul+Hasan&background=random'" alt="Hasibul Hasan">
+                  <span class="cadmin-status-dot"></span>
                 </div>
-
-                <!-- Sadia Akter -->
-                <a href="https://www.facebook.com/share/14hnBYToCwN/" target="_blank" class="mentor-link-card">
-                  <img src="assets/images/mentor1.png" onerror="this.src='https://ui-avatars.com/api/?name=Sadia+Akter&background=random'" class="m-avatar" style="object-position: center 30%;">
-                  <div class="m-info">
-                    <h4>Sadia Akter</h4>
-                    <p>Senior Mentor</p>
-                    <div class="m-socials">
-                      <div class="m-icon m-fb"><i class="fab fa-facebook-f"></i></div>
-                    </div>
-                  </div>
-                </a>
+                <div class="cadmin-info">
+                  <h3>Hasibul Hasan</h3>
+                  <p>Main Admin & Founder</p>
+                </div>
+              </div>
+              <div class="cadmin-socials">
+                <a href="mailto:hasibulhasancore@gmail.com" class="casi casi-gm" title="Gmail"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://github.com/hasibcore" target="_blank" class="casi casi-gh" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/hasibul-hasan-229272367" target="_blank" class="casi casi-li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/share/1HH2dSgzZE/" target="_blank" class="casi casi-fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/hasibulhasancore" target="_blank" class="casi casi-in" title="Instagram"><i class="fab fa-instagram"></i></a>
               </div>
             </div>
           </div>
 
-          <!-- RIGHT (Form) -->
-          <div class="right-side">
-            <div class="form-box">
-              <div class="form-header">
-                <h2>মেসেজ পাঠান</h2>
-                <p>নিচের ফর্মটি পূরণ করে আমাদের মেসেজ পাঠান।</p>
+          <!-- RIGHT COLUMN -->
+          <div class="contact-right-col">
+            <div class="cform-box">
+              <div class="cform-header">
+                <div class="cform-icon-wrap"><i class="fab fa-telegram-plane"></i></div>
+                <div>
+                  <h2>আমাদের মেসেজ পাঠান</h2>
+                  <p>নিচের ফর্মটি পূরণ করে আমাদের মেসেজ পাঠান।</p>
+                </div>
               </div>
-              <form id="contactForm" action="https://formspree.io/hasibulhasancore@gmail.com" method="POST" onsubmit="handleContactSubmit(event)">
-                <div class="input-group">
+              <div class="cform-divider"></div>
+              <form id="contactForm" action="https://formspree.io/f/xvzldyww" method="POST" onsubmit="handleContactSubmit(event)">
+                <div class="cform-group">
                   <label>আপনার নাম</label>
-                  <div class="input-box">
+                  <div class="cform-input-wrap">
                     <i class="fa-regular fa-user"></i>
                     <input type="text" name="name" placeholder="আপনার পূর্ণ নাম লিখুন" required>
                   </div>
                 </div>
-                <div class="input-group">
+                <div class="cform-group">
                   <label>ইমেইল</label>
-                  <div class="input-box">
+                  <div class="cform-input-wrap">
                     <i class="fa-regular fa-envelope"></i>
                     <input type="email" name="email" placeholder="আপনার ইমেইল লিখুন" required>
                   </div>
                 </div>
-                <div class="input-group">
-                  <label>বিষয়</label>
-                  <div class="input-box">
+                <div class="cform-group">
+                  <label>বিষয়</label>
+                  <div class="cform-input-wrap">
                     <i class="fa-solid fa-tag"></i>
-                    <input type="text" name="subject" placeholder="বিষয় লিখুন">
+                    <input type="text" name="subject" placeholder="বিষয় লিখুন">
                   </div>
                 </div>
-                <div class="input-group">
+                <div class="cform-group">
                   <label>আপনার বার্তা</label>
-                  <div class="input-box">
-                    <i class="fa-regular fa-pen-to-square"></i>
+                  <div class="cform-input-wrap">
+                    <i class="fa-regular fa-pen-to-square cform-textarea-icon"></i>
                     <textarea name="message" placeholder="আপনার বার্তা এখানে লিখুন..." required></textarea>
                   </div>
                 </div>
-                <button type="submit" class="submit-btn" id="cfSubmitBtn">
+                <button type="submit" class="cform-submit-btn" id="cfSubmitBtn">
                   <span id="cfBtnText"><i class="fa-solid fa-paper-plane"></i> মেসেজ পাঠান</span>
                 </button>
+                <p class="cform-note"><i class="fa-solid fa-circle-check"></i> আমরা দ্রুত আপনাকে উত্তর দেব।</p>
               </form>
               <div id="contactSuccess" style="display:none; text-align:center; padding:20px; color:#10b981; font-weight:700;">
-                ✅ আপনার বার্তা সফলভাবে পাঠানো হয়েছে!
+                &#9989; আপনার বার্তা সফলভাবে পাঠানো হয়েছে!
               </div>
             </div>
           </div>
         </div>
 
-        <!-- STATS -->
-        <div class="bottom-stats">
-          <div class="stat">
-            <i class="fa-solid fa-bolt"></i>
-            <h4>দ্রুত সাপোর্ট</h4>
-            <p>২৪ ঘণ্টার মধ্যে উত্তর</p>
-          </div>
-          <div class="stat">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <h4>মানসম্মত শিক্ষা</h4>
-            <p>সেরা কারিকুলাম ও মেন্টর</p>
-          </div>
-          <div class="stat">
-            <i class="fa-solid fa-earth-asia"></i>
-            <h4>অনলাইন প্ল্যাটফর্ম</h4>
-            <p>যেকোনো জায়গা থেকে শেখা</p>
-          </div>
-          <div class="stat">
-            <i class="fa-solid fa-shield-heart"></i>
-            <h4>নিরাপদ সেবা</h4>
-            <p>আপনার তথ্য সুরক্ষিত</p>
-          </div>
+        <!-- BOTTOM STATS BAR -->
+        <div class="contact-bottom-stats">
+          <div class="cbs-item"><i class="fa-solid fa-graduation-cap"></i><div><b>মানসম্মত শিক্ষা</b><span>সেরা কোর্স ও অভিজ্ঞ শিক্ষক</span></div></div>
+          <div class="cbs-item"><i class="fa-solid fa-lightbulb"></i><div><b>ইন্টারেক্টিভ লার্নিং</b><span>প্র্যাক্টিক্যাল ও ডিজিটাল শিক্ষা</span></div></div>
+          <div class="cbs-item"><i class="fa-solid fa-earth-asia"></i><div><b>বিশ্বমানের স্টুডেন্ট</b><span>বাংলাদেশ সহ বিশ্বজুড়ে শিক্ষার্থী</span></div></div>
+          <div class="cbs-item"><i class="fa-solid fa-bolt"></i><div><b>লাইফটাইম সাপোর্ট</b><span>আজীবন সাপোর্ট ও গাইডলাইন</span></div></div>
+          <div class="cbs-item"><i class="fa-solid fa-shield-halved"></i><div><b>সুরক্ষা ও বিশ্বাসযোগ্যতা</b><span>আপনার তথ্য নিরাপদ</span></div></div>
         </div>
+
       </div>
     </div>
     </div>
-    
+
   </main>
   
   <aside class="sidebar-right">
@@ -1142,9 +1445,36 @@ function init() {
   updateProPicUI();
   filterSubjects('SSC');
   applyLanguage(currentLang);
+
+  // Simple Router
+  const hash = window.location.hash.replace('#', '');
+  if (hash === 'contact') showContact();
+  else if (hash === 'courses') showCourses();
+  else if (hash === 'profile') showProfile();
+  else if (hash === 'sajaw') showSajaw();
+  else if (hash.startsWith('checkout')) {
+    const parts = hash.split(':');
+    if(parts.length >= 3) showCheckout(decodeURIComponent(parts[1]), parseInt(parts[2]));
+    else showDashboard();
+  }
+  else showDashboard();
 }
 
+window.addEventListener('hashchange', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (hash === 'contact') showContact();
+  else if (hash === 'courses') showCourses();
+  else if (hash === 'profile') showProfile();
+  else if (hash === 'sajaw') showSajaw();
+  else if (hash === 'dashboard') showDashboard();
+  else if (hash.startsWith('checkout')) {
+    const parts = hash.split(':');
+    if(parts.length >= 3) showCheckout(decodeURIComponent(parts[1]), parseInt(parts[2]));
+  }
+});
+
 function showContact() {
+  if (window.location.hash !== '#contact') window.location.hash = 'contact';
   document.getElementById("mainDashboard").style.display = "none";
   document.getElementById("chaptersContainer").style.display = "none";
   document.getElementById("coursesContainer").style.display = "none";
@@ -1170,6 +1500,7 @@ function showContact() {
 }
 
 function showDashboard() {
+  if (window.location.hash !== '#dashboard' && window.location.hash !== '') window.location.hash = 'dashboard';
   document.getElementById("mainDashboard").style.display = "block";
   document.getElementById("chaptersContainer").style.display = "none";
   document.getElementById("profileContainer").style.display = "none";
@@ -1198,6 +1529,7 @@ function showDashboard() {
 }
 
 function showCourses() {
+  if (window.location.hash !== '#courses') window.location.hash = 'courses';
   document.getElementById("mainDashboard").style.display = "none";
   document.getElementById("chaptersContainer").style.display = "none";
   document.getElementById("profileContainer").style.display = "none";
@@ -1215,7 +1547,70 @@ function showCourses() {
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
+let currentOrder = { name: "", price: 0, discount: 0 };
+
+function showCheckout(courseName, price) {
+  if(!currentUser) { openAuth(); return; }
+  
+  if (window.location.hash !== `#checkout:${encodeURIComponent(courseName)}:${price}`) {
+    window.location.hash = `checkout:${encodeURIComponent(courseName)}:${price}`;
+  }
+  
+  currentOrder = { name: courseName, price: price, discount: 0 };
+  
+  document.getElementById("mainDashboard").style.display = "none";
+  document.getElementById("chaptersContainer").style.display = "none";
+  document.getElementById("coursesContainer").style.display = "none";
+  document.getElementById("sajawContainer").style.display = "none";
+  document.getElementById("contactContainer").style.display = "none";
+  document.getElementById("profileContainer").style.display = "none";
+  document.getElementById("checkoutContainer").style.display = "block";
+  
+  document.getElementById("checkoutCourseName").innerText = courseName;
+  document.getElementById("checkoutPrice").innerText = price + "৳";
+  document.getElementById("basePriceText").innerText = price + "৳";
+  document.getElementById("grandTotalText").innerText = price + "৳";
+  
+  // Reset coupon UI
+  document.getElementById("couponInput").value = "";
+  document.getElementById("couponMsg").innerText = "";
+  document.getElementById("discountRow").style.display = "none";
+  
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function applyCoupon() {
+  const code = document.getElementById("couponInput").value.trim().toUpperCase();
+  const msg = document.getElementById("couponMsg");
+  const discRow = document.getElementById("discountRow");
+  const discVal = document.getElementById("discountValueText");
+  const grandTotal = document.getElementById("grandTotalText");
+  
+  if(code === "HASIB10" || code === "GODHULI") {
+    currentOrder.discount = Math.floor(currentOrder.price * 0.1); // 10% discount
+    msg.innerText = "✅ কুপন অ্যাপ্লাই করা হয়েছে! আপনি ১০% ডিসকাউন্ট পেয়েছেন।";
+    msg.style.color = "#34d399";
+    
+    discRow.style.display = "flex";
+    discVal.innerText = "-" + currentOrder.discount + "৳";
+    grandTotal.innerText = (currentOrder.price - currentOrder.discount) + "৳";
+  } else {
+    currentOrder.discount = 0;
+    msg.innerText = "❌ ভুল কুপন কোড!";
+    msg.style.color = "#f87171";
+    discRow.style.display = "none";
+    grandTotal.innerText = currentOrder.price + "৳";
+  }
+}
+
+function confirmOrder() {
+  const total = currentOrder.price - currentOrder.discount;
+  alert(`অর্ডার কনফার্ম করার জন্য আপনাকে ${total}৳ পেমেন্ট করতে হবে। বিকাশ/নগদ পেমেন্ট গেটওয়ে লোড হচ্ছে...`);
+  // Here you would redirect to a real payment gateway
+}
+
 function showProfile() {
+  if (window.location.hash !== '#profile') window.location.hash = 'profile';
   document.getElementById("mainDashboard").style.display = "none";
   document.getElementById("chaptersContainer").style.display = "none";
   document.getElementById("coursesContainer").style.display = "none";
@@ -1236,33 +1631,41 @@ function showProfile() {
 }
 
 async function handleContactSubmit(e) {
-  // If we don't have a form ID, we should use standard POST.
-  // But let's try to make fetch work with the email endpoint.
   e.preventDefault();
   const btn = document.getElementById('cfSubmitBtn');
   const btnText = document.getElementById('cfBtnText');
   const form = document.getElementById('contactForm');
   const success = document.getElementById('contactSuccess');
   
-  btnText.textContent = '⏳ পাঠানো হচ্ছে...';
+  btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> পাঠানো হচ্ছে...';
   btn.disabled = true;
   
   const data = new FormData(form);
+  const params = new URLSearchParams(data);
   
   try {
-    const res = await fetch('https://formspree.io/hasibulhasancore@gmail.com', {
+    const res = await fetch(form.action, {
       method: 'POST',
-      body: data,
+      body: params,
       headers: { 'Accept': 'application/json' }
     });
+    
     if (res.ok) {
       form.style.display = 'none';
       success.style.display = 'block';
+      success.innerHTML = '✅ আপনার বার্তা সফলভাবে পাঠানো হয়েছে! ধন্যবাদ আমাদের সাথে থাকার জন্য।';
     } else {
-      // If fetch fails, we fall back to standard form submission
-      form.submit();
+      const result = await res.json();
+      if (result.errors) {
+        alert("ভুল: " + result.errors.map(error => error.message).join(", "));
+      } else {
+        alert("ইমেইল ভেরিফিকেশন বাকি: দয়া করে আপনার hasibulhasancore@gmail.com ইনবক্সটি চেক করে অ্যাক্টিভেট করুন।");
+      }
+      btn.disabled = false;
+      btnText.innerHTML = '<i class="fa-solid fa-paper-plane"></i> মেসেজ পাঠান';
     }
   } catch(err) {
+    // Fallback to normal submit if fetch fails
     form.submit();
   }
 }
@@ -1307,6 +1710,7 @@ function loadChapters(idx, element) {
 }
 
 function showSajaw() {
+  if (window.location.hash !== '#sajaw') window.location.hash = 'sajaw';
   document.getElementById("mainDashboard").style.display = "none";
   document.getElementById("chaptersContainer").style.display = "none";
   document.getElementById("coursesContainer").style.display = "none";
