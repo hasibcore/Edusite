@@ -1603,14 +1603,14 @@ body.light-theme .navbar .nav-links a:hover {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    border: 1px solid #edf0f7;
-    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--bg-card);
     padding: 8px;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   }
 
   .kebab-btn span {
-    background: #0f172a;
+    background: var(--text-color);
     width: 4px;
     height: 4px;
     border-radius: 50%;
@@ -1620,9 +1620,16 @@ body.light-theme .navbar .nav-links a:hover {
   .kebab-dropdown {
     right: 0;
     top: calc(100% + 8px);
-    background: #ffffff;
-    border-color: #e9edf5;
-    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .kebab-dropdown a {
+    color: var(--text-color);
+  }
+  .kebab-dropdown a:hover {
+    background: var(--bg-hover);
   }
 
   .mobile-nav-icon-btn {
@@ -1633,10 +1640,10 @@ body.light-theme .navbar .nav-links a:hover {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    border: 1px solid #edf0f7;
-    background: #ffffff;
-    color: #0f172a;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--bg-card);
+    color: var(--text-color);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     font-size: 0.96rem;
     cursor: pointer;
   }
@@ -1709,10 +1716,10 @@ body.light-theme .navbar .nav-links a:hover {
     overflow: hidden;
     padding: 0;
     margin: 0 0 14px;
-    border: 1px solid #e9edf5;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
-    background: #fff;
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
+    background: var(--bg-card);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
   }
 
   .mqc-card {
@@ -1726,7 +1733,7 @@ body.light-theme .navbar .nav-links a:hover {
   }
 
   .mqc-card + .mqc-card {
-    border-left: 1px solid #eef2f7;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   .mqc-icon {
@@ -1740,13 +1747,13 @@ body.light-theme .navbar .nav-links a:hover {
   .mqc-text strong {
     font-size: 0.78rem;
     line-height: 1.2;
-    color: #0f172a;
+    color: var(--text-color);
   }
 
   .mqc-text span {
     font-size: 0.6rem;
     line-height: 1.25;
-    color: #72809a;
+    color: var(--text-muted);
   }
 
   .mobile-search-bar {
@@ -1755,19 +1762,19 @@ body.light-theme .navbar .nav-links a:hover {
     padding: 6px 6px 6px 22px;
     margin-bottom: 15px;
     border-radius: 28px;
-    border-color: #e9edf5;
-    background: #fff;
-    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--bg-card);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
   }
 
   .mobile-search-bar input {
     font-size: 0.94rem;
-    color: #0f172a;
+    color: var(--text-color);
   }
 
   .mobile-search-bar input::placeholder {
-    color: #9aa6ba;
-    opacity: 1;
+    color: var(--text-muted);
+    opacity: 0.8;
   }
 
   .mobile-search-bar button {
@@ -1792,11 +1799,11 @@ body.light-theme .navbar .nav-links a:hover {
     min-width: 0;
     padding: 12px 8px;
     border-radius: 24px;
-    background: #fff;
-    border-color: #e9edf5;
-    color: #475569;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--text-muted);
     font-size: 0.78rem;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   }
 
   .mpill i {
@@ -2059,9 +2066,10 @@ body.light-theme .navbar .nav-links a:hover {
     right: 16px;
     bottom: 10px;
     border-radius: 24px;
-    background: rgba(255, 255, 255, 0.96);
-    border: 1px solid #edf0f7;
-    box-shadow: 0 14px 36px rgba(15, 23, 42, 0.12);
+    background: rgba(11, 14, 20, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(16px);
   }
 
   /* Compact Navbar & Profile elements on Mobile */
@@ -2102,5 +2110,61 @@ body.light-theme .navbar .nav-links a:hover {
     gap: 15px !important;
     padding: 16px !important;
     border-radius: 16px !important;
+  }
+
+  /* Light Theme overrides for all mobile elements */
+  body.light-theme .mobile-bottom-nav {
+    background: rgba(255, 255, 255, 0.96) !important;
+    border: 1px solid #edf0f7 !important;
+    box-shadow: 0 14px 36px rgba(15, 23, 42, 0.12) !important;
+  }
+  body.light-theme .mobile-quick-cards {
+    background: #ffffff;
+    border-color: #e9edf5;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
+  }
+  body.light-theme .mqc-card + .mqc-card {
+    border-left-color: #eef2f7;
+  }
+  body.light-theme .mqc-text strong {
+    color: #0f172a;
+  }
+  body.light-theme .mobile-search-bar {
+    background: #fff;
+    border-color: #e9edf5;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.04);
+  }
+  body.light-theme .mobile-search-bar input {
+    color: #0f172a;
+  }
+  body.light-theme .mobile-search-bar input::placeholder {
+    color: #9aa6ba;
+  }
+  body.light-theme .mpill {
+    background: #fff;
+    border-color: #e9edf5;
+    color: #475569;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  }
+  body.light-theme .mobile-nav-icon-btn,
+  body.light-theme .kebab-btn {
+    border-color: #edf0f7;
+    background: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+  }
+  body.light-theme .kebab-btn span {
+    background: #0f172a;
+  }
+  body.light-theme .kebab-dropdown {
+    background: #ffffff;
+    border-color: #e9edf5;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+  }
+  body.light-theme .kebab-dropdown a {
+    color: #1e293b;
+  }
+  body.light-theme .kebab-dropdown a:hover {
+    background: #f1f5f9;
   }
 }
