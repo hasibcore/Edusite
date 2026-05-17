@@ -84,7 +84,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css?v=31">
+  <link rel="stylesheet" href="style.css?v=35">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
@@ -442,6 +442,13 @@
   </div>
 </nav>
 
+<div class="mobile-search-panel" id="mobileSearchPanel">
+  <div class="mobile-search-panel-inner">
+    <input type="text" placeholder="কোর্স বা বিষয় খুঁজুন..." id="mobileSearchInput">
+    <button type="button" onclick="submitMobileSearch()" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </div>
+</div>
+
 <div class="mobile-top-ui">
   <div class="mobile-quick-cards">
     <div class="mqc-card" onclick="showCourses()">
@@ -465,11 +472,6 @@
         <span>আমাদের সাথে কথা বলুন</span>
       </div>
     </div>
-  </div>
-
-  <div class="mobile-search-bar">
-    <input type="text" placeholder="কোর্স, ব্লগ বা বিষয় খুঁজুন..." id="mobileSearchInput">
-    <button onclick="alert('খোঁজা হচ্ছে: ' + document.getElementById('mobileSearchInput').value)"><i class="fa-solid fa-magnifying-glass"></i></button>
   </div>
 
   <div class="mobile-pills">
@@ -1422,13 +1424,13 @@ function updateSliderImages(isLight) {
   if (slides.length < 3) return;
   const r = typeof resolveSiteAsset === 'function' ? resolveSiteAsset : (p) => p;
   if (isLight) {
-    slides[0].style.backgroundImage = "url('" + r('assets/images/bg1_day.jpg') + "')";
+    slides[0].style.backgroundImage = "url('" + r('assets/images/bg3_day.jpg') + "')";
     slides[1].style.backgroundImage = "url('" + r('assets/images/bg2_day.jpg') + "')";
-    slides[2].style.backgroundImage = "url('" + r('assets/images/bg3_day.jpg') + "')";
+    slides[2].style.backgroundImage = "url('" + r('assets/images/bg1_day.jpg') + "')";
   } else {
-    slides[0].style.backgroundImage = "url('" + r('assets/images/bg1.png') + "')";
+    slides[0].style.backgroundImage = "url('" + r('assets/images/bg3.png') + "')";
     slides[1].style.backgroundImage = "url('" + r('assets/images/bg2.png') + "')";
-    slides[2].style.backgroundImage = "url('" + r('assets/images/bg3.png') + "')";
+    slides[2].style.backgroundImage = "url('" + r('assets/images/bg1.png') + "')";
   }
 }
 
@@ -1441,16 +1443,11 @@ function toggleTheme() {
 
 function loadTheme() {
   const savedTheme = localStorage.getItem('theme');
-  let isLight = false;
+  let isLight = true;
   if (savedTheme) {
-    if (savedTheme === 'light') isLight = true;
+    isLight = savedTheme === 'light';
   } else {
-    // Auto detect day/night if no preference is saved
-    const hour = new Date().getHours();
-    // 6 AM to 6 PM is Day
-    if (hour >= 6 && hour < 18) {
-      isLight = true;
-    }
+    localStorage.setItem('theme', 'light');
   }
   
   if (isLight) {
@@ -1463,6 +1460,15 @@ function loadTheme() {
 function renderAuthUI() {
   const authDiv = document.getElementById("authUI");
   const langStr = i18n[currentLang] || i18n['bn'];
+  const mobileActions = `
+    <button type="button" class="mobile-nav-icon-btn" onclick="toggleMobileSearch()" aria-label="Search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+    <button type="button" class="mobile-nav-icon-btn mobile-notice-btn" onclick="showMobileNotice()" aria-label="Notifications">
+      <i class="fa-regular fa-bell"></i>
+      <span class="mobile-notice-dot"></span>
+    </button>
+  `;
   const kebabMenu = `
     <div class="kebab-wrapper" id="kebabWrapper">
       <button class="kebab-btn" onclick="toggleKebab()">
@@ -1475,6 +1481,15 @@ function renderAuthUI() {
         </a>
         <a class="dropdown-item" href="#" onclick="showCourses(); toggleKebab();">
           <div class="di-icon">📚</div> ${langStr.kebab_courses}
+        </a>
+        <a class="dropdown-item" href="#" onclick="showBlogComing(); toggleKebab();">
+          <div class="di-icon">📝</div> ${langStr.nav_blog}
+        </a>
+        <a class="dropdown-item" href="#" onclick="showContact(); toggleKebab();">
+          <div class="di-icon">📞</div> ${langStr.nav_contact}
+        </a>
+        <a class="dropdown-item" href="#" onclick="showBlogComing(); toggleKebab();">
+          <div class="di-icon">ℹ️</div> ${langStr.nav_about}
         </a>
         <a class="dropdown-item" href="#" onclick="menuAction('profile')">
           <div class="di-icon">👤</div> ${langStr.kebab_profile}
@@ -1498,18 +1513,40 @@ function renderAuthUI() {
 
   if (!currentUser) {
     authDiv.innerHTML = `
+      ${mobileActions}
       <button class="btn btn-outline" onclick="openAuth(true)">${langStr.btn_login}</button>
       <button class="btn btn-primary" onclick="openAuth(false)">${langStr.btn_signup}</button>
       ${kebabMenu}
     `;
   } else {
     authDiv.innerHTML = `
+      ${mobileActions}
       <span class="nav-user-chip" onclick="menuAction('profile')">
         ${avatarHtml}<span class="nav-user-name">${currentUser.split('@')[0]}</span>
       </span>
       ${kebabMenu}
     `;
   }
+}
+
+function toggleMobileSearch() {
+  const panel = document.getElementById('mobileSearchPanel');
+  const input = document.getElementById('mobileSearchInput');
+  if (!panel) return;
+  panel.classList.toggle('open');
+  if (panel.classList.contains('open') && input) {
+    setTimeout(() => input.focus(), 60);
+  }
+}
+
+function submitMobileSearch() {
+  const input = document.getElementById('mobileSearchInput');
+  const value = input ? input.value.trim() : '';
+  alert((currentLang === 'en' ? 'Searching: ' : 'খোঁজা হচ্ছে: ') + value);
+}
+
+function showMobileNotice() {
+  alert(currentLang === 'en' ? 'No new notices' : 'কোন নতুন নোটিশ নেই');
 }
 
 function filterSubjects(level) {
