@@ -1749,17 +1749,17 @@ body.light-theme .navbar .nav-links a:hover {
 
   .hero-slide {
     background-size: cover;
-    background-position: 58% center;
-    filter: saturate(1.08) contrast(1.04);
+    background-position: 64% center;
+    filter: saturate(1.22) contrast(1.32) brightness(0.78);
   }
 
   .hero-bg-overlay {
     background:
       linear-gradient(90deg,
-        rgba(6, 10, 26, 0.88) 0%,
-        rgba(31, 10, 85, 0.56) 26%,
-        rgba(31, 10, 85, 0.08) 42%,
-        rgba(0, 0, 0, 0) 54%);
+        rgba(6, 10, 26, 0.86) 0%,
+        rgba(31, 10, 85, 0.46) 24%,
+        rgba(31, 10, 85, 0.04) 36%,
+        rgba(0, 0, 0, 0) 46%);
   }
 
   .hero-content {
