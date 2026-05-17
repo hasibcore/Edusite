@@ -360,10 +360,10 @@ body {
     box-shadow: 0 16px 40px rgba(0,0,0,0.35);
     min-height: 0;
   }
-  .hero-bg-slider { height: 220px; }
+  .hero-bg-slider { height: 100%; }
   .hero-slide { background-position: center; }
   .hero-bg-overlay {
-    height: 220px;
+    height: 100%;
     bottom: auto;
     background: linear-gradient(to bottom, rgba(11,14,20,0.65) 0%, rgba(11,14,20,0.35) 45%, transparent 100%);
   }
