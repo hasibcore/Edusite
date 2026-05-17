@@ -361,6 +361,7 @@ body {
     min-height: 0;
   }
   .hero-bg-slider { height: 220px; }
+  .hero-slide { background-position: center; }
   .hero-bg-overlay {
     height: 220px;
     bottom: auto;

@@ -15,6 +15,26 @@
   <meta name="language" content="Bengali">
   <meta name="revisit-after" content="7 days">
   <link rel="canonical" href="https://hasibcore.github.io/Edusite/">
+  <script>
+    /* Hero/slider assets: relative "assets/..." breaks when the page URL is …/Edusite (no trailing slash). Resolve against canonical base instead. */
+    window.resolveSiteAsset = function (relativePath) {
+      try {
+        var h = window.location.hostname;
+        if (h === 'localhost' || h === '127.0.0.1') {
+          return new URL(relativePath, window.location.href).href;
+        }
+        var can = document.querySelector('link[rel="canonical"]');
+        if (can && can.href) {
+          return new URL(relativePath, can.href).href;
+        }
+      } catch (e) {}
+      try {
+        return new URL(relativePath, window.location.href).href;
+      } catch (e2) {
+        return relativePath;
+      }
+    };
+  </script>
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -425,9 +445,9 @@
 <header class="hero-section">
   <!-- Hero Background Slider -->
   <div class="hero-bg-slider">
-    <div class="hero-slide" style="background-image: url('bg1.png');"></div>
-    <div class="hero-slide" style="background-image: url('bg2.png');"></div>
-    <div class="hero-slide" style="background-image: url('bg3.png');"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
   </div>
   <div class="hero-bg-overlay"></div>
 
@@ -1391,16 +1411,16 @@ let currentLevel = 'SSC';
 
 function updateSliderImages(isLight) {
   const slides = document.querySelectorAll('.hero-slide');
-  if (slides.length >= 3) {
-    if (isLight) {
-      slides[0].style.backgroundImage = "url('assets/images/bg1_day.jpg')";
-      slides[1].style.backgroundImage = "url('assets/images/bg2_day.jpg')";
-      slides[2].style.backgroundImage = "url('assets/images/bg3_day.jpg')";
-    } else {
-      slides[0].style.backgroundImage = "url('assets/images/bg1.png')";
-      slides[1].style.backgroundImage = "url('assets/images/bg2.png')";
-      slides[2].style.backgroundImage = "url('assets/images/bg3.png')";
-    }
+  if (slides.length < 3) return;
+  const r = typeof resolveSiteAsset === 'function' ? resolveSiteAsset : (p) => p;
+  if (isLight) {
+    slides[0].style.backgroundImage = "url('" + r('assets/images/bg1_day.jpg') + "')";
+    slides[1].style.backgroundImage = "url('" + r('assets/images/bg2_day.jpg') + "')";
+    slides[2].style.backgroundImage = "url('" + r('assets/images/bg3_day.jpg') + "')";
+  } else {
+    slides[0].style.backgroundImage = "url('" + r('assets/images/bg1.png') + "')";
+    slides[1].style.backgroundImage = "url('" + r('assets/images/bg2.png') + "')";
+    slides[2].style.backgroundImage = "url('" + r('assets/images/bg3.png') + "')";
   }
 }
 
