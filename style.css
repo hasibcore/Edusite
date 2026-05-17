@@ -1844,39 +1844,41 @@ body.light-theme .navbar .nav-links a:hover {
   .hero-content {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: flex-end;
     height: 100%;
     box-sizing: border-box;
-    padding: 18px 16px;
+    padding: 20px 16px 36px;
     margin-left: 0;
-    max-width: 48%;
+    max-width: 60%;
   }
 
   .hero-content h1 {
-    font-size: clamp(0.82rem, 3.6vw, 0.98rem);
-    line-height: 1.18;
+    font-size: 1.12rem;
+    line-height: 1.22;
     margin: 0 0 6px;
     color: #fff;
+    font-weight: 800;
     text-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   }
 
   .hero-content h1 span {
-    color: #8b5cf6;
+    color: #c084fc;
+    text-shadow: 0 0 10px rgba(192, 132, 252, 0.4);
   }
 
   .hero-content p {
-    max-width: 140px;
+    max-width: 170px;
     margin: 0 0 10px;
     color: rgba(255, 255, 255, 0.86);
-    font-size: 0.58rem;
+    font-size: 0.68rem;
     line-height: 1.38;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.42);
   }
 
   .hero-buttons button {
-    padding: 8px 12px;
-    border-radius: 15px;
-    font-size: 0.68rem;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 0.65rem;
     box-shadow: 0 12px 26px rgba(109, 40, 217, 0.34);
   }
 
