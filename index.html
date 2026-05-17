@@ -84,7 +84,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css?v=30">
+  <link rel="stylesheet" href="style.css?v=31">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
@@ -442,6 +442,44 @@
   </div>
 </nav>
 
+<div class="mobile-top-ui">
+  <div class="mobile-quick-cards">
+    <div class="mqc-card" onclick="showCourses()">
+      <div class="mqc-icon text-purple"><i class="fa-solid fa-book-open"></i></div>
+      <div class="mqc-text">
+        <strong>কোর্সসমূহ</strong>
+        <span>সব কোর্স দেখুন</span>
+      </div>
+    </div>
+    <div class="mqc-card" onclick="showBlogComing()">
+      <div class="mqc-icon text-blue"><i class="fa-solid fa-file-lines"></i></div>
+      <div class="mqc-text">
+        <strong>ব্লগ</strong>
+        <span>নতুন কিছু জানুন</span>
+      </div>
+    </div>
+    <div class="mqc-card" onclick="showContact()">
+      <div class="mqc-icon text-green"><i class="fa-solid fa-phone"></i></div>
+      <div class="mqc-text">
+        <strong>যোগাযোগ</strong>
+        <span>আমাদের সাথে কথা বলুন</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-search-bar">
+    <input type="text" placeholder="কোর্স, ব্লগ বা বিষয় খুঁজুন..." id="mobileSearchInput">
+    <button onclick="alert('খোঁজা হচ্ছে: ' + document.getElementById('mobileSearchInput').value)"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </div>
+
+  <div class="mobile-pills">
+    <div class="mpill active" onclick="showDashboard()"><i class="fa-solid fa-house"></i> হোম</div>
+    <div class="mpill" onclick="showCourses()"><i class="fa-solid fa-book"></i> কোর্সসমূহ</div>
+    <div class="mpill" onclick="showBlogComing()"><i class="fa-solid fa-pen-nib"></i> ব্লগ</div>
+    <div class="mpill" onclick="showContact()"><i class="fa-solid fa-phone"></i> যোগাযোগ</div>
+  </div>
+</div>
+
 <header class="hero-section">
   <!-- Hero Background Slider -->
   <div class="hero-bg-slider">
@@ -453,8 +491,10 @@
 
   <div class="hero-content">
     <h1 data-i18n="hero_title">আলোর পথে<br>তোমার <span>স্বপ্নের</span> দিশা</h1>
-    <p data-i18n="hero_subtitle">SSC ও HSC এর সব বিষয়ের সহজ, গোছানো এবং মানসম্পন্ন প্রস্তুতি।</p>
-
+    <p data-i18n="hero_subtitle">SSC ও HSC এর সব বিষয়ের উপর এক প্ল্যাটফর্মে সেরা প্রস্তুতি।</p>
+    <div class="hero-buttons">
+      <button type="button" class="hero-btn-main" onclick="showCourses()">এখনই শুরু করুন <i class="fa-solid fa-chevron-right" style="margin-left: 5px; font-size: 12px;"></i></button>
+    </div>
   </div>
 
   <div class="hero-dots">
