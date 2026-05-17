@@ -289,27 +289,23 @@ body {
 @media (max-width: 768px) {
   /* Navbar — app-style: logo + user row, icon pills row */
   .navbar {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "logo actions"
-      "links links";
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 6px 10px;
-    padding: 12px 16px 10px;
+    padding: 10px 16px;
+    gap: 12px;
   }
-  .logo-area { grid-area: logo; gap: 10px; }
-  .logo-area img { width: 36px; height: 36px; border-radius: 10px; }
-  .logo-area .brand { font-size: 1.2rem; }
+  .logo-area { display: flex; align-items: center; gap: 8px; }
+  .logo-area img { width: 34px; height: 34px; border-radius: 9px; }
+  .logo-area .brand { font-size: 1.15rem; font-weight: 800; }
   .logo-area .tagline { display: none; }
 
   .nav-actions {
-    grid-area: actions;
-    width: auto;
-    justify-self: end;
-    justify-content: flex-end;
-    padding: 0;
+    display: flex;
+    align-items: center;
     gap: 8px;
+    width: auto;
+    justify-content: flex-end;
   }
   .nav-actions .btn { padding: 8px 12px; font-size: 0.82rem; }
   .nav-notification { display: none; }
@@ -2064,5 +2060,45 @@ body.light-theme .navbar .nav-links a:hover {
     background: rgba(255, 255, 255, 0.96);
     border: 1px solid #edf0f7;
     box-shadow: 0 14px 36px rgba(15, 23, 42, 0.12);
+  }
+
+  /* Compact Navbar & Profile elements on Mobile */
+  .nav-links {
+    display: none !important;
+  }
+  .nav-user-chip {
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .nav-user-chip .nav-user-name {
+    display: none !important;
+  }
+  .nav-user-chip img {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* Downscale Profile Page Avatar & Header details on Mobile */
+  .php-avatar {
+    width: 64px !important;
+    height: 64px !important;
+    font-size: 1.6rem !important;
+    border-width: 2px !important;
+    box-shadow: 0 6px 12px rgba(124, 58, 237, 0.2) !important;
+  }
+  .php-info h2 {
+    font-size: 1.2rem !important;
+    font-weight: 800 !important;
+  }
+  .php-info p {
+    font-size: 0.76rem !important;
+    margin-bottom: 5px !important;
+  }
+  .profile-header-premium {
+    gap: 15px !important;
+    padding: 16px !important;
+    border-radius: 16px !important;
   }
 }
