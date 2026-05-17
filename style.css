@@ -110,6 +110,8 @@ body {
 .logo-area span.brand { font-size: 1.5rem; font-weight: 700; color: white; }
 .logo-area span.tagline { font-size: 0.65rem; color: var(--text-muted); font-weight: 500; letter-spacing: 1px; margin-top: 4px; }
 .mobile-menu-trigger { display: none; }
+.mobile-nav-icon-btn,
+.mobile-search-panel { display: none; }
 
 .nav-links { display: flex; gap: 30px; }
 .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; position: relative; display: inline-flex; align-items: center; gap: 8px; }
@@ -1501,43 +1503,35 @@ body.light-theme .navbar .nav-links a:hover {
   }
 
   .navbar {
-    grid-template-columns: auto auto 1fr;
-    grid-template-areas: "menu logo actions";
-    gap: 12px;
-    padding: 18px 16px 14px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "logo actions";
+    gap: 10px;
+    padding: 14px 16px 12px;
     background: rgba(255, 255, 255, 0.96);
     border-bottom: 0;
     box-shadow: none;
   }
 
   .mobile-menu-trigger {
-    grid-area: menu;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border: 0;
-    background: transparent;
-    color: #0f172a;
-    font-size: 1.28rem;
-    cursor: pointer;
+    display: none !important;
   }
 
   .logo-area {
     grid-area: logo;
+    justify-self: start;
     min-width: 0;
+    gap: 9px;
   }
 
   .logo-area img {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     border-radius: 10px;
     object-fit: cover;
   }
 
   .logo-area span.brand {
-    font-size: 1.42rem;
+    font-size: 1.28rem;
     font-weight: 800;
     color: #0f172a;
   }
@@ -1547,36 +1541,91 @@ body.light-theme .navbar .nav-links a:hover {
   }
 
   .nav-actions {
-    gap: 10px;
+    justify-self: end;
+    gap: 8px;
   }
 
+  .nav-actions .btn,
+  .nav-actions .kebab-wrapper,
   .nav-user-chip {
-    max-width: 118px;
-    color: #0f172a;
-    font-weight: 800;
+    display: none !important;
   }
 
-  .kebab-wrapper {
-    margin-left: 0;
-  }
-
-  .kebab-btn {
-    width: 40px;
-    height: 40px;
+  .mobile-nav-icon-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-    border-color: #edf0f7;
-    background: #f8f5ff;
+    border: 1px solid #edf0f7;
+    background: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+    font-size: 0.96rem;
+    cursor: pointer;
   }
 
-  .kebab-btn span {
-    width: 4px;
-    height: 4px;
-    background: #0f172a;
+  .mobile-notice-dot {
+    position: absolute;
+    top: 7px;
+    right: 8px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #7c3aed;
+    border: 2px solid #fff;
+  }
+
+  .mobile-search-panel {
+    display: none;
+    padding: 0 16px 10px;
+    background: #ffffff;
+  }
+
+  .mobile-search-panel.open {
+    display: block;
+  }
+
+  .mobile-search-panel-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 4px 5px 4px 16px;
+    border: 1px solid #e9edf5;
+    border-radius: 999px;
+    background: #ffffff;
+    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+  }
+
+  .mobile-search-panel-inner input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #0f172a;
+    font: inherit;
+    font-size: 0.88rem;
+  }
+
+  .mobile-search-panel-inner button {
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background: #7c3aed;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
 
   .mobile-top-ui {
-    display: block;
-    padding: 8px 16px 14px;
+    display: none !important;
   }
 
   .mobile-quick-cards {
@@ -1689,9 +1738,9 @@ body.light-theme .navbar .nav-links a:hover {
   }
 
   .hero-section {
-    height: clamp(208px, 52vw, 230px);
+    height: clamp(190px, 50vw, 220px);
     min-height: 0;
-    margin: 0 16px 18px;
+    margin: 8px 16px 18px;
     border-radius: 22px;
     border: 0;
     background: #0b1020;
@@ -1700,34 +1749,34 @@ body.light-theme .navbar .nav-links a:hover {
 
   .hero-slide {
     background-size: cover;
-    background-position: 48% center;
+    background-position: 58% center;
     filter: saturate(1.08) contrast(1.04);
   }
 
   .hero-bg-overlay {
     background:
       linear-gradient(90deg,
-        rgba(6, 10, 26, 0.96) 0%,
-        rgba(31, 10, 85, 0.82) 30%,
-        rgba(31, 10, 85, 0.16) 46%,
-        rgba(0, 0, 0, 0) 60%);
+        rgba(6, 10, 26, 0.88) 0%,
+        rgba(31, 10, 85, 0.56) 26%,
+        rgba(31, 10, 85, 0.08) 42%,
+        rgba(0, 0, 0, 0) 54%);
   }
 
   .hero-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100%;
     box-sizing: border-box;
-    padding: 18px 20px;
+    padding: 18px 16px;
     margin-left: 0;
-    max-width: 63%;
+    max-width: 48%;
   }
 
   .hero-content h1 {
-    font-size: clamp(1.3rem, 5.8vw, 1.62rem);
-    line-height: 1.22;
-    margin: 0 0 10px;
+    font-size: clamp(1rem, 4.5vw, 1.24rem);
+    line-height: 1.2;
+    margin: 0 0 8px;
     color: #fff;
     text-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   }
@@ -1737,18 +1786,18 @@ body.light-theme .navbar .nav-links a:hover {
   }
 
   .hero-content p {
-    max-width: 210px;
-    margin: 0 0 14px;
+    max-width: 154px;
+    margin: 0 0 10px;
     color: rgba(255, 255, 255, 0.86);
-    font-size: 0.78rem;
-    line-height: 1.48;
+    font-size: 0.64rem;
+    line-height: 1.42;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.42);
   }
 
   .hero-buttons button {
-    padding: 10px 16px;
-    border-radius: 17px;
-    font-size: 0.78rem;
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-size: 0.68rem;
     box-shadow: 0 12px 26px rgba(109, 40, 217, 0.34);
   }
 

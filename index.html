@@ -417,9 +417,6 @@
 <body>
 
 <nav class="navbar">
-  <button type="button" class="mobile-menu-trigger" onclick="toggleKebab()" aria-label="Open menu">
-    <i class="fa-solid fa-bars" aria-hidden="true"></i>
-  </button>
   <div class="logo-area" onclick="location.reload()">
     <img src="logo.jpg" alt="Logo">
     <div>
@@ -445,6 +442,13 @@
   </div>
 </nav>
 
+<div class="mobile-search-panel" id="mobileSearchPanel">
+  <div class="mobile-search-panel-inner">
+    <input type="text" placeholder="কোর্স বা বিষয় খুঁজুন..." id="mobileSearchInput">
+    <button type="button" onclick="submitMobileSearch()" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </div>
+</div>
+
 <div class="mobile-top-ui">
   <div class="mobile-quick-cards">
     <div class="mqc-card" onclick="showCourses()">
@@ -468,11 +472,6 @@
         <span>আমাদের সাথে কথা বলুন</span>
       </div>
     </div>
-  </div>
-
-  <div class="mobile-search-bar">
-    <input type="text" placeholder="কোর্স, ব্লগ বা বিষয় খুঁজুন..." id="mobileSearchInput">
-    <button onclick="alert('খোঁজা হচ্ছে: ' + document.getElementById('mobileSearchInput').value)"><i class="fa-solid fa-magnifying-glass"></i></button>
   </div>
 
   <div class="mobile-pills">
@@ -1461,6 +1460,15 @@ function loadTheme() {
 function renderAuthUI() {
   const authDiv = document.getElementById("authUI");
   const langStr = i18n[currentLang] || i18n['bn'];
+  const mobileActions = `
+    <button type="button" class="mobile-nav-icon-btn" onclick="toggleMobileSearch()" aria-label="Search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+    <button type="button" class="mobile-nav-icon-btn mobile-notice-btn" onclick="showMobileNotice()" aria-label="Notifications">
+      <i class="fa-regular fa-bell"></i>
+      <span class="mobile-notice-dot"></span>
+    </button>
+  `;
   const kebabMenu = `
     <div class="kebab-wrapper" id="kebabWrapper">
       <button class="kebab-btn" onclick="toggleKebab()">
@@ -1496,18 +1504,40 @@ function renderAuthUI() {
 
   if (!currentUser) {
     authDiv.innerHTML = `
+      ${mobileActions}
       <button class="btn btn-outline" onclick="openAuth(true)">${langStr.btn_login}</button>
       <button class="btn btn-primary" onclick="openAuth(false)">${langStr.btn_signup}</button>
       ${kebabMenu}
     `;
   } else {
     authDiv.innerHTML = `
+      ${mobileActions}
       <span class="nav-user-chip" onclick="menuAction('profile')">
         ${avatarHtml}<span class="nav-user-name">${currentUser.split('@')[0]}</span>
       </span>
       ${kebabMenu}
     `;
   }
+}
+
+function toggleMobileSearch() {
+  const panel = document.getElementById('mobileSearchPanel');
+  const input = document.getElementById('mobileSearchInput');
+  if (!panel) return;
+  panel.classList.toggle('open');
+  if (panel.classList.contains('open') && input) {
+    setTimeout(() => input.focus(), 60);
+  }
+}
+
+function submitMobileSearch() {
+  const input = document.getElementById('mobileSearchInput');
+  const value = input ? input.value.trim() : '';
+  alert((currentLang === 'en' ? 'Searching: ' : 'খোঁজা হচ্ছে: ') + value);
+}
+
+function showMobileNotice() {
+  alert(currentLang === 'en' ? 'No new notices' : 'কোন নতুন নোটিশ নেই');
 }
 
 function filterSubjects(level) {
