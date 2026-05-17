@@ -417,6 +417,9 @@
 <body>
 
 <nav class="navbar">
+  <button type="button" class="mobile-menu-trigger" onclick="toggleKebab()" aria-label="Open menu">
+    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+  </button>
   <div class="logo-area" onclick="location.reload()">
     <img src="logo.jpg" alt="Logo">
     <div>
@@ -1422,12 +1425,12 @@ function updateSliderImages(isLight) {
   if (slides.length < 3) return;
   const r = typeof resolveSiteAsset === 'function' ? resolveSiteAsset : (p) => p;
   if (isLight) {
-    slides[0].style.backgroundImage = "url('" + r('assets/images/bg1_day.jpg') + "')";
-    slides[1].style.backgroundImage = "url('" + r('assets/images/bg2_day.jpg') + "')";
+    slides[0].style.backgroundImage = "url('" + r('assets/images/bg2_day.jpg') + "')";
+    slides[1].style.backgroundImage = "url('" + r('assets/images/bg1_day.jpg') + "')";
     slides[2].style.backgroundImage = "url('" + r('assets/images/bg3_day.jpg') + "')";
   } else {
-    slides[0].style.backgroundImage = "url('" + r('assets/images/bg1.png') + "')";
-    slides[1].style.backgroundImage = "url('" + r('assets/images/bg2.png') + "')";
+    slides[0].style.backgroundImage = "url('" + r('assets/images/bg2.png') + "')";
+    slides[1].style.backgroundImage = "url('" + r('assets/images/bg1.png') + "')";
     slides[2].style.backgroundImage = "url('" + r('assets/images/bg3.png') + "')";
   }
 }
@@ -1441,16 +1444,11 @@ function toggleTheme() {
 
 function loadTheme() {
   const savedTheme = localStorage.getItem('theme');
-  let isLight = false;
+  let isLight = true;
   if (savedTheme) {
-    if (savedTheme === 'light') isLight = true;
+    isLight = savedTheme === 'light';
   } else {
-    // Auto detect day/night if no preference is saved
-    const hour = new Date().getHours();
-    // 6 AM to 6 PM is Day
-    if (hour >= 6 && hour < 18) {
-      isLight = true;
-    }
+    localStorage.setItem('theme', 'light');
   }
   
   if (isLight) {
