@@ -230,9 +230,9 @@ body {
 .mentors-scroll::-webkit-scrollbar-track { background: var(--bg-dark); border-radius: 4px; }
 .mentors-scroll::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
 
-.mentor-card { width: 180px; min-width: 180px; max-width: 180px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; text-align: center; transition: 0.3s; flex-shrink: 0; }
+.mentor-card { width: 150px; min-width: 150px; max-width: 150px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; text-align: center; transition: 0.3s; flex-shrink: 0; }
 .mentor-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-.mentor-card img { width: 100%; height: 180px; object-fit: cover; object-position: top center; }
+.mentor-card img { width: 100%; height: 150px; object-fit: cover; object-position: top center; }
 .mc-info { padding: 15px; }
 .mc-info h4 { margin: 0 0 5px 0; font-size: 1rem; color: var(--text-main); }
 .mc-info p { margin: 0; font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
@@ -571,12 +571,12 @@ body {
   /* Mentor cards */
   .mentors-scroll {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 14px;
     padding: 0 16px 22px;
   }
   .mentor-card { width: 100%; min-width: auto; max-width: none; }
-  .mentor-card img { height: 140px; }
+  .mentor-card img { height: 120px; }
   .mc-info { padding: 14px; }
   .mc-info h4 { font-size: 0.95rem; }
   .mc-info p { font-size: 0.78rem; line-height: 1.3; }
@@ -612,7 +612,7 @@ body {
 }
 .kebab-btn:hover { background: var(--bg-hover); }
 .kebab-btn span {
-  display: block; width: 4px; height: 4px;
+  display: block; width: 5px; height: 5px; margin: 1px 0;
   background: var(--text-main); border-radius: 50%;
   transition: background 0.2s;
 }
