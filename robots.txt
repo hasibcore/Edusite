@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hasibcore.github.io/Edusite/sitemap.xml
+Sitemap: https://godhuli-chi.vercel.app/sitemap.xml
