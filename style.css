@@ -1526,16 +1526,26 @@ body.light-theme .navbar .nav-links a:hover {
 .mobile-top-ui { display: none; }
 
 @media (max-width: 768px) {
+  body {
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.18), transparent 45%),
+      radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15), transparent 45%),
+      #0B0E14 !important;
+    background-attachment: fixed !important;
+  }
+
   body.light-theme {
-    --bg-dark: #ffffff;
+    --bg-dark: #f8fafc;
     --bg-card: #ffffff;
-    --bg-hover: #f5f3ff;
-    --border-color: #e9edf5;
+    --bg-hover: #f1f5f9;
+    --border-color: #e2e8f0;
     --text-main: #0f172a;
     --text-muted: #64748b;
-    background:
-      radial-gradient(circle at 20% 0%, rgba(124, 58, 237, 0.06), transparent 28%),
-      #ffffff;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.08), transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.05), transparent 40%),
+      #f8fafc !important;
+    background-attachment: fixed !important;
   }
 
   .navbar {
@@ -2252,22 +2262,85 @@ body.light-theme .navbar .nav-links a:hover {
   body.light-theme #mainDashboard .section-header a {
     color: #64748b;
   }
+
+  /* Stunning Light Theme Subject Cards */
   body.light-theme .subject-card {
-    background: linear-gradient(135deg, #fbf7ff, #f4fbff);
-    border-color: #e9d5ff;
-    box-shadow: none;
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.04);
+    border-radius: 18px;
   }
-  body.light-theme .subject-card:nth-child(2) { background: linear-gradient(135deg, #f0f9ff, #f8fbff); border-color: #bfdbfe; }
-  body.light-theme .subject-card:nth-child(3) { background: linear-gradient(135deg, #ecfdf5, #f9fffb); border-color: #bbf7d0; }
-  body.light-theme .subject-card:nth-child(4) { background: linear-gradient(135deg, #fff7ed, #fffdf5); border-color: #fed7aa; }
-  body.light-theme .subject-card:nth-child(5) { background: linear-gradient(135deg, #fdf2f8, #fff8fb); border-color: #fbcfe8; }
+  body.light-theme .subject-card:nth-child(1) { background: linear-gradient(135deg, #f5f3ff, #ffffff); border-color: #ddd6fe; }
+  body.light-theme .subject-card:nth-child(2) { background: linear-gradient(135deg, #f0f9ff, #ffffff); border-color: #bae6fd; }
+  body.light-theme .subject-card:nth-child(3) { background: linear-gradient(135deg, #ecfdf5, #ffffff); border-color: #a7f3d0; }
+  body.light-theme .subject-card:nth-child(4) { background: linear-gradient(135deg, #fff7ed, #ffffff); border-color: #fed7aa; }
+  body.light-theme .subject-card:nth-child(5) { background: linear-gradient(135deg, #fdf2f8, #ffffff); border-color: #fbcfe8; }
+  
   body.light-theme .sc-title {
     color: #0f172a;
   }
   body.light-theme .sc-subtitle {
     color: #64748b;
   }
+
+  /* Dynamic Active States & Styling for Bottom Navigation on Mobile */
+  .mobile-bottom-nav {
+    left: 14px !important;
+    right: 14px !important;
+    bottom: 12px !important;
+    border-radius: 28px !important;
+    background: rgba(15, 20, 30, 0.85) !important;
+    border: 1px solid rgba(124, 58, 237, 0.18) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 15px rgba(124, 58, 237, 0.1) !important;
+    backdrop-filter: blur(20px) !important;
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  
+  .mbn-item {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 18px !important;
+  }
+  
+  .mbn-item.active {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.25), rgba(59, 130, 246, 0.15)) !important;
+    color: #c4b5fd !important;
+    box-shadow: inset 0 0 12px rgba(124, 58, 237, 0.2), 0 4px 12px rgba(124, 58, 237, 0.15) !important;
+  }
+  
+  .mbn-item.active i {
+    color: #c4b5fd !important;
+    transform: scale(1.1);
+  }
+
+  /* Light Theme Bottom Navigation Overrides */
+  body.light-theme .mobile-bottom-nav {
+    background: rgba(255, 255, 255, 0.88) !important;
+    border: 1px solid rgba(124, 58, 237, 0.15) !important;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08), 0 0 15px rgba(124, 58, 237, 0.04) !important;
+  }
+  
+  body.light-theme .mbn-item.active {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(59, 130, 246, 0.08)) !important;
+    color: var(--primary) !important;
+    box-shadow: inset 0 0 12px rgba(124, 58, 237, 0.05), 0 4px 10px rgba(124, 58, 237, 0.08) !important;
+  }
+  body.light-theme .mbn-item.active i {
+    color: var(--primary) !important;
+  }
 }
+
+/* =========================================
+   GLOWING TINTED CARDS IN DARK THEME
+========================================= */
+.subject-card {
+  border-radius: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.subject-card:nth-child(1) { background: linear-gradient(135deg, rgba(124, 58, 237, 0.07), rgba(21, 26, 35, 0.5)); border-color: rgba(124, 58, 237, 0.28); }
+.subject-card:nth-child(2) { background: linear-gradient(135deg, rgba(59, 130, 246, 0.07), rgba(21, 26, 35, 0.5)); border-color: rgba(59, 130, 246, 0.28); }
+.subject-card:nth-child(3) { background: linear-gradient(135deg, rgba(16, 185, 129, 0.07), rgba(21, 26, 35, 0.5)); border-color: rgba(16, 185, 129, 0.28); }
+.subject-card:nth-child(4) { background: linear-gradient(135deg, rgba(245, 158, 11, 0.07), rgba(21, 26, 35, 0.5)); border-color: rgba(245, 158, 11, 0.28); }
+.subject-card:nth-child(5) { background: linear-gradient(135deg, rgba(236, 72, 153, 0.07), rgba(21, 26, 35, 0.5)); border-color: rgba(236, 72, 153, 0.28); }
 
 /* =========================================
    PREMIUM DYNAMIC ANIMATIONS & HOVER EFFECTS
@@ -2293,17 +2366,31 @@ body.light-theme .navbar .nav-links a:hover {
 .subject-card, .course-card, .mentor-card {
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.subject-card:hover, .course-card:hover, .mentor-card:hover {
+.course-card:hover, .mentor-card:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 20px 40px rgba(124, 58, 237, 0.25);
   border-color: var(--primary);
   z-index: 10;
 }
-body.light-theme .subject-card:hover, 
+.subject-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  z-index: 10;
+}
+.subject-card:nth-child(1):hover { box-shadow: 0 20px 40px rgba(124, 58, 237, 0.35); border-color: #7c3aed; }
+.subject-card:nth-child(2):hover { box-shadow: 0 20px 40px rgba(59, 130, 246, 0.35); border-color: #3b82f6; }
+.subject-card:nth-child(3):hover { box-shadow: 0 20px 40px rgba(16, 185, 129, 0.35); border-color: #10b981; }
+.subject-card:nth-child(4):hover { box-shadow: 0 20px 40px rgba(245, 158, 11, 0.35); border-color: #f59e0b; }
+.subject-card:nth-child(5):hover { box-shadow: 0 20px 40px rgba(236, 72, 153, 0.35); border-color: #ec4899; }
+
 body.light-theme .course-card:hover, 
 body.light-theme .mentor-card:hover {
   box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
 }
+body.light-theme .subject-card:nth-child(1):hover { box-shadow: 0 20px 40px rgba(124, 58, 237, 0.18); border-color: #7c3aed; }
+body.light-theme .subject-card:nth-child(2):hover { box-shadow: 0 20px 40px rgba(59, 130, 246, 0.18); border-color: #3b82f6; }
+body.light-theme .subject-card:nth-child(3):hover { box-shadow: 0 20px 40px rgba(16, 185, 129, 0.18); border-color: #10b981; }
+body.light-theme .subject-card:nth-child(4):hover { box-shadow: 0 20px 40px rgba(245, 158, 11, 0.18); border-color: #f59e0b; }
+body.light-theme .subject-card:nth-child(5):hover { box-shadow: 0 20px 40px rgba(236, 72, 153, 0.18); border-color: #ec4899; }
 
 /* Image Scale inside Mentor Card on Hover */
 .mentor-card img {
