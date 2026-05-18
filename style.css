@@ -1848,7 +1848,7 @@ body.light-theme .navbar .nav-links a:hover {
   .hero-bg-overlay {
     background:
       linear-gradient(90deg,
-        rgba(6, 10, 26, 0.86) 0%,
+        pgba(6, 10, 26, 0.86) 0%,
         rgba(31, 10, 85, 0.46) 24%,
         rgba(31, 10, 85, 0.04) 36%,
         rgba(0, 0, 0, 0) 46%);
@@ -2238,4 +2238,83 @@ body.light-theme .navbar .nav-links a:hover {
   body.light-theme .sc-subtitle {
     color: #64748b;
   }
+}
+
+/* =========================================
+   PREMIUM DYNAMIC ANIMATIONS & HOVER EFFECTS
+========================================= */
+
+/* 1. Staggered Fade-In for Cards */
+@keyframes fadeInUpDynamic {
+  0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.subject-card, .course-card, .mentor-card, .recent-classes .class-row {
+  animation: fadeInUpDynamic 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+.subject-card:nth-child(1), .course-card:nth-child(1), .mentor-card:nth-child(1) { animation-delay: 0.1s; }
+.subject-card:nth-child(2), .course-card:nth-child(2), .mentor-card:nth-child(2) { animation-delay: 0.2s; }
+.subject-card:nth-child(3), .course-card:nth-child(3), .mentor-card:nth-child(3) { animation-delay: 0.3s; }
+.subject-card:nth-child(4), .course-card:nth-child(4), .mentor-card:nth-child(4) { animation-delay: 0.4s; }
+.subject-card:nth-child(5), .course-card:nth-child(5), .mentor-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* 2. Premium Card Hover (Lift & Glow) */
+.subject-card, .course-card, .mentor-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.subject-card:hover, .course-card:hover, .mentor-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(124, 58, 237, 0.25);
+  border-color: var(--primary);
+  z-index: 10;
+}
+body.light-theme .subject-card:hover, 
+body.light-theme .course-card:hover, 
+body.light-theme .mentor-card:hover {
+  box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
+}
+
+/* Image Scale inside Mentor Card on Hover */
+.mentor-card img {
+  transition: transform 0.5s ease;
+}
+.mentor-card:hover img {
+  transform: scale(1.08);
+}
+
+/* 3. Kebab Menu Dynamic Rotation */
+.kebab-btn {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.kebab-btn:hover {
+  transform: rotate(90deg) scale(1.1);
+  background: var(--primary);
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
+  border-color: transparent;
+}
+.kebab-btn:hover span {
+  background: #ffffff;
+}
+
+/* 4. Notification Bell Ring Animation */
+@keyframes bellRing {
+  0%, 100% { transform: rotate(0deg); }
+  20%, 60% { transform: rotate(15deg); }
+  40%, 80% { transform: rotate(-15deg); }
+}
+.nav-notification:hover i {
+  animation: bellRing 0.5s ease-in-out infinite;
+  color: var(--primary);
+}
+
+/* 5. Button Pulse Effect */
+@keyframes neonPulse {
+  0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.5); }
+  70% { box-shadow: 0 0 0 15px rgba(124, 58, 237, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
+}
+.btn-primary:hover {
+  animation: neonPulse 1.5s infinite;
 }
